@@ -1,5 +1,5 @@
 <?php
-	$db = 'dbname';
+	$db = 'smartech';
 	$host = 'localhost';
 	$user = 'root';
 	$password = '';

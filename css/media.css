@@ -19,6 +19,7 @@
     #mobileMenuIcon {display: inline-block; vertical-align: middle; padding-left: 30px; margin-top: 7px;}
     #menuContent {text-align: center;}
     #bottomButton {height: 30px; line-height: 30px; font-size: 16px;}
+    #policyHeader {font-size: 30px;}
 
     .sloganBigFont {font-size: 80px;}
     .sloganSmallFont {font-size: 50px;}
@@ -30,11 +31,14 @@
 
 /* Extra Small Devices, Phones */
 @media only screen and (max-width : 480px) {
+    #policyHeader {font-size: 20px;}
+
     .sloganBigFont {font-size: 60px;}
     .sloganSmallFont {font-size: 30px;}
     .headerFont {font-size: 36px;}
     .footerLogo {width: 100%; float: none;}
     .footerText {width: 100%; float: none; margin-top: 50px; text-align: center;}
+    .policyHeaderFont {font-size: 14px;}
 }
 
 /* Custom, iPhone Retina */

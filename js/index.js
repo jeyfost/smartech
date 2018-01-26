@@ -7,7 +7,7 @@ $(window).on("load", function () {
     $('.bigSection').offset({top: parseInt($('#section').offset().top + $('#section').height() + 100)});
     $('.bigSection').height(parseInt($('.bigSection').width() / 3.184));
     $('.sloganBottom').offset({top: parseInt(($('.bigSection').height() - $('.sloganBottom').height()) / 2 + $('.bigSection').offset().top)});
-    $('#footer').offset({top: parseInt($('.bigSection').offset().top + $('.bigSection').height() + 100)});
+    $('#footer').offset({top: parseInt($('.bigSection').offset().top + $('.bigSection').height())});
 });
 
 $(window).on("scroll", function () {

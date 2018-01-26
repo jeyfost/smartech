@@ -203,7 +203,7 @@
     <div class="bigSection">
         <div id="sloganContainer" class="text-center">
             <div class="sloganBottom">
-                <span class="sloganBottomFont" style="font-size: 4vw">Мы работаем в революционной сфере 3D-печати</span>
+                <span class="sloganBottomFont" style="font-size: 4vw">Мы работаем в революционной сфере 3D-печати,</span>
                 <br />
                 <span class="sloganBottomFont">поэтому наш подход к делу всегда иновационный и передовой</span>
                 <br /><br />

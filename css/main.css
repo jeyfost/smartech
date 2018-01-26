@@ -22,7 +22,8 @@ a {text-decoration: none;}
 #menuPoints {float: right; position: relative;}
 #mobileMenuIcon {display: none; font-size: 26px; cursor: pointer; color: #fb5c25; transition: .3s;}
 #mobileMenu {background-color: #fff; padding: 20px; position: fixed; z-index: 99 !important; top: 80px; right: 0; transition: .3s; display: none;}
-#footer {width: 100%; margin-top: 100px; background-color: #1e1e1e; padding-top: 40px; padding-bottom: 40px;}
+#footer {width: 100%; background-color: #1e1e1e; padding-top: 40px; padding-bottom: 40px;}
+#policySection {width: 60%;}
 
 .text-center {text-align: center !important;}
 .text-right {text-align: right !important;}
@@ -57,3 +58,9 @@ a {text-decoration: none;}
 .footerLogo a i {font-size: 18px; color: #fff; transition: .3s;}
 .footerText {width: 78%; font-family: "Istok Web", sans-serif; font-size: 18px; color: #fff; float: right;}
 .copyFont, .copyFont a {font-family: "Istok Web", sans-serif; font-size: 14px; color: #fff; transition: .3s;}
+.orangeLine {width: 40px; height: 4px; background-color: #fb5c25; border-radius: 1px; margin: 40px auto auto auto;}
+.orangeLeftLine {width: 40px; height: 4px; background-color: #fb5c25; border-radius: 1px; margin-top: 40px;}
+.smallHeaderFont {font-family: "Montserat", sans-serif; color: #000; font-size: 18px;}
+.basicFont {font-family: "Istok Web", sans-serif; font-size: 16px; color: #555;}
+.policyContainer {width: 100%; margin-top: 60px; padding: 20px;}
+.policyHeaderFont {font-family: "Istok Web", sans-serif; font-size: 20px; color: #000; text-transform: uppercase;}
