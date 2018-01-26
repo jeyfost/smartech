@@ -7,22 +7,42 @@
 
 /* Medium Devices, Desktops */
 @media only screen and (max-width : 992px) {
-
+    .menuPoint {font-size: 15px; padding-left: 5px; padding-right: 5px;}
+    .footerLogo {width: 30%;}
+    .footerText {width: 65%;}
 }
 
 /* Small Devices, Tablets */
 @media only screen and (max-width : 768px) {
+    #menuPoints {display: none;}
+    #logo {float: none; display: inline-block; vertical-align: middle;}
+    #mobileMenuIcon {display: inline-block; vertical-align: middle; padding-left: 30px; margin-top: 7px;}
+    #menuContent {text-align: center;}
+    #bottomButton {height: 30px; line-height: 30px; font-size: 16px;}
 
+    .sloganBigFont {font-size: 80px;}
+    .sloganSmallFont {font-size: 50px;}
+    .activityPhoto {width: 100%;}
+    .activityDescription {width: 100%; margin-top: 20px;}
+    .footerLogo {width: 40%;}
+    .footerText {width: 55%;}
 }
 
 /* Extra Small Devices, Phones */
 @media only screen and (max-width : 480px) {
-
+    .sloganBigFont {font-size: 60px;}
+    .sloganSmallFont {font-size: 30px;}
+    .headerFont {font-size: 36px;}
+    .footerLogo {width: 100%; float: none;}
+    .footerText {width: 100%; float: none; margin-top: 50px; text-align: center;}
 }
 
 /* Custom, iPhone Retina */
 @media only screen and (max-width : 320px) {
-
+    .sloganBigFont {font-size: 50px;}
+    .sloganSmallFont {font-size: 30px;}
+    .promoButton {margin-top: 0;}
+    .headerFont {font-size: 30px;}
 }
 
 

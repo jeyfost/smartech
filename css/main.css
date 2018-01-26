@@ -1,29 +1,59 @@
-*::-webkit-input-placeholder {
-	color: #666;
-	opacity: 1;
-}
-*:-moz-placeholder {
-	color: #666;
-	opacity: 1;
-}
-*::-moz-placeholder {
-	color: #666;
-	opacity: 1;
-}
-*:-ms-input-placeholder {
-	color: #666;
-	opacity: 1;
-}
+*::-webkit-input-placeholder, *:-moz-placeholder, *::-moz-placeholder, *:-ms-input-placeholder {color: #666; opacity: 1;}
+body input:focus:required:invalid, body textarea:focus:required:invalid {}
+body input:required:valid, body textarea:required:valid {}
 
-body input:focus:required:invalid,
-body textarea:focus:required:invalid {
-	
-}
-body input:required:valid,
-body textarea:required:valid {
-	
-}
-body {
-	font-family: "RobotoRegular", sans-serif;
-	font-size: 16px;
-}
+body {padding: 0; margin: 0; font-family: "RobotoRegular", sans-serif;	font-size: 16px;}
+a {text-decoration: none;}
+
+#mobileMenuIcon:hover {color: #a01a21;}
+#scroll:hover {background-color: #a01a21;}
+
+.menuPoint:hover, .mobileMenuPoint a span:hover, .mobileMenuPoint i:hover, .footerLogo a i:hover, .copyFont a:hover {color: #fb5c25;}
+.promoButton:hover, .activityButton:hover {background-color: #ededed; color: #fb5c25;}
+
+#menu {width: 100%; height: 80px; background-color: #fff; box-shadow: 0 5px 6px -4px rgba(0, 0, 0, 0.17); z-index: 100 !important; position: fixed; top: 0; left: 0; transition: .3s;}
+#menuContent {width: 96%; margin: 0 auto;}
+#videoContainer {position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1 !important; background-color: #000; overflow: hidden;}
+#logo {float: left;}
+#logo img {margin-top: 15px; transition: .3s;}
+#mask {position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url(/img/system/raster.png) repeat top left; z-index: 2;}
+#sloganContainer {position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 3;}
+#scroll {display: none; position: fixed; bottom: 20px; right: 30px; z-index: 1000; cursor: pointer; color: #fff; transition: .3s; width: 50px; height: 50px; line-height: 50px; text-align: center; border-radius: 50px; background-color: #fb5c25; font-size: 11px;}
+#menuPoints {float: right; position: relative;}
+#mobileMenuIcon {display: none; font-size: 26px; cursor: pointer; color: #fb5c25; transition: .3s;}
+#mobileMenu {background-color: #fff; padding: 20px; position: fixed; z-index: 99 !important; top: 80px; right: 0; transition: .3s; display: none;}
+#footer {width: 100%; margin-top: 100px; background-color: #1e1e1e; padding-top: 40px; padding-bottom: 40px;}
+
+.text-center {text-align: center !important;}
+.text-right {text-align: right !important;}
+.clear {clear: both;}
+.menuPoint {padding-left: 7px; padding-right: 7px; height: 80px; line-height: 80px; float: right; position: relative; font-family: "Montserat", sans-serif; color: #000; transition: .3s;}
+.active {color: #fb5c25 !important; cursor: default;}
+.slogan {color: #ededed; margin-top: 200px;}
+.sloganBigFont {font-family: "Exo 2", sans-serif; font-size: 100px; font-weight: bold; line-height: 0;}
+.sloganSmallFont {font-family: "Poiret One", cursive; font-size: 70px; line-height: 60px;}
+.promoButton {padding-left: 20px; padding-right: 20px; height: 50px; line-height: 50px; color: #ededed; background-color: #fb5c25; border-radius: 25px; border: none; transition: .3s; cursor: pointer; font-variant: small-caps; font-size: 18px; font-family: "Istok Web", sans-serif; margin-top: 20px;}
+.promoButton i {padding-right: 10px;}
+.section {width: 96%; margin: 100px auto auto auto;}
+.white {background-color: #fff;}
+.grey {background-color: #f5f5f5;}
+.mobileMenuPoint {text-align: center; height: 40px; line-height: 40px;}
+.mobileMenuPoint a span {font-family: "Montserat", sans-serif; color: #000; transition: .3s; font-size: 14px;}
+.mobileMenuPoint i {font-size: 18px; color: #000; transition: .3s; cursor: pointer;}
+.header {width: 100%; text-align: center;}
+.headerFont {font-family: "Montserrat", sans-serif; font-size: 42px; color: #000;}
+.activityBlock {margin-top: 70px; padding: 20px;}
+.activityPhoto {position: relative; float: left; width: 40%;}
+.activityDescription {position: relative; float: right; width: 57%;}
+.activityPhoto img {width: 100%;}
+.activityText {width: 100%; margin-top: 40px;}
+.activityHeaderFont {font-family: "Montserat", sans-serif; color: #000; font-size: 20px;}
+.activityText {font-family: "Istok Web", sans-serif; color: #282828; font-size: 16px;}
+.activityButton {padding-left: 20px; padding-right: 20px; height: 30px; line-height: 30px; color: #ededed; background-color: #fb5c25; border-radius: 25px; border: none; transition: .3s; cursor: pointer; font-variant: small-caps; font-size: 16px; font-family: "Istok Web", sans-serif; margin-top: 20px;}
+.bigSection {width: 100%; background: url(/img/system/img11.jpg) center center no-repeat; background-size: cover;}
+.sloganBottom {color: #ededed;}
+.sloganBottomFont {font-family: 'Istok Web', sans-serif; font-size: 3vw; opacity: .75;}
+.footerLogo {width: 20%; float: left;}
+.footerLogo a i {font-size: 18px; color: #fff; transition: .3s;}
+.footerText {width: 78%; font-family: "Istok Web", sans-serif; font-size: 18px; color: #fff; float: right;}
+.copyFont, .copyFont a {font-family: "Istok Web", sans-serif; font-size: 14px; color: #fff; transition: .3s;}
