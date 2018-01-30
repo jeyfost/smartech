@@ -117,7 +117,7 @@
                     <span class="activityHeaderFont">3D-принтеры</span>
                 </div>
                 <div class="activityText">
-                    <p>Mauris vel leo ut magna iaculis rutrum eget sit amet dolor. Maecenas id felis consequat, eleifend diam ut, cursus massa. Sed tempor, augue a imperdiet efficitur, dolor ex porta quam, et ullamcorper ligula enim sed lacus. Ut porta ultrices enim, eu sodales mi varius ac. Praesent quis blandit lacus. Suspendisse porta, libero ac fringilla varius, leo est lacinia purus, non fermentum leo ex quis ligula. Nunc eget enim condimentum quam ullamcorper sodales non a lacus. Fusce non nulla in arcu ultricies mollis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean accumsan tincidunt dolor at facilisis. Integer semper justo ac justo rutrum, ac euismod augue posuere.</p>
+                    <p>Изготовление на заказ FDM 3D-принтеров различной кинематики исходя из пожеланий заказчика. Консультация, диагностика и ремонт 3D-принтеров. Продажа комплектующих и расходных материалов к 3D-принтерам.</p>
                 </div>
                 <div class="header text-right">
                     <a href="/3d-printers/"><button class="activityButton">подробнее&nbsp;&nbsp;<i class="fa fa-hand-o-right" aria-hidden="true"></i></button></a>
@@ -135,7 +135,7 @@
                     <span class="activityHeaderFont">3D-печать</span>
                 </div>
                 <div class="activityText">
-                    <p>Aenean in sagittis sem. Ut consequat magna et lorem pulvinar, nec imperdiet elit luctus. Vestibulum at lorem faucibus, malesuada enim laoreet, accumsan nisi. Phasellus tincidunt posuere elit id lacinia. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur turpis lacus, tempor varius mattis finibus, placerat ut leo. Nulla venenatis ut arcu vulputate tristique. Donec vitae ante nibh. Vivamus ultricies, magna vitae imperdiet dictum, lectus ipsum condimentum quam, non vehicula urna libero et augue. Sed non semper leo, ac facilisis libero. In faucibus quis neque quis mollis. Nullam blandit sapien turpis, ut lobortis ipsum sollicitudin nec. Nulla eu lacinia ipsum.</p>
+                    <p>Выполнение индивидуальных заказов по 3D-печати. 3D-моделирование на заказ.</p>
                 </div>
                 <div class="header text-right">
                     <a href="/3d-print/"><button class="activityButton">подробнее&nbsp;&nbsp;<i class="fa fa-hand-o-right" aria-hidden="true"></i></button></a>
@@ -153,7 +153,7 @@
                     <span class="activityHeaderFont">Обучение</span>
                 </div>
                 <div class="activityText">
-                    <p>Sed vehicula est augue, a efficitur mauris tempus vel. Maecenas semper, odio at consequat imperdiet, orci justo molestie nibh, et viverra quam sem tempus nibh. Quisque commodo congue quam fermentum ullamcorper. Aenean vulputate mauris et pretium imperdiet. Cras tempus quam non mi blandit, in dictum lorem dignissim. Nullam turpis ex, interdum at ipsum quis, semper rutrum est. Vivamus quis urna odio.</p>
+                    <p>Обучение 3D-печати в формате мастер классов и курсов.</p>
                 </div>
             </div>
             <div class="header text-right">
@@ -171,7 +171,7 @@
                     <span class="activityHeaderFont">Проектирование</span>
                 </div>
                 <div class="activityText">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et arcu bibendum, iaculis lectus ut, ullamcorper erat. Pellentesque elementum interdum purus. Nulla facilisi. Duis a pharetra ipsum. Nam dignissim odio ac velit luctus pulvinar. In non urna elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce et vehicula mi. In vel sollicitudin massa, eu venenatis nisl. In a ex a augue scelerisque faucibus ut sed leo.</p>
+                    <p>Разработка и проектирование электронных устройств различного назначения. Разводка печатных плат на заказ.</p>
                 </div>
                 <div class="header text-right">
                     <a href="/engineering/"><button class="activityButton">подробнее&nbsp;&nbsp;<i class="fa fa-hand-o-right" aria-hidden="true"></i></button></a>
@@ -189,7 +189,7 @@
                     <span class="activityHeaderFont">Internet of Things</span>
                 </div>
                 <div class="activityText">
-                    <p>Nulla auctor lacus a dignissim tincidunt. Vestibulum vitae ornare eros. Fusce posuere odio mi, luctus scelerisque nibh pulvinar sed. Nunc blandit faucibus eros, nec varius neque sodales a. Mauris eget turpis ut dui malesuada feugiat. Duis venenatis vel metus a aliquam. Pellentesque dictum urna leo, lobortis aliquam dolor hendrerit quis. Cras nulla ligula, tristique quis dui in, sodales tristique tellus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam porttitor tortor nibh, quis faucibus purus laoreet ut. Nam id convallis lorem. Praesent tempus justo eget leo convallis convallis. Curabitur eu semper tellus. Integer vestibulum vulputate felis, sed iaculis quam imperdiet et.</p>
+                    <p>Разработка и изготовление систем автоматизации, в том числе устройств IoT.</p>
                 </div>
                 <div class="header text-right">
                     <a href="/iot/"><button class="activityButton">подробнее&nbsp;&nbsp;<i class="fa fa-hand-o-right" aria-hidden="true"></i></button></a>

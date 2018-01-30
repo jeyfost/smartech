@@ -4,12 +4,15 @@ body input:required:valid, body textarea:required:valid {}
 
 body {padding: 0; margin: 0; font-family: "RobotoRegular", sans-serif;	font-size: 16px;}
 a {text-decoration: none;}
+input {font-size: 16px; font-family: "Istok Web", sans-serif; width: 95%; height: 30px; padding-left: 5px; padding-right: 5px; line-height: 30px;}
+textarea {font-size: 16px; font-family: "Montserrat", sans-serif;, width: 95%; padding: 5px; resize: none; transition: .3s;}
+label {font-family: "Istok Web", sans-serif;}
 
 #mobileMenuIcon:hover {color: #a01a21;}
 #scroll:hover {background-color: #a01a21;}
 
-.menuPoint:hover, .mobileMenuPoint a span:hover, .mobileMenuPoint i:hover, .footerLogo a i:hover, .copyFont a:hover {color: #fb5c25;}
-.promoButton:hover, .activityButton:hover {background-color: #ededed; color: #fb5c25;}
+.menuPoint:hover, .mobileMenuPoint a span:hover, .mobileMenuPoint i:hover, .footerLogo a i:hover, .copyFont a:hover, .header a i:hover {color: #fb5c25;}
+.promoButton:hover, .activityButton:hover, .messageButton:hover {background-color: #ededed; color: #fb5c25;}
 
 #menu {width: 100%; height: 80px; background-color: #fff; box-shadow: 0 5px 6px -4px rgba(0, 0, 0, 0.17); z-index: 100 !important; position: fixed; top: 0; left: 0; transition: .3s;}
 #menuContent {width: 96%; margin: 0 auto;}
@@ -24,6 +27,7 @@ a {text-decoration: none;}
 #mobileMenu {background-color: #fff; padding: 20px; position: fixed; z-index: 99 !important; top: 80px; right: 0; transition: .3s; display: none;}
 #footer {width: 100%; background-color: #1e1e1e; padding-top: 40px; padding-bottom: 40px;}
 #policySection {width: 60%;}
+#contactForm {width: 100%;}
 
 .text-center {text-align: center !important;}
 .text-right {text-align: right !important;}
@@ -33,7 +37,7 @@ a {text-decoration: none;}
 .slogan {color: #ededed; margin-top: 200px;}
 .sloganBigFont {font-family: "Exo 2", sans-serif; font-size: 100px; font-weight: bold; line-height: 0;}
 .sloganSmallFont {font-family: "Poiret One", cursive; font-size: 70px; line-height: 60px;}
-.promoButton {padding-left: 20px; padding-right: 20px; height: 50px; line-height: 50px; color: #ededed; background-color: #fb5c25; border-radius: 25px; border: none; transition: .3s; cursor: pointer; font-variant: small-caps; font-size: 18px; font-family: "Istok Web", sans-serif; margin-top: 20px;}
+.promoButton, .messageButton {padding-left: 20px; padding-right: 20px; height: 50px; line-height: 50px; color: #ededed; background-color: #fb5c25; border-radius: 25px; border: none; transition: .3s; cursor: pointer; font-variant: small-caps; font-size: 18px; font-family: "Istok Web", sans-serif; margin-top: 20px;}
 .promoButton i {padding-right: 10px;}
 .section {width: 96%; margin: 100px auto auto auto;}
 .white {background-color: #fff;}
@@ -56,6 +60,7 @@ a {text-decoration: none;}
 .sloganBottomFont {font-family: 'Istok Web', sans-serif; font-size: 3vw; opacity: .75;}
 .footerLogo {width: 20%; float: left;}
 .footerLogo a i {font-size: 18px; color: #fff; transition: .3s;}
+.header a i {font-size: 18px; color: #000; transition: .3s;}
 .footerText {width: 78%; font-family: "Istok Web", sans-serif; font-size: 18px; color: #fff; float: right;}
 .copyFont, .copyFont a {font-family: "Istok Web", sans-serif; font-size: 14px; color: #fff; transition: .3s;}
 .orangeLine {width: 40px; height: 4px; background-color: #fb5c25; border-radius: 1px; margin: 40px auto auto auto;}
@@ -64,3 +69,6 @@ a {text-decoration: none;}
 .basicFont {font-family: "Istok Web", sans-serif; font-size: 16px; color: #555;}
 .policyContainer {width: 100%; margin-top: 60px; padding: 20px;}
 .policyHeaderFont {font-family: "Istok Web", sans-serif; font-size: 20px; color: #000; text-transform: uppercase;}
+.container60 {width: 60%; margin: 50px auto auto auto;}
+.column {width: 30%; margin-left: 2%; position: relative; float: left; display: table-column; text-align: center; font-family: "Istok Web", sans-serif;}
+.firstColumn {margin-left: 3%;}
