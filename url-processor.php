@@ -351,7 +351,7 @@ if(!empty($url[2])) {
                 } else {
                     echo "
                         <div class='section text-center'>
-                            <p class='activityText'>На данный момент мы ещё ничего не добавили в раздел &laquo;".$category['name']."&raquo;, но скоро мы обязательно опубликуем много интересного &#9786;</p>
+                            <p class='activityText'>На данный момент мы ещё ничего не добавили в раздел &laquo;".$category['title']."&raquo;, но скоро мы обязательно опубликуем много интересного &#9786;</p>
                         </div>
                     ";
                 }

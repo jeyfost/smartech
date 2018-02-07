@@ -3,32 +3,32 @@
  * Created by PhpStorm.
  * User: jeyfost
  * Date: 07.02.2018
- * Time: 15:35
+ * Time: 16:02
  */
 
 session_start();
-include("../scripts/connect.php");
+include("../../scripts/connect.php");
 
 if($_SESSION['userID'] != 1) {
-    header("Location: ../");
+    header("Location: ../../");
+}
+
+if(!empty($_REQUEST['id'])) {
+    $pageCheckResult = $mysqli->query("SELECT COUNT(id) FROM st_catalogue_categories WHERE id = '".$mysqli->real_escape_string($_REQUEST['id'])."'");
+    $pageCheck = $pageCheckResult->fetch_array(MYSQLI_NUM);
+
+    if($pageCheck[0] == 0) {
+        header("Location: index.php");
+    }
 }
 
 ?>
-
-<!DOCTYPE html>
-
-<!--[if lt IE 7]><html lang="ru" class="lt-ie9 lt-ie8 lt-ie7"><![endif]-->
-<!--[if IE 7]><html lang="ru" class="lt-ie9 lt-ie8"><![endif]-->
-<!--[if IE 8]><html lang="ru" class="lt-ie9"><![endif]-->
-<!--[if gt IE 8]><!-->
-<html lang="ru">
-<!--<![endif]-->
 
 <head>
 
     <meta charset="utf-8" />
 
-    <title>Панель администрирования | Страницы</title>
+    <title>Панель администрирования</title>
 
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -48,6 +48,7 @@ if($_SESSION['userID'] != 1) {
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="/libs/notify/notify.js"></script>
     <script type="text/javascript" src="/js/admin/common.js"></script>
+    <script type="text/javascript" src="/js/admin/pages/index.js"></script>
 
     <style>
         #page-preloader {position: fixed; left: 0; top: 0; right: 0; bottom: 0; background: #fff; z-index: 100500;}
@@ -72,16 +73,16 @@ if($_SESSION['userID'] != 1) {
 
     <div id="topLine">
         <div id="logo">
-            <a href="../"><span><i class="fa fa-home" aria-hidden="true"></i> <?= $_SERVER['HTTP_HOST'] ?></span></a>
+            <a href="/"><span><i class="fa fa-home" aria-hidden="true"></i> <?= $_SERVER['HTTP_HOST'] ?></span></a>
         </div>
-        <a href="admin.php"><span class="headerText">Панель администрирвания</span></a>
+        <a href="/admin/admin.php"><span class="headerText">Панель администрирвания</span></a>
         <div id="exit" onclick="exit()">
             <span>Выйти <i class="fa fa-sign-out" aria-hidden="true"></i></span>
         </div>
     </div>
     <div id="leftMenu">
         <a href="/admin/pages/">
-            <div class="menuPoint">
+            <div class="menuPointActive">
                 <i class="fa fa-file-text-o" aria-hidden="true"></i><span> Страницы</span>
             </div>
         </a>
@@ -118,7 +119,43 @@ if($_SESSION['userID'] != 1) {
     </div>
 
     <div id="content">
-        <span class="headerFont"><i class="fa fa-long-arrow-left" aria-hidden="true"></i> Для начала работы выберите раздел</span>
+        <span class="headerFont">Редактирование страниц</span>
+        <br /><br />
+        <form method="post" id="pagesForm">
+            <label for="pageSelect"></label>
+            <select id="pageSelect" name="page" onchange="window.location = '?id=' + this.options[this.selectedIndex].value">
+                <option value="">- Выберите страницу -</option>
+                <?php
+                    $pageResult = $mysqli->query("SELECT * FROM st_catalogue_categories ORDER BY id");
+                    while($page = $pageResult->fetch_assoc()) {
+                        echo "<option value='".$page['id']."'"; if($_REQUEST['id'] == $page['id']) {echo " selected";} echo ">".$page['name']."</option>";
+                    }
+                ?>
+            </select>
+            <?php
+                if(!empty($_REQUEST['id'])) {
+                    $pageResult = $mysqli->query("SELECT * FROM st_catalogue_categories WHERE id = '".$mysqli->real_escape_string($_REQUEST['id'])."'");
+                    $page = $pageResult->fetch_assoc();
+
+                    echo "
+                        <br /><br />
+                        <label for='titleInput'>Заголовок:</label>
+                        <br />
+                        <input id='titleInput' name='title' value='".$page['title']."' />
+                        <br /><br />
+                        <label for='keywordsInput'>Ключевые слова:</label>
+                        <br />
+                        <textarea id='keywordsInput' name='keywords' onkeydown='textAreaHeight(this)'>".$page['keywords']."</textarea>
+                        <br /><br />
+                        <label for='descriptionInput'>Описание:</label>
+                        <br />
+                        <textarea id='descriptionInput' name='description' onkeydown='textAreaHeight(this)'>".$page['description']."</textarea>
+                        <br /><br />
+                        <input type='button' class='button' id='pageSubmit' value='Редактировать' onmouseover='buttonHover(\"pageSubmit\", 1)' onmouseout='buttonHover(\"pageSubmit\", 0)' onclick='edit()' />
+                     ";
+                }
+            ?>
+        </form>
     </div>
 
 </body>
