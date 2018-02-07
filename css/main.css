@@ -11,8 +11,9 @@ label {font-family: "Istok Web", sans-serif;}
 #mobileMenuIcon:hover {color: #a01a21;}
 #scroll:hover {background-color: #a01a21;}
 
-.menuPoint:hover, .mobileMenuPoint a span:hover, .mobileMenuPoint i:hover, .footerLogo a i:hover, .copyFont a:hover, .header a i:hover {color: #fb5c25;}
+.menuPoint:hover, .mobileMenuPoint a span:hover, .mobileMenuPoint i:hover, .footerLogo a i:hover, .copyFont a:hover, .greyFont a:hover, .header a i:hover, .activityHeaderFont:hover {color: #fb5c25;}
 .promoButton:hover, .activityButton:hover, .messageButton:hover {background-color: #ededed; color: #fb5c25;}
+.activityPhoto img:hover {opacity: .6;}
 
 #menu {width: 100%; height: 80px; background-color: #fff; box-shadow: 0 5px 6px -4px rgba(0, 0, 0, 0.17); z-index: 100 !important; position: fixed; top: 0; left: 0; transition: .3s;}
 #menuContent {width: 96%; margin: 0 auto;}
@@ -28,6 +29,7 @@ label {font-family: "Istok Web", sans-serif;}
 #footer {width: 100%; background-color: #1e1e1e; padding-top: 40px; padding-bottom: 40px;}
 #policySection {width: 60%;}
 #contactForm {width: 100%;}
+#pageNumbers {display: inline-block; text-align: center; font-family: "Istok Web", sans-serif;}
 
 .text-center {text-align: center !important;}
 .text-right {text-align: right !important;}
@@ -40,6 +42,7 @@ label {font-family: "Istok Web", sans-serif;}
 .promoButton, .messageButton {padding-left: 20px; padding-right: 20px; height: 50px; line-height: 50px; color: #ededed; background-color: #fb5c25; border-radius: 25px; border: none; transition: .3s; cursor: pointer; font-variant: small-caps; font-size: 18px; font-family: "Istok Web", sans-serif; margin-top: 20px;}
 .promoButton i {padding-right: 10px;}
 .section {width: 96%; margin: 100px auto auto auto;}
+.section100 {width: 100%; margin: 100px auto auto auto;}
 .white {background-color: #fff;}
 .grey {background-color: #f5f5f5;}
 .mobileMenuPoint {text-align: center; height: 40px; line-height: 40px;}
@@ -49,10 +52,11 @@ label {font-family: "Istok Web", sans-serif;}
 .headerFont {font-family: "Montserrat", sans-serif; font-size: 42px; color: #000;}
 .activityBlock {margin-top: 70px; padding: 20px;}
 .activityPhoto {position: relative; float: left; width: 40%;}
+.activityPhoto img {transition: .3s;}
 .activityDescription {position: relative; float: right; width: 57%;}
 .activityPhoto img {width: 100%;}
 .activityText {width: 100%; margin-top: 40px;}
-.activityHeaderFont {font-family: "Montserat", sans-serif; color: #000; font-size: 20px;}
+.activityHeaderFont {font-family: "Montserat", sans-serif; color: #000; font-size: 20px; transition: .3s;}
 .activityText {font-family: "Istok Web", sans-serif; color: #282828; font-size: 16px;}
 .activityButton {padding-left: 20px; padding-right: 20px; height: 30px; line-height: 30px; color: #ededed; background-color: #fb5c25; border-radius: 25px; border: none; transition: .3s; cursor: pointer; font-variant: small-caps; font-size: 16px; font-family: "Istok Web", sans-serif; margin-top: 20px;}
 .bigSection {width: 100%; background: url(/img/system/img11.jpg) center center no-repeat; background-size: cover;}
@@ -63,6 +67,7 @@ label {font-family: "Istok Web", sans-serif;}
 .header a i {font-size: 18px; color: #000; transition: .3s;}
 .footerText {width: 78%; font-family: "Istok Web", sans-serif; font-size: 18px; color: #fff; float: right;}
 .copyFont, .copyFont a {font-family: "Istok Web", sans-serif; font-size: 14px; color: #fff; transition: .3s;}
+.greyFont, .greyFont a {font-family: "Istok Web", sans-serif; font-size: 12px; color: #999; transition: .3s;}
 .orangeLine {width: 40px; height: 4px; background-color: #fb5c25; border-radius: 1px; margin: 40px auto auto auto;}
 .orangeLeftLine {width: 40px; height: 4px; background-color: #fb5c25; border-radius: 1px; margin-top: 40px;}
 .smallHeaderFont {font-family: "Montserat", sans-serif; color: #000; font-size: 18px;}
@@ -72,3 +77,14 @@ label {font-family: "Istok Web", sans-serif;}
 .container60 {width: 60%; margin: 50px auto auto auto;}
 .column {width: 30%; margin-left: 2%; position: relative; float: left; display: table-column; text-align: center; font-family: "Istok Web", sans-serif;}
 .firstColumn {margin-left: 3%;}
+.catalogueContainer {width: 300px; padding: 10px; margin: 20px auto auto 20px; display: inline-block; background-color: #fff; box-shadow: 0 5px 15px -4px rgba(0, 0, 0, 0.4); vertical-align: middle;}
+.cataloguePhoto, .cataloguePhoto img, .catalogueDescription {width: 100%;}
+.catalogueName {font-family: "Montserat", sans-serif; color: #282828; font-size: 16px; width: 100%; text-align: center; margin-top: 20px; font-weight: bold;}
+.catalogueShortDescription {font-family: "Istok Web", sans-serif; font-size: 16px; color: #282828; text-align: left; margin-top: 20px; width: 280px; padding-left: 10px; padding-right: 10px;}
+.catalogueButtonContainer {width: 100%; padding-bottom: 20px;}
+.pageNumberBlockSide {position: relative; float: left; height: 30px; line-height: 30px; padding-left: 10px; padding-right: 10px; text-align: center; border-radius: 3px; margin-left: 2px; transition: .3s;}
+.pageNumberBlock {position: relative; float: left; width: 40px; height: 30px; line-height: 30px; text-align: center; border-radius: 3px; margin-left: 2px; transition: .3s;}
+.pageNumberBlockActive {position: relative; float: left; background-color: #fb5c25; width: 40px; height: 30px; line-height: 30px; text-align: center; border-radius: 3px; margin-left: 2px;}
+.paginationInactive {color: #191919;}
+.paginationActive {color: #fff;}
+.paginationLink {color: #fb5c25;}

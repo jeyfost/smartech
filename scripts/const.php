@@ -7,3 +7,4 @@
  */
 
 define("CONTACT_EMAIL", "mail@test.zz");
+define("GOODS_ON_PAGE", 10);

@@ -91,7 +91,7 @@ include('../scripts/connect.php');
         <div class="mobileMenuPoint"><a href="/"><span>Главная</span></a></div>
         <div class="mobileMenuPoint"><a href="/3d-printers/"><span>3D-принтеры</span></a></div>
         <div class="mobileMenuPoint"><a href="/3d-print/"><span>3D-печать</span></a></div>
-        <div class="mobileMenuPoint"> <a href="/study/"><span>Обучение</span></a></div>
+        <div class="mobileMenuPoint"><a href="/study/"><span>Обучение</span></a></div>
         <div class="mobileMenuPoint"><a href="/engineering/"><span>Проектирование</span></a></div>
         <div class="mobileMenuPoint"><a href="/iot/"><span>IoT</span></a></div>
         <div class="mobileMenuPoint active"><a href="/contacts/"><span>Контакты</span></a></div>
@@ -103,9 +103,9 @@ include('../scripts/connect.php');
         <br /><br />
         <span class="headerFont" id="policyHeader">Контактная информация</span>
         <br /><br /><br /><br />
-        <a href="#" target="_blank"><i class="fa fa-vk" aria-hidden="true"></i></a>
+        <a href="https://vk.com/oaosmartech" target="_blank"><i class="fa fa-vk" aria-hidden="true"></i></a>
         &nbsp;&nbsp;&nbsp;
-        <a href="#" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+        <a href="https://www.facebook.com/oaosmartech/" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
         &nbsp;&nbsp;&nbsp;
         <a href="#" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
         &nbsp;&nbsp;&nbsp;
@@ -171,9 +171,9 @@ include('../scripts/connect.php');
         <div class="footerLogo text-center">
             <a href="/"><img src="/img/system/logo_white_text_small.png" /></a>
             <br /><br />
-            <a href="#" target="_blank"><i class="fa fa-vk" aria-hidden="true"></i></a>
+            <a href="https://vk.com/oaosmartech" target="_blank"><i class="fa fa-vk" aria-hidden="true"></i></a>
             &nbsp;&nbsp;&nbsp;
-            <a href="#" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+            <a href="https://www.facebook.com/oaosmartech/" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
             &nbsp;&nbsp;&nbsp;
             <a href="#" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
             &nbsp;&nbsp;&nbsp;
@@ -188,6 +188,8 @@ include('../scripts/connect.php');
     </div>
     <div class="section text-center" style="margin: 50px auto auto auto;">
         <span class="copyFont">smARTech &copy; <?= date('Y') ?> - <a href="/privacy-policy/">Политика конфиденциальности</a></span>
+        <br />
+        <span class="greyFont">Создание сайта: <a href="https://airlab.by/">airlab</a></span>
     </div>
 </div>
 

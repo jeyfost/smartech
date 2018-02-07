@@ -80,7 +80,7 @@
             <div class="mobileMenuPoint active"><span>Главная</span></div>
             <div class="mobileMenuPoint"><a href="/3d-printers/"><span>3D-принтеры</span></a></div>
             <div class="mobileMenuPoint"><a href="/3d-print/"><span>3D-печать</span></a></div>
-            <div class="mobileMenuPoint"> <a href="/study/"><span>Обучение</span></a></div>
+            <div class="mobileMenuPoint"><a href="/study/"><span>Обучение</span></a></div>
             <div class="mobileMenuPoint"><a href="/engineering/"><span>Проектирование</span></a></div>
             <div class="mobileMenuPoint"><a href="/iot/"><span>IoT</span></a></div>
             <div class="mobileMenuPoint"><a href="/contacts/"><span>Контакты</span></a></div>
@@ -110,17 +110,17 @@
         </div>
         <div class="activityBlock white">
             <div class="activityPhoto">
-                <img src="/img/system/img5.jpg" />
+                <a href="/3d-printers/"><img src="/img/system/img5.jpg" /></a>
             </div>
             <div class="activityDescription">
                 <div class="header">
-                    <span class="activityHeaderFont">3D-принтеры</span>
+                    <a href="/3d-printers/"><span class="activityHeaderFont">3D-принтеры</span></a>
                 </div>
                 <div class="activityText">
                     <p>Изготовление на заказ FDM 3D-принтеров различной кинематики исходя из пожеланий заказчика. Консультация, диагностика и ремонт 3D-принтеров. Продажа комплектующих и расходных материалов к 3D-принтерам.</p>
                 </div>
                 <div class="header text-right">
-                    <a href="/3d-printers/"><button class="activityButton">подробнее&nbsp;&nbsp;<i class="fa fa-hand-o-right" aria-hidden="true"></i></button></a>
+                    <a href="/3d-printers/"><button class="activityButton" onmouseover="iconColor('3d-printers-icon', 1)" onmouseout="iconColor('3d-printers-icon', 0)">подробнее&nbsp;&nbsp;<i class="fa fa-hand-o-right" aria-hidden="true" id="3d-printers-icon" style="color: #ededed;"></i></button></a>
                 </div>
             </div>
             <div class="clear"></div>
@@ -128,17 +128,17 @@
         <div class="clear"></div>
         <div class="activityBlock grey">
             <div class="activityPhoto">
-                <img src="/img/system/img4.jpg" />
+                <a href="/3d-print/"><img src="/img/system/img4.jpg" /></a>
             </div>
             <div class="activityDescription">
                 <div class="header">
-                    <span class="activityHeaderFont">3D-печать</span>
+                    <a href="/3d-print/"><span class="activityHeaderFont">3D-печать</span></a>
                 </div>
                 <div class="activityText">
                     <p>Выполнение индивидуальных заказов по 3D-печати. 3D-моделирование на заказ.</p>
                 </div>
                 <div class="header text-right">
-                    <a href="/3d-print/"><button class="activityButton">подробнее&nbsp;&nbsp;<i class="fa fa-hand-o-right" aria-hidden="true"></i></button></a>
+                    <a href="/3d-print/"><button class="activityButton" onmouseover="iconColor('3d-print-icon', 1)" onmouseout="iconColor('3d-print-icon', 0)">подробнее&nbsp;&nbsp;<i class="fa fa-hand-o-right" aria-hidden="true" id="3d-print-icon" style="color: #ededed;"></i></button></a>
                 </div>
             </div>
             <div class="clear"></div>
@@ -146,35 +146,35 @@
         <div class="clear"></div>
         <div class="activityBlock white">
             <div class="activityPhoto">
-                <img src="/img/system/img6.jpg" />
+                <a href="/study/"><img src="/img/system/img6.jpg" /></a>
             </div>
             <div class="activityDescription">
                 <div class="header">
-                    <span class="activityHeaderFont">Обучение</span>
+                    <a href="/study/"><span class="activityHeaderFont">Обучение</span></a>
                 </div>
                 <div class="activityText">
                     <p>Обучение 3D-печати в формате мастер классов и курсов.</p>
                 </div>
             </div>
             <div class="header text-right">
-                <a href="/study/"><button class="activityButton">подробнее&nbsp;&nbsp;<i class="fa fa-hand-o-right" aria-hidden="true"></i></button></a>
+                <a href="/study/"><button class="activityButton" onmouseover="iconColor('study-icon', 1)" onmouseout="iconColor('study-icon', 0)">подробнее&nbsp;&nbsp;<i class="fa fa-hand-o-right" aria-hidden="true" id="study-icon" style="color: #ededed;"></i></button></a>
             </div>
             <div class="clear"></div>
         </div>
         <div class="clear"></div>
         <div class="activityBlock grey">
             <div class="activityPhoto">
-                <img src="/img/system/img14.jpg" />
+                <a href="/engineering/"><img src="/img/system/img14.jpg" /></a>
             </div>
             <div class="activityDescription">
                 <div class="header">
-                    <span class="activityHeaderFont">Проектирование</span>
+                    <a href="/engineering/"><span class="activityHeaderFont">Проектирование</span></a>
                 </div>
                 <div class="activityText">
                     <p>Разработка и проектирование электронных устройств различного назначения. Разводка печатных плат на заказ.</p>
                 </div>
                 <div class="header text-right">
-                    <a href="/engineering/"><button class="activityButton">подробнее&nbsp;&nbsp;<i class="fa fa-hand-o-right" aria-hidden="true"></i></button></a>
+                    <a href="/engineering/"><button class="activityButton" onmouseover="iconColor('engineering-icon', 1)" onmouseout="iconColor('engineering-icon', 0)">подробнее&nbsp;&nbsp;<i class="fa fa-hand-o-right" aria-hidden="true" id="engineering-icon" style="color: #ededed;"></i></button></a>
                 </div>
             </div>
             <div class="clear"></div>
@@ -182,17 +182,17 @@
         <div class="clear"></div>
         <div class="activityBlock white">
             <div class="activityPhoto">
-                <img src="/img/system/iot.png" />
+                <a href="/iot/"><img src="/img/system/iot.png" /></a>
             </div>
             <div class="activityDescription">
                 <div class="header">
-                    <span class="activityHeaderFont">Internet of Things</span>
+                    <a href="/iot/"><span class="activityHeaderFont">Internet of Things</span></a>
                 </div>
                 <div class="activityText">
                     <p>Разработка и изготовление систем автоматизации, в том числе устройств IoT.</p>
                 </div>
                 <div class="header text-right">
-                    <a href="/iot/"><button class="activityButton">подробнее&nbsp;&nbsp;<i class="fa fa-hand-o-right" aria-hidden="true"></i></button></a>
+                    <a href="/iot/"><button class="activityButton" onmouseover="iconColor('iot-icon', 1)" onmouseout="iconColor('iot-icon', 0)">подробнее&nbsp;&nbsp;<i class="fa fa-hand-o-right" aria-hidden="true" id="iot-icon" style="color: #ededed;"></i></button></a>
                 </div>
             </div>
             <div class="clear"></div>
@@ -207,7 +207,7 @@
                 <br />
                 <span class="sloganBottomFont">поэтому наш подход к делу всегда иновационный и передовой</span>
                 <br /><br />
-                <a href="/contatcs/"><button class="promoButton" id="bottomButton"><i class="fa fa-phone" aria-hidden="true"></i>связаться с нами</button></a>
+                <a href="/contacts/"><button class="promoButton" id="bottomButton"><i class="fa fa-phone" aria-hidden="true"></i>связаться с нами</button></a>
             </div>
         </div>
     </div>
@@ -217,9 +217,9 @@
             <div class="footerLogo text-center">
                 <a href="/"><img src="/img/system/logo_white_text_small.png" /></a>
                 <br /><br />
-                <a href="#" target="_blank"><i class="fa fa-vk" aria-hidden="true"></i></a>
+                <a href="https://vk.com/oaosmartech" target="_blank"><i class="fa fa-vk" aria-hidden="true"></i></a>
                 &nbsp;&nbsp;&nbsp;
-                <a href="#" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                <a href="https://www.facebook.com/oaosmartech/" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
                 &nbsp;&nbsp;&nbsp;
                 <a href="#" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
                 &nbsp;&nbsp;&nbsp;
@@ -234,6 +234,8 @@
         </div>
         <div class="section text-center" style="margin: 50px auto auto auto;">
             <span class="copyFont">smARTech &copy; <?= date('Y') ?> - <a href="/privacy-policy/">Политика конфиденциальности</a></span>
+            <br />
+            <span class="greyFont">Создание сайта: <a href="https://airlab.by/">airlab</a></span>
         </div>
     </div>
 

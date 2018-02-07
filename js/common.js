@@ -45,3 +45,13 @@ function closeMobileMenu() {
 
     $('#mobileMenu').hide();
 }
+
+function iconColor(id, action) {
+    console.log(id);
+
+    if(action === 1) {
+        $('#' + id).css("color", "#fb5c25");
+    } else {
+        $('#' + id).css("color", "#ededed");
+    }
+}
