@@ -26,6 +26,10 @@ if(empty($category)) {
 }
 
 if(!empty($url[2])) {
+    if($url[2] == 1) {
+        header("Location: /".$category['url']."/");
+    }
+
     $linkCheckResult = $mysqli->query("SELECT COUNT(id) FROM catalogue WHERE url = '".$mysqli->real_escape_string($url[2])."'");
     $linkCheck = $linkCheckResult->fetch_array(MYSQLI_NUM);
 
@@ -153,11 +157,11 @@ if(!empty($url[2])) {
             </div>
             <div id="menuPoints">
                 <a href="/contacts/"><div class="menuPoint">Контакты</div></a>
-                <?php if($url[1] != "iot") {echo "<a href='/iot/'>";} ?><div class="menuPoint <?php if($url[1] == "iot") {echo "active";} ?>">IoT</div><?php if($url[1] != "iot") {echo "</a>";} ?>
-                <?php if($url[1] != "engineering") {echo "<a href='/engineering/'>";} ?><div class="menuPoint <?php if($url[1] == "engineering") {echo "active";} ?>">Проектирование</div><?php if($url[1] != "engineering") {echo "</a>";} ?>
-                <?php if($url[1] != "study") {echo "<a href='/study/'>";} ?><div class="menuPoint <?php if($url[1] == "study") {echo "active";} ?>">Обучение</div><?php if($url[1] != "study") {echo "</a>";} ?>
-                <?php if($url[1] != "3d-print") {echo "<a href='/3d-print/'>";} ?><div class="menuPoint <?php if($url[1] == "3d-print") {echo "active";} ?>">3D-печать</div><?php if($url[1] != "3d-print") {echo "</a>";} ?>
-                <?php if($url[1] != "3d-printers") {echo "<a href='/3d-printers/'>";} ?><div class="menuPoint <?php if($url[1] == "3d-printers") {echo "active";} ?>">3D-принтеры</div><?php if($url[1] != "3d-printers") {echo "</a>";} ?>
+                <?php if($url[1] != "iot or !empty($url[2])") {echo "<a href='/iot/'>";} ?><div class="menuPoint <?php if($url[1] == "iot") {echo "active";} ?>">IoT</div><?php if($url[1] != "iot" or !empty($url[2])) {echo "</a>";} ?>
+                <?php if($url[1] != "engineering" or !empty($url[2])) {echo "<a href='/engineering/'>";} ?><div class="menuPoint <?php if($url[1] == "engineering") {echo "active";} ?>">Проектирование</div><?php if($url[1] != "engineering" or !empty($url[2])) {echo "</a>";} ?>
+                <?php if($url[1] != "study" or !empty($url[2])) {echo "<a href='/study/'>";} ?><div class="menuPoint <?php if($url[1] == "study") {echo "active";} ?>">Обучение</div><?php if($url[1] != "study" or !empty($url[2])) {echo "</a>";} ?>
+                <?php if($url[1] != "3d-print" or !empty($url[2])) {echo "<a href='/3d-print/'>";} ?><div class="menuPoint <?php if($url[1] == "3d-print") {echo "active";} ?>">3D-печать</div><?php if($url[1] != "3d-print" or !empty($url[2])) {echo "</a>";} ?>
+                <?php if($url[1] != "3d-printers" or !empty($url[2])) {echo "<a href='/3d-printers/'>";} ?><div class="menuPoint <?php if($url[1] == "3d-printers") {echo "active";} ?>">3D-принтеры</div><?php if($url[1] != "3d-printers" or !empty($url[2])) {echo "</a>";} ?>
                 <a href="/"><div class="menuPoint">Главная</div></a>
             </div>
             <div class="clear"></div>
@@ -353,6 +357,48 @@ if(!empty($url[2])) {
                 }
             } else {
                 //Страница товара
+                echo "
+                    <div class='goodContainer'>
+                        <div class='goodPhoto'>
+                            <a href='/img/catalogue/big/".$good['photo']."' class='lightview' data-lightview-options='skin: \"light\"'><img src='/img/catalogue/small/".$good['preview']."' /></a>
+                        </div>
+                        <div class='goodDescription'>
+                            <span class='descriptionFont'>".$good['description']."</span>
+                            <br /><br />
+                            <span class='goodFont'>".$good['text']."</span>
+                        </div>
+                        <div class='clear'></div>
+                    </div>
+                ";
+
+                $photoCountResult = $mysqli->query("SELECT COUNT(id) FROM photos WHERE good_id = '".$good['id']."'");
+                $photoCount = $photoCountResult->fetch_array(MYSQLI_NUM);
+
+                if($photoCount[0] > 0) {
+                    echo "
+                        <br /><br />
+                        <div class='goodContainer' style='text-align: left;'>
+                            <span class='activityHeaderFont'>Дополнительные фотографии</span>
+                            <br />
+                    ";
+
+                    $i = 0;
+
+                    $photoResult = $mysqli->query("SELECT * FROM photos WHERE good_id = '".$good['id']."'");
+                    while($photo = $photoResult->fetch_assoc()) {
+                        $i++;
+
+                        echo "
+                            <div class='goodPhotoPreview"; if($i == 1) {echo " firstPreview";} echo "'>
+                                <a href='/img/photos/big/".$photo['photo']."' class='lightview' data-lightview-options='skin: \"light\"' data-lightview-group='photos'><img src='/img/photos/small/".$photo['preview']."' /></a>
+                            </div>
+                        ";
+                    }
+                }
+
+                echo "
+                    </div>
+                ";
             }
         ?>
     </div>
