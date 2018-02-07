@@ -18,7 +18,7 @@ $url = explode("/", $_SERVER['REQUEST_URI']);
  *          — если строка, то выводить товар/услугу
  */
 
-$categoryResult = $mysqli->query("SELECT * FROM catalogue_categories WHERE url = '".$mysqli->real_escape_string($url[1])."'");
+$categoryResult = $mysqli->query("SELECT * FROM st_catalogue_categories WHERE url = '".$mysqli->real_escape_string($url[1])."'");
 $category = $categoryResult->fetch_assoc();
 
 if(empty($category)) {
@@ -30,7 +30,7 @@ if(!empty($url[2])) {
         header("Location: /".$category['url']."/");
     }
 
-    $linkCheckResult = $mysqli->query("SELECT COUNT(id) FROM catalogue WHERE url = '".$mysqli->real_escape_string($url[2])."'");
+    $linkCheckResult = $mysqli->query("SELECT COUNT(id) FROM st_catalogue WHERE url = '".$mysqli->real_escape_string($url[2])."'");
     $linkCheck = $linkCheckResult->fetch_array(MYSQLI_NUM);
 
     if($linkCheck[0] == 0) {
@@ -41,7 +41,7 @@ if(!empty($url[2])) {
         if($addressNew == $address) {
             //$url[2] содержит номер страницы
 
-            $quantityResult = $mysqli->query("SELECT COUNT(id) FROM catalogue WHERE category_id = '".$category['id']."'");
+            $quantityResult = $mysqli->query("SELECT COUNT(id) FROM st_catalogue WHERE category_id = '".$category['id']."'");
             $quantity = $quantityResult->fetch_array(MYSQLI_NUM);
 
             if ($quantity[0] > GOODS_ON_PAGE) {
@@ -69,7 +69,7 @@ if(!empty($url[2])) {
         $type = "good";
     }
 } else {
-    $quantityResult = $mysqli->query("SELECT COUNT(id) FROM catalogue WHERE category_id = '".$category['id']."'");
+    $quantityResult = $mysqli->query("SELECT COUNT(id) FROM st_catalogue WHERE category_id = '".$category['id']."'");
     $quantity = $quantityResult->fetch_array(MYSQLI_NUM);
 
     if ($quantity[0] > GOODS_ON_PAGE) {
@@ -187,7 +187,7 @@ if(!empty($url[2])) {
             <span class="headerFont">
                 <?php
                     if($type == "good") {
-                        $goodResult = $mysqli->query("SELECT * FROM catalogue WHERE url = '".$mysqli->real_escape_string($url[2])."'");
+                        $goodResult = $mysqli->query("SELECT * FROM st_catalogue WHERE url = '".$mysqli->real_escape_string($url[2])."'");
                         $good = $goodResult->fetch_assoc();
 
                         echo $good['name'];
@@ -205,7 +205,7 @@ if(!empty($url[2])) {
         <?php
             if($type != "good") {
                 //Список всех товаров и услуг
-                $catalogueResult = $mysqli->query("SELECT * FROM catalogue WHERE category_id = '".$category['id']."' LIMIT ".$start.", ".GOODS_ON_PAGE);
+                $catalogueResult = $mysqli->query("SELECT * FROM st_catalogue WHERE category_id = '".$category['id']."' LIMIT ".$start.", ".GOODS_ON_PAGE);
 
                 if($catalogueResult->num_rows > 0) {
                     while($catalogue = $catalogueResult->fetch_assoc()) {
@@ -359,6 +359,8 @@ if(!empty($url[2])) {
                 //Страница товара
                 echo "
                     <div class='goodContainer'>
+                        <div class='breadcrumbs'><a href='/".$category['url']."/'>".$category['title']."</a> > <a href='/".$category['url']."/".$good['url']."'>".$good['name']."</a></div>
+                        <br />
                         <div class='goodPhoto'>
                             <a href='/img/catalogue/big/".$good['photo']."' class='lightview' data-lightview-options='skin: \"light\"'><img src='/img/catalogue/small/".$good['preview']."' /></a>
                         </div>
@@ -371,25 +373,25 @@ if(!empty($url[2])) {
                     </div>
                 ";
 
-                $photoCountResult = $mysqli->query("SELECT COUNT(id) FROM photos WHERE good_id = '".$good['id']."'");
+                $photoCountResult = $mysqli->query("SELECT COUNT(id) FROM st_photos WHERE good_id = '".$good['id']."'");
                 $photoCount = $photoCountResult->fetch_array(MYSQLI_NUM);
 
                 if($photoCount[0] > 0) {
                     echo "
                         <br /><br />
                         <div class='goodContainer' style='text-align: left;'>
-                            <span class='activityHeaderFont'>Дополнительные фотографии</span>
+                            <div style='margin-left: 20px;'><span class='activityHeaderFont'>Дополнительные фотографии</span></div>
                             <br />
                     ";
 
                     $i = 0;
 
-                    $photoResult = $mysqli->query("SELECT * FROM photos WHERE good_id = '".$good['id']."'");
+                    $photoResult = $mysqli->query("SELECT * FROM st_photos WHERE good_id = '".$good['id']."'");
                     while($photo = $photoResult->fetch_assoc()) {
                         $i++;
 
                         echo "
-                            <div class='goodPhotoPreview"; if($i == 1) {echo " firstPreview";} echo "'>
+                            <div class='goodPhotoPreview'>
                                 <a href='/img/photos/big/".$photo['photo']."' class='lightview' data-lightview-options='skin: \"light\"' data-lightview-group='photos'><img src='/img/photos/small/".$photo['preview']."' /></a>
                             </div>
                         ";

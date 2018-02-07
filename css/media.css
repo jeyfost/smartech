@@ -11,6 +11,8 @@
     .footerLogo {width: 30%;}
     .footerText {width: 65%;}
     .column {width: 100%; margin-top: 20px;}
+    .goodContainer {width: 760px;}
+    .goodDescription {width: 440px;}
 }
 
 /* Small Devices, Tablets */
@@ -29,6 +31,9 @@
     .footerLogo {width: 40%;}
     .footerText {width: 55%;}
     .column {width: 100%; margin: 20px auto auto 0;}
+    .goodContainer {width: 96%;}
+    .goodPhoto {float: none; margin: 0 auto;}
+    .goodDescription {float: none; width: 100%;}
 }
 
 /* Extra Small Devices, Phones */
@@ -49,6 +54,7 @@
     .sloganSmallFont {font-size: 30px;}
     .promoButton {margin-top: 0;}
     .headerFont {font-size: 30px;}
+    .goodPhoto, .goodPhoto img {width: 100%;}
 }
 
 
