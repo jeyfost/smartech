@@ -3,13 +3,14 @@
  * Created by PhpStorm.
  * User: jeyfost
  * Date: 07.02.2018
- * Time: 15:08
+ * Time: 15:35
  */
 
 session_start();
+include("../scripts/connect.php");
 
-if($_SESSION['userID'] == 1) {
-    header("Location: admin.php");
+if($_SESSION['userID'] != 1) {
+    header("Location: ../");
 }
 
 ?>
@@ -27,7 +28,7 @@ if($_SESSION['userID'] == 1) {
 
     <meta charset="utf-8" />
 
-    <title>Вход в панель администрирования</title>
+    <title>Панель администрирования</title>
 
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -42,11 +43,11 @@ if($_SESSION['userID'] == 1) {
 
     <link rel="stylesheet" type="text/css" href="/css/fonts.css" />
     <link rel="stylesheet" type="text/css" href="/css/admin.css" />
+    <link rel="stylesheet" href="/libs/font-awesome-4.7.0/css/font-awesome.css" />
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="/libs/notify/notify.js"></script>
     <script type="text/javascript" src="/js/admin/common.js"></script>
-    <script type="text/javascript" src="/js/admin/index.js"></script>
 
     <style>
         #page-preloader {position: fixed; left: 0; top: 0; right: 0; bottom: 0; background: #fff; z-index: 100500;}
@@ -68,19 +69,55 @@ if($_SESSION['userID'] == 1) {
 <body>
 <div id="page-preloader"><span class="spinner"></span></div>
 
-<div id="loginContainer">
-    <form method="post">
-        <label for="loginInput">Логин:</label>
-        <br />
-        <input id="loginInput" />
-        <br /><br />
-        <label for="passwordInput">Пароль:</label>
-        <br />
-        <input type="password" id="passwordInput" />
-        <br /><br />
-        <input type="button" id="loginSubmit" class="button" value="Войти" onmouseover="buttonHover('loginSubmit', 1)" onmouseout="buttonHover('loginSubmit', 0)" onclick="login()" />
-    </form>
-    <div style="clear: both;"></div>
+<div id="topLine">
+    <div id="logo">
+        <a href="../"><span><i class="fa fa-home" aria-hidden="true"></i> <?= $_SERVER['HTTP_HOST'] ?></span></a>
+    </div>
+    <a href="admin.php"><span class="headerText">Панель администрирвания</span></a>
+    <div id="exit" onclick="exit()">
+        <span>Выйти <i class="fa fa-sign-out" aria-hidden="true"></i></span>
+    </div>
+</div>
+<div id="leftMenu">
+    <a href="/admin/pages/">
+        <div class="menuPoint">
+            <i class="fa fa-file-text-o" aria-hidden="true"></i><span> Страницы</span>
+        </div>
+    </a>
+    <a href="/admin/3d-printers/">
+        <div class="menuPoint">
+            <i class="fa fa-print" aria-hidden="true"></i><span> 3D-принтеры</span>
+        </div>
+    </a>
+    <a href="/admin/3d-print/">
+        <div class="menuPoint">
+            <i class="fa fa-cube" aria-hidden="true"></i><span> 3D-печать</span>
+        </div>
+    </a>
+    <a href="/admin/study/">
+        <div class="menuPoint">
+            <i class="fa fa-graduation-cap" aria-hidden="true"></i><span> Обучение</span>
+        </div>
+    </a>
+    <a href="/admin/engineering/">
+        <div class="menuPoint">
+            <i class="fa fa-cogs" aria-hidden="true"></i><span> Проектирование</span>
+        </div>
+    </a>
+    <a href="/admin/iot/">
+        <div class="menuPoint">
+            <i class="fa fa-hdd-o" aria-hidden="true"></i><span> IoT</span>
+        </div>
+    </a>
+    <a href="/admin/security/">
+        <div class="menuPoint">
+            <i class="fa fa-shield" aria-hidden="true"></i><span> Безопасность</span>
+        </div>
+    </a>
+</div>
+
+<div id="content">
+    <span class="headerFont"><i class="fa fa-long-arrow-left" aria-hidden="true"></i> Для начала работы выберите раздел</span>
 </div>
 
 </body>
