@@ -73,3 +73,47 @@ function textAreaHeight(textarea) {
         textarea._timer = false;
     }, 1);
 }
+
+function loadText(id) {
+    $.ajax({
+        type: "POST",
+        data: {"id": id},
+        url: "/scripts/admin/ajaxLoadText.php",
+        success: function (response) {
+            CKEDITOR.instances["textInput"].setData(response);
+        }
+    });
+}
+
+function deletePhoto(photoID) {
+    if(confirm("Вы действительно хотите удалить фотографию?")) {
+        $.ajax({
+            type: "POST",
+            data: {"id": photoID},
+            url: "/scripts/admin/ajaxDeletePhoto.php",
+            beforeSend: function () {
+                $.notify("Фотография удаляется...", "info");
+            },
+            success: function(response) {
+                switch (response) {
+                    case "ok":
+                        $.notify("Фотография была успшно удалена.", "success");
+
+                        setTimeout(function () {
+                            location.reload();
+                        }, 700);
+                        break;
+                    case "failed":
+                        $.notify("Во время удаления фотографии произошла ошибка. Попробуйте снова.", "error");
+                        break;
+                    case "id":
+                        $.notify("Фотографии с таким ID не существует.", "error");
+                        break;
+                    default:
+                        $.notify(response, "warn");
+                        break;
+                }
+            }
+        });
+    }
+}

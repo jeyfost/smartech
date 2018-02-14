@@ -92,7 +92,7 @@ function deleteAllPhotos() {
                             $.notify("Во время удаления дополнительных фотографий произошла ошибка. Попробуйте снова.", "error");
                             break;
                         case "id":
-                            $.notify("Принтера с таким ID не существует.", "error");
+                            $.notify("Изделия с таким ID не существует.", "error");
                             break;
                         default:
                             $.notify(response, "warn");
@@ -101,13 +101,13 @@ function deleteAllPhotos() {
                 }
             });
         } else {
-            $.notify("Вы не выбрали принтер.", "error");
+            $.notify("Вы не выбрали изделие.", "error");
         }
     }
 }
 
 function deleteGood() {
-    if(confirm("Вы действительно хотите удалить принтер?")) {
+    if(confirm("Вы действительно хотите удалить изделие?")) {
         var id = $('#goodSelect').val();
 
         if(id !== '') {
@@ -116,22 +116,22 @@ function deleteGood() {
                 data: {"id": id},
                 url: "/scripts/admin/ajaxDeleteGood.php",
                 beforeSend: function () {
-                    $.notify("Принтер удаляется...", "info");
+                    $.notify("Изделие удаляется...", "info");
                 },
                 success: function (response) {
                     switch(response) {
                         case "ok":
-                            $.notify("Принтер был успешно удалён.", "success");
+                            $.notify("Изделие было успешно удалено.", "success");
 
                             setTimeout(function () {
-                                window.location.href = "/admin/3d-printers/";
+                                window.location.href = "/admin/3d-print/";
                             }, 2000);
                             break;
                         case "failed":
-                            $.notify("Во время удаления принтера произошла ошибка. Попробуйте снова.", "error");
+                            $.notify("Во время удаления изделия произошла ошибка. Попробуйте снова.", "error");
                             break;
                         case "id":
-                            $.notify("Принтера с таким ID не существует.", "error");
+                            $.notify("Изделия с таким ID не существует.", "error");
                             break;
                         default:
                             $.notify(response, "warn");
@@ -140,7 +140,7 @@ function deleteGood() {
                 }
             });
         } else {
-            $.notify("Вы не выбрали принтер.", "error");
+            $.notify("Вы не выбрали изделие.", "error");
         }
     }
 }

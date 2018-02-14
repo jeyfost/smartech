@@ -6,7 +6,7 @@
  * Time: 16:15
  */
 
-include("../../connect.php");
+include("../connect.php");
 
 $id = $mysqli->real_escape_string($_POST['id']);
 
@@ -18,8 +18,8 @@ if($idCheck[0] > 0) {
 
     if($mysqli->query("DELETE FROM st_photos WHERE good_id = '".$id."'")) {
         while($photo = $photoResult->fetch_assoc()) {
-            unlink("../../../img/photos/big/".$photo['photo']);
-            unlink("../../../img/photos/small/".$photo['preview']);
+            unlink("../../img/photos/big/".$photo['photo']);
+            unlink("../../img/photos/small/".$photo['preview']);
         }
 
         echo "ok";

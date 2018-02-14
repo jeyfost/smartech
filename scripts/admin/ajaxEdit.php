@@ -6,8 +6,8 @@
  * Time: 12:26
  */
 
-include("../../connect.php");
-include("../image.php");
+include("../connect.php");
+include("image.php");
 
 $req = false;
 ob_start();
@@ -30,13 +30,13 @@ if($urlCheck[0] == 0) {
             $previewTmpName = $_FILES['preview']['tmp_name'];
             $previewName = randomName($previewTmpName);
             $previewDBName = $previewName.".".substr($_FILES['preview']['name'], count($_FILES['preview']['name']) - 4, 4);
-            $previewUploadDir = "../../../img/catalogue/small/";
+            $previewUploadDir = "../../img/catalogue/small/";
             $previewUpload = $previewUploadDir.$previewDBName;
 
             $photoTmpName = $_FILES['preview']['tmp_name'];
             $photoName = randomName($photoTmpName);
             $photoDBName = $photoName.".".substr($_FILES['preview']['name'], count($_FILES['preview']['name']) - 4, 4);
-            $photoUploadDir = "../../../img/catalogue/big/";
+            $photoUploadDir = "../../img/catalogue/big/";
             $photoUpload = $photoUploadDir.$photoDBName;
 
             if($mysqli->query("UPDATE st_catalogue SET preview = '".$previewDBName."', photo = '".$photoDBName."' WHERE id = '".$good['id']."'")) {
@@ -85,13 +85,13 @@ if($urlCheck[0] == 0) {
                 $previewTmpName = $_FILES['additionalPhotos']['tmp_name'][$key];
                 $previewName = randomName($previewTmpName);
                 $previewDBName = $previewName.".".substr($_FILES['additionalPhotos']['name'][$key], count($_FILES['additionalPhotos']['name'][$key]) - 4, 4);
-                $previewUploadDir = "../../../img/photos/small/";
+                $previewUploadDir = "../../img/photos/small/";
                 $previewUpload = $previewUploadDir.$previewDBName;
 
                 $photoTmpName = $_FILES['additionalPhotos']['tmp_name'][$key];
                 $photoName = randomName($photoTmpName);
                 $photoDBName = $photoName.".".substr($_FILES['additionalPhotos']['name'][$key], count($_FILES['additionalPhotos']['name'][$key]) - 4, 4);
-                $photoUploadDir = "../../../img/photos/big/";
+                $photoUploadDir = "../../img/photos/big/";
                 $photoUpload = $photoUploadDir.$photoDBName;
 
                 $start++;

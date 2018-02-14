@@ -6,7 +6,7 @@
  * Time: 16:44
  */
 
-include("../../connect.php");
+include("../connect.php");
 
 $id = $mysqli->real_escape_string($_POST['id']);
 
@@ -24,15 +24,15 @@ if($idCheck[0] > 0) {
         $photoResult = $mysqli->query("SELECT * FROM st_photos WHERE id = '".$good['id']."'");
         while($photo = $photoResult->fetch_assoc()) {
             if($mysqli->query("DELETE FROM st_photos WHERE id = '".$photo['id']."'")) {
-                unlink("../../../img/photos/big/".$photo['photo']);
-                unlink("../../../img/photos/small/".$photo['preview']);
+                unlink("../../img/photos/big/".$photo['photo']);
+                unlink("../../img/photos/small/".$photo['preview']);
             }
         }
     }
 
     if($mysqli->query("DELETE FROM st_catalogue WHERE id = '".$good['id']."'")) {
-        unlink("../../../img/catalogue/big/".$good['photo']);
-        unlink("../../../img/catalogue/small/".$good['preview']);
+        unlink("../../img/catalogue/big/".$good['photo']);
+        unlink("../../img/catalogue/small/".$good['preview']);
 
         echo "ok";
     } else {

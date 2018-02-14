@@ -6,7 +6,7 @@
  * Time: 11:24
  */
 
-include("../../connect.php");
+include("../connect.php");
 
 $id = $mysqli->real_escape_string($_POST['id']);
 
