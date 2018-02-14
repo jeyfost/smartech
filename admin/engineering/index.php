@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: jeyfost
  * Date: 14.02.2018
- * Time: 10:56
+ * Time: 11:30
  */
 
 session_start();
@@ -13,7 +13,7 @@ if($_SESSION['userID'] != 1) {
     header("Location: ../../");
 }
 
-$categoryResult = $mysqli->query("SELECT * FROM st_catalogue_categories WHERE url = 'study'");
+$categoryResult = $mysqli->query("SELECT * FROM st_catalogue_categories WHERE url = 'engineering'");
 $category = $categoryResult->fetch_assoc();
 
 if(!empty($_REQUEST['id'])) {
@@ -34,7 +34,7 @@ if(!empty($_REQUEST['id'])) {
 
     <meta charset="utf-8" />
 
-    <title>Панель администрирования | Обучение</title>
+    <title>Панель администрирования | Проектирование</title>
 
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -57,7 +57,7 @@ if(!empty($_REQUEST['id'])) {
     <script type="text/javascript" src="/libs/ckeditor/ckeditor.js"></script>
     <script type="text/javascript" src="/libs/notify/notify.js"></script>
     <script type="text/javascript" src="/js/admin/common.js"></script>
-    <script type="text/javascript" src="/js/admin/study/index.js"></script>
+    <script type="text/javascript" src="/js/admin/engineering/index.js"></script>
 
     <style>
         #page-preloader {position: fixed; left: 0; top: 0; right: 0; bottom: 0; background: #fff; z-index: 100500;}
@@ -106,12 +106,12 @@ if(!empty($_REQUEST['id'])) {
         </div>
     </a>
     <a href="/admin/study/">
-        <div class="menuPointActive">
+        <div class="menuPoint">
             <i class="fa fa-graduation-cap" aria-hidden="true"></i><span> Обучение</span>
         </div>
     </a>
     <a href="/admin/engineering/">
-        <div class="menuPoint">
+        <div class="menuPointActive">
             <i class="fa fa-cogs" aria-hidden="true"></i><span> Проектирование</span>
         </div>
     </a>
@@ -142,7 +142,7 @@ if(!empty($_REQUEST['id'])) {
             ?>
         </select>
         <br /><br />
-        <input type='button' id='addGoodSubmit' value='Добавить услугу' onmouseover='buttonHover("addGoodSubmit", 1)' onmouseout='buttonHover("addGoodSubmit", 0)' onclick='window.location.href = "/admin/study/add.php"' class='button' />
+        <input type='button' id='addGoodSubmit' value='Добавить услугу' onmouseover='buttonHover("addGoodSubmit", 1)' onmouseout='buttonHover("addGoodSubmit", 0)' onclick='window.location.href = "/admin/engineering/add.php"' class='button' />
 
         <?php
         if(!empty($_REQUEST['id'])) {

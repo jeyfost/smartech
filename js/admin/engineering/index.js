@@ -124,7 +124,7 @@ function deleteGood() {
                             $.notify("Услуга была успешно удалена.", "success");
 
                             setTimeout(function () {
-                                window.location.href = "/admin/study/";
+                                window.location.href = "/admin/engineering/";
                             }, 2000);
                             break;
                         case "failed":
