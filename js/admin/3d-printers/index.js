@@ -95,10 +95,6 @@ function editGood() {
                                     $.notify(response, "warn");
                                     break;
                             }
-                        },
-                        error: function(xhr,status,error){
-                            console.log(status);
-                            console.log(error);
                         }
                     });
                 } else {
@@ -124,6 +120,9 @@ function deleteAllPhotos() {
                 type: "POST",
                 data: {"id": id},
                 url: "/scripts/admin/3d-printers/ajaxDeleteAllPhotos.php",
+                beforeSend: function () {
+                    $.notify("Фотографии удаляются...", "info");
+                },
                 success: function (response) {
                     switch(response) {
                         case "ok":
@@ -160,6 +159,9 @@ function deleteGood() {
                 type: "POST",
                 data: {"id": id},
                 url: "/scripts/admin/3d-printers/ajaxDeleteGood.php",
+                beforeSend: function () {
+                    $.notify("Принтер удаляется...", "info");
+                },
                 success: function (response) {
                     switch(response) {
                         case "ok":

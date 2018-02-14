@@ -73,7 +73,7 @@ if($urlCheck[0] == 0) {
 
     foreach ($_FILES['additionalPhotos']['error'] as $key => $error) {
         if(!empty($_FILES['additionalPhotos']['tmp_name'][$key])) {
-            if($error != UPLOAD_ERR_OK) {
+            if($error != UPLOAD_ERR_OK or substr($_FILES['additionalPhotos']['type'][$key], 0, 5) != "image") {
                 $errors++;
             }
         }
@@ -84,13 +84,13 @@ if($urlCheck[0] == 0) {
             if($error == UPLOAD_ERR_OK) {
                 $previewTmpName = $_FILES['additionalPhotos']['tmp_name'][$key];
                 $previewName = randomName($previewTmpName);
-                $previewDBName = $previewName.".".substr($_FILES['additionalPhotos']['name'][$key], count($_FILES['additionalPhotos']['name']) - 4, 4);
+                $previewDBName = $previewName.".".substr($_FILES['additionalPhotos']['name'][$key], count($_FILES['additionalPhotos']['name'][$key]) - 4, 4);
                 $previewUploadDir = "../../../img/photos/small/";
                 $previewUpload = $previewUploadDir.$previewDBName;
 
                 $photoTmpName = $_FILES['additionalPhotos']['tmp_name'][$key];
                 $photoName = randomName($photoTmpName);
-                $photoDBName = $photoName.".".substr($_FILES['additionalPhotos']['name'][$key], count($_FILES['additionalPhotos']['name']) - 4, 4);
+                $photoDBName = $photoName.".".substr($_FILES['additionalPhotos']['name'][$key], count($_FILES['additionalPhotos']['name'][$key]) - 4, 4);
                 $photoUploadDir = "../../../img/photos/big/";
                 $photoUpload = $photoUploadDir.$photoDBName;
 

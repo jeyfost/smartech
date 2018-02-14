@@ -33,6 +33,8 @@ if($idCheck[0] > 0) {
     if($mysqli->query("DELETE FROM st_catalogue WHERE id = '".$good['id']."'")) {
         unlink("../../../img/catalogue/big/".$good['photo']);
         unlink("../../../img/catalogue/small/".$good['preview']);
+
+        echo "ok";
     } else {
         echo "failed";
     }
