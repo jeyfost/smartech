@@ -43,6 +43,9 @@ function addGood() {
                                     case "url":
                                         $.notify("Введённый URL соответствует другому товару или услуге.", "error");
                                         break;
+                                    case "numeric":
+                                        $.notify("URL не может состоять из одних цифр.", "error");
+                                        break;
                                     default:
                                         $.notify(response, "warn");
                                         break;

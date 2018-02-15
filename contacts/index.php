@@ -157,7 +157,7 @@ include('../scripts/connect.php');
             <br /><br />
             <div class="g-recaptcha" data-sitekey="6LfBT0MUAAAAAOMa_302KKxDduJbyDkaB3bYTwGB"></div>
             <br />
-            <button onclick="sendEmail()" class="messageButton"><i class="fa fa-share" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;отправить</button>
+            <button onclick="sendEmail()" class="messageButton">отправить&nbsp;&nbsp;&nbsp;<i class="fa fa-share" aria-hidden="true"></i></button>
         </form>
     </div>
 </div>

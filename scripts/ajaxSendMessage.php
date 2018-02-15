@@ -53,8 +53,8 @@ if($response != null && $response->success) {
 			".$t."
 			</div>
 			<br /><br />
-		</center>
-	</div>
+		    </center>
+	    </div>
     ";
 
     $message = "--PHP-mixed-".$hash."\n";

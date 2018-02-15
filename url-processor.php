@@ -117,6 +117,8 @@ if(!empty($url[2])) {
 
     <link rel="stylesheet" href="/libs/font-awesome-4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet" href="/libs/lightview/css/lightview/lightview.css" />
+    <link rel="stylesheet" href="/libs/remodal/dist/remodal-default-theme.css" />
+    <link rel="stylesheet" href="/libs/remodal/dist/remodal.css" />
     <link rel="stylesheet" href="/css/fonts.css" />
     <link rel="stylesheet" href="/css/main.css" />
     <link rel="stylesheet" href="/css/media.css" />
@@ -124,7 +126,10 @@ if(!empty($url[2])) {
     <link href="https://fonts.googleapis.com/css?family=Exo+2|Istok+Web|Montserrat|Poiret+One" rel="stylesheet">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
     <script type="text/javascript" src="/libs/lightview/js/lightview/lightview.js"></script>
+    <script type="text/javascript" src="/libs/remodal/dist/remodal.min.js"></script>
+    <script type="text/javascript" src="/libs/notify/notify.js"></script>
     <script type="text/javascript" src="/js/common.js"></script>
     <script type="text/javascript" src="/js/url-processor.js"></script>
 
@@ -205,20 +210,23 @@ if(!empty($url[2])) {
         <?php
             if($type != "good") {
                 //Список всех товаров и услуг
-                $catalogueResult = $mysqli->query("SELECT * FROM st_catalogue WHERE category_id = '".$category['id']."' LIMIT ".$start.", ".GOODS_ON_PAGE);
+                $catalogueResult = $mysqli->query("SELECT * FROM st_catalogue WHERE category_id = '".$category['id']."' ORDER BY id DESC LIMIT ".$start.", ".GOODS_ON_PAGE);
 
                 if($catalogueResult->num_rows > 0) {
                     while($catalogue = $catalogueResult->fetch_assoc()) {
                         echo "
-                            <div class='catalogueContainer'>
-                                <div class='cataloguePhoto'>
-                                    <a href='/img/catalogue/big/".$catalogue['photo']."' class='lightview' data-lightview-options='skin: \"light\"'><img src='/img/catalogue/small/".$catalogue['preview']."' /></a>
+                            <div class='catalogueContainer' id='catalogueContainer".$catalogue['id']."' name='".$catalogue['id']."'>
+                                <div class='goodOverlay' id='goodOverlay".$catalogue['id']."' onclick='expand(\"".$catalogue['id']."\")'>
+                                    <div class='goodOverlayContent'><i class=\"fa fa-angle-double-down\" aria-hidden=\"true\"></i></div>
                                 </div>
-                                <div class='catalogueDescription'>
+                                <div class='cataloguePhoto'>
+                                    <a href='/".$category['url']."/".$catalogue['url']."'><img src='/img/catalogue/small/".$catalogue['preview']."' /></a>
+                                </div>
+                                <div class='catalogueDescription' id='catalogueDescription".$catalogue['id']."'>
                                     <div class='catalogueName'>".$catalogue['name']."</div>
                                     <div class='catalogueShortDescription'>".$catalogue['description']."</div>
                                 </div>
-                                <div class='catalogueButtonContainer text-center'>
+                                <div class='catalogueButtonContainer text-center' id='catalogueButtonContainer".$catalogue['id']."'>
                                     <a href='/".$category['url']."/".$catalogue['url']."'><button class='activityButton' onmouseover='iconColor(\"icon".$catalogue['id']."\", 1)' onmouseout='iconColor(\"icon".$catalogue['id']."\", 0)'>подробнее&nbsp;&nbsp;<i class='fa fa-hand-o-right' aria-hidden='true' id='icon".$catalogue['id']."' style='color: #ededed;'></i></button></a>
                                 </div>
                             </div>
@@ -363,6 +371,8 @@ if(!empty($url[2])) {
                         <br />
                         <div class='goodPhoto'>
                             <a href='/img/catalogue/big/".$good['photo']."' class='lightview' data-lightview-options='skin: \"light\"'><img src='/img/catalogue/small/".$good['preview']."' /></a>
+                            <br />
+                            <a data-remodal-target=\"modal\"><button class='activityButton' onmouseover='iconColor(\"icon\", 1)' onmouseout='iconColor(\"icon\", 0)'>заказать&nbsp;&nbsp;<i class='fa fa-handshake-o' aria-hidden='true' id='icon' style='color: #ededed;'></i></button></a>
                         </div>
                         <div class='goodDescription'>
                             <span class='descriptionFont'>".$good['description']."</span>
@@ -378,7 +388,7 @@ if(!empty($url[2])) {
 
                 if($photoCount[0] > 0) {
                     echo "
-                        <br /><br />
+                        <br />
                         <div class='goodContainer' style='text-align: left;'>
                             <div style='margin-left: 20px;'><span class='activityHeaderFont'>Дополнительные фотографии</span></div>
                             <br />
@@ -403,6 +413,25 @@ if(!empty($url[2])) {
                 ";
             }
         ?>
+    </div>
+
+    <div class="remodal" data-remodal-id="modal" data-remodal-options="closeOnConfirm: false">
+        <button data-remodal-action="close" class="remodal-close"></button>
+        <div style='width: 80%; margin: 0 auto;'><h1>Задайте свой вопрос или закажите<br /><span style="color: #fb5c25;">&laquo;<?= $good['name'] ?>&raquo;</span></h1></div>
+        <br /><br />
+        <form method="post" id="modalForm">
+            <input id="nameInput" name="name" placeholder="Имя" />
+            <br /><br />
+            <input id="emailInput" name="email" placeholder="E-mail" />
+            <br /><br />
+            <input id="phoneInput" name="phone" placeholder="Номер телефона" />
+            <br /><br />
+            <textarea id="textInput" name="text" placeholder="Сообщение"></textarea>
+            <br /><br />
+            <div class="g-recaptcha" data-sitekey="6LfBT0MUAAAAAOMa_302KKxDduJbyDkaB3bYTwGB"></div>
+        </form>
+        <br /><br />
+        <button data-remodal-action="confirm" class="remodal-confirm" onclick="send('<?= $good['id'] ?>')">Отправить&nbsp;&nbsp;&nbsp;<i class="fa fa-share" aria-hidden="true"></i></button>
     </div>
 
     <div id="footer">

@@ -47,6 +47,9 @@ function editGood() {
                                 case "url":
                                     $.notify("Введённая URL уже присвоена одному из товаров или услуг.", "error");
                                     break;
+                                case "numeric":
+                                    $.notify("URL не может состоять из одних цифр.", "error");
+                                    break;
                                 default:
                                     $.notify(response, "warn");
                                     break;
