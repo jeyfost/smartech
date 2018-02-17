@@ -20,7 +20,7 @@ $t = $mysqli->real_escape_string($_POST['message']);
 $from = $name." <".$email.">";
 $to = CONTACT_EMAIL;
 $reply = $email;
-$subject = "Письмо с сайта smARTech";
+$subject = "Letter for smARTech website";
 
 $hash = md5(rand(0, 10000000).date('Y-m-d H:i:s'));
 

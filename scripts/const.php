@@ -6,5 +6,5 @@
  * Time: 12:53
  */
 
-define("CONTACT_EMAIL", "mail@test.zz");
+define("CONTACT_EMAIL", "mail@3dsmart.by");
 define("GOODS_ON_PAGE", 10);

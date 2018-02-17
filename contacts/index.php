@@ -119,7 +119,7 @@ include('../scripts/connect.php');
             <i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Республика Беларусь, г. Минск,<br />ул. Стариновская, 17
         </div>
         <div class="column text-center">
-            <i class="fa fa-mobile" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;+375 (29) 232-36-23
+            <i class="fa fa-mobile" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;+375 (29) 573-77-53
             <br />
             <i class="fa fa-mobile" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;+375 (29) 535-16-50
         </div>

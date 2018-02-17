@@ -39,7 +39,7 @@ if(filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $from = $name." <".$email.">";
         $to = CONTACT_EMAIL;
         $reply = $email;
-        $subject = "Заказ товара: «".$good['name']."»";
+        $subject = "Order of «".$good['name']."»";
         $text = "
             <div style='width: 100%; height: 100%; background-color: #fafafa; padding-top: 5px; padding-bottom: 20px;'>
                 <center>
