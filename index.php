@@ -1,3 +1,10 @@
+<?php
+    include("scripts/connect.php");
+
+    $pageResult = $mysqli->query("SELECT * FROM st_catalogue_categories WHERE url = ''");
+    $page = $pageResult->fetch_assoc();
+?>
+
 <!DOCTYPE html>
 <!--[if lt IE 7]><html lang="ru" class="lt-ie9 lt-ie8 lt-ie7"><![endif]-->
 <!--[if IE 7]><html lang="ru" class="lt-ie9 lt-ie8"><![endif]-->
@@ -6,11 +13,11 @@
 <html lang="ru">
 <!--<![endif]-->
 <head>
-	<title>smARTech</title>
+	<title><?= $page['title'] ?></title>
 
     <meta charset="utf-8" />
-	<meta name="description" content="" />
-	<meta name="keywords" content="" />
+	<meta name="description" content="<?= $page['description'] ?>" />
+	<meta name="keywords" content="<?= $page['keywords'] ?>" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
