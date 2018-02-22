@@ -94,7 +94,7 @@
         </div>
     </div>
 
-    <div id="videoContainer" class="text-center" data-vide-bg="mp4: /files/main_video.mp4, webm: /files/main_video.webm, ogv: /files/main_video.ogv, poster: /files/main_video_preview.jpg" data-vide-options="posterType: jpg, loop: true, muted: true, position: 0% 0%">
+    <div id="videoContainer" class="text-center" data-vide-bg="mp4: /files/main_video.mp4, webm: /files/main_video.webm, ogv: /files/main_video.ogv, poster: /files/main_video_preview.jpg" data-vide-options="posterType: jpg, loop: true, muted: true, position: 50% 50%">
         <div id="mask"></div>
         <div id="sloganContainer" class="text-center">
             <div class="slogan revealator-slideup revealator-load revealator-delay12">
