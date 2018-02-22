@@ -3,6 +3,7 @@ function edit() {
     var title = $('#titleInput').val();
     var keywords = $('#keywordsInput').val();
     var description = $('#descriptionInput').val();
+    var text = $('#textInput').val();
 
     if(title !== '') {
         $.ajax({
@@ -11,7 +12,8 @@ function edit() {
                 "id": id,
                 "title": title,
                 "keywords": keywords,
-                "description": description
+                "description": description,
+                "text": text
             },
             url: "/scripts/admin/pages/ajaxEditPage.php",
             beforeSend: function () {
@@ -29,6 +31,9 @@ function edit() {
                         $.notify(response, "warn");
                         break;
                 }
+            },
+            error: function (jqXHR, exception) {
+                console.log(jqXHR);
             }
         });
     } else {

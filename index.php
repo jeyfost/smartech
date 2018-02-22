@@ -124,7 +124,11 @@
                     <a href="/3d-printers/"><span class="activityHeaderFont">3D-принтеры</span></a>
                 </div>
                 <div class="activityText">
-                    <p>Изготовление на заказ FDM 3D-принтеров различной кинематики исходя из пожеланий заказчика. Консультация, диагностика и ремонт 3D-принтеров. Продажа комплектующих и расходных материалов к 3D-принтерам.</p>
+                    <?php
+                        $categoryResult = $mysqli->query("SELECT * FROM st_catalogue_categories WHERE url = '3d-printers'");
+                        $category = $categoryResult->fetch_assoc();
+                    ?>
+                    <p><?= $category['text'] ?></p>
                 </div>
                 <div class="header text-right">
                     <a href="/3d-printers/"><button class="activityButton" onmouseover="iconColor('3d-printers-icon', 1)" onmouseout="iconColor('3d-printers-icon', 0)">подробнее&nbsp;&nbsp;<i class="fa fa-hand-o-right" aria-hidden="true" id="3d-printers-icon" style="color: #ededed;"></i></button></a>
@@ -142,7 +146,11 @@
                     <a href="/3d-print/"><span class="activityHeaderFont">3D-печать</span></a>
                 </div>
                 <div class="activityText">
-                    <p>Выполнение индивидуальных заказов по 3D-печати. 3D-моделирование на заказ.</p>
+                    <?php
+                    $categoryResult = $mysqli->query("SELECT * FROM st_catalogue_categories WHERE url = '3d-print'");
+                    $category = $categoryResult->fetch_assoc();
+                    ?>
+                    <p><?= $category['text'] ?></p>
                 </div>
                 <div class="header text-right">
                     <a href="/3d-print/"><button class="activityButton" onmouseover="iconColor('3d-print-icon', 1)" onmouseout="iconColor('3d-print-icon', 0)">подробнее&nbsp;&nbsp;<i class="fa fa-hand-o-right" aria-hidden="true" id="3d-print-icon" style="color: #ededed;"></i></button></a>
@@ -160,7 +168,11 @@
                     <a href="/study/"><span class="activityHeaderFont">Обучение</span></a>
                 </div>
                 <div class="activityText">
-                    <p>Обучение 3D-печати в формате мастер классов и курсов.</p>
+                    <?php
+                    $categoryResult = $mysqli->query("SELECT * FROM st_catalogue_categories WHERE url = 'study'");
+                    $category = $categoryResult->fetch_assoc();
+                    ?>
+                    <p><?= $category['text'] ?></p>
                 </div>
             </div>
             <div class="header text-right">
@@ -178,7 +190,11 @@
                     <a href="/engineering/"><span class="activityHeaderFont">Проектирование</span></a>
                 </div>
                 <div class="activityText">
-                    <p>Разработка и проектирование электронных устройств различного назначения. Разводка печатных плат на заказ.</p>
+                    <?php
+                    $categoryResult = $mysqli->query("SELECT * FROM st_catalogue_categories WHERE url = 'engineering'");
+                    $category = $categoryResult->fetch_assoc();
+                    ?>
+                    <p><?= $category['text'] ?></p>
                 </div>
                 <div class="header text-right">
                     <a href="/engineering/"><button class="activityButton" onmouseover="iconColor('engineering-icon', 1)" onmouseout="iconColor('engineering-icon', 0)">подробнее&nbsp;&nbsp;<i class="fa fa-hand-o-right" aria-hidden="true" id="engineering-icon" style="color: #ededed;"></i></button></a>
@@ -196,7 +212,11 @@
                     <a href="/iot/"><span class="activityHeaderFont">Internet of Things</span></a>
                 </div>
                 <div class="activityText">
-                    <p>Разработка и изготовление систем автоматизации, в том числе устройств IoT.</p>
+                    <?php
+                    $categoryResult = $mysqli->query("SELECT * FROM st_catalogue_categories WHERE url = 'iot'");
+                    $category = $categoryResult->fetch_assoc();
+                    ?>
+                    <p><?= $category['text'] ?></p>
                 </div>
                 <div class="header text-right">
                     <a href="/iot/"><button class="activityButton" onmouseover="iconColor('iot-icon', 1)" onmouseout="iconColor('iot-icon', 0)">подробнее&nbsp;&nbsp;<i class="fa fa-hand-o-right" aria-hidden="true" id="iot-icon" style="color: #ededed;"></i></button></a>

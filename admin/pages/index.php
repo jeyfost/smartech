@@ -139,17 +139,21 @@ if(!empty($_REQUEST['id'])) {
 
                     echo "
                         <br /><br />
-                        <label for='titleInput'>Заголовок:</label>
+                        <label for='titleInput'>Заголовок (тег <b>title</b>):</label>
                         <br />
                         <input id='titleInput' name='title' value='".$page['title']."' />
                         <br /><br />
-                        <label for='keywordsInput'>Ключевые слова:</label>
+                        <label for='keywordsInput'>Ключевые слова (meta-тег <b>keywords</b>):</label>
                         <br />
                         <textarea id='keywordsInput' name='keywords' onkeydown='textAreaHeight(this)'>".$page['keywords']."</textarea>
                         <br /><br />
-                        <label for='descriptionInput'>Описание:</label>
+                        <label for='descriptionInput'>Описание (meta-тег <b>description</b>):</label>
                         <br />
                         <textarea id='descriptionInput' name='description' onkeydown='textAreaHeight(this)'>".$page['description']."</textarea>
+                        <br /><br />
+                        <label for='textInput'>Описание раздела на главной странице:</label>
+                        <br />
+                        <textarea id='textInput' name='description' onkeydown='textAreaHeight(this)'>".$page['text']."</textarea>
                         <br /><br />
                         <input type='button' class='button' id='pageSubmit' value='Редактировать' onmouseover='buttonHover(\"pageSubmit\", 1)' onmouseout='buttonHover(\"pageSubmit\", 0)' onclick='edit()' />
                      ";
