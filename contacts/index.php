@@ -121,7 +121,7 @@ include('../scripts/connect.php');
         <div class="column text-center">
             <i class="fa fa-mobile" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;+375 (29) 573-77-53
             <br />
-            <i class="fa fa-mobile" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;+375 (29) 535-16-50
+            <i class="fa fa-mobile" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;+375 (29) 536-16-50
         </div>
         <div class="column">
             <i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;<?= CONTACT_EMAIL ?>
