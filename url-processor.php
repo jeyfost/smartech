@@ -407,6 +407,11 @@ if($url[1] == "blog") {
             <i class="fa fa-bars hidden" aria-hidden="true" onclick="mobileMenu()" id="menuIcon"></i>
         </div>
         <div id="menuPoints">
+            <?php
+            $basketCountResult = $mysqli->query("SELECT COUNT(id) FROM st_basket WHERE ip = '".real_ip()."'");
+            $basketCount = $basketCountResult->fetch_array(MYSQLI_NUM);
+            ?>
+            <a href="/basket"><div class="menuPoint"><i class="fa fa-shopping-cart" aria-hidden="true"></i><?php if($basketCount[0] > 0) {echo " (".$basketCount[0].")";} ?></div></a>
             <a href="/contacts"><div class="menuPoint">Контакты</div></a>
             <?php if($url[1] != "blog" or !empty($url[2])) {echo "<a href='/blog'>";} ?><div class="menuPoint <?php if($url[1] == "blog") {echo "active";} ?>">Блог</div><?php if($url[1] != "blog" or !empty($url[2])) {echo "</a>";} ?>
             <?php if($url[1] != "iot" or !empty($url[2])) {echo "<a href='/iot'>";} ?><div class="menuPoint <?php if($url[1] == "iot") {echo "active";} ?>">IoT</div><?php if($url[1] != "iot" or !empty($url[2])) {echo "</a>";} ?>
@@ -430,7 +435,8 @@ if($url[1] == "blog") {
         <div class="mobileMenuPoint <?php if($url[1] == "engineering") {echo "active";} ?>"><?php if($url[1] != "engineering") {echo "<a href='/engineering'>";} ?><span>Проектирование</span><?php if($url[1] != "engineering") {echo "</a>";} ?></div>
         <div class="mobileMenuPoint <?php if($url[1] == "iot") {echo "active";} ?>"><?php if($url[1] != "iot") {echo "<a href='/iot'>";} ?><span>IoT</span><?php if($url[1] != "iot") {echo "</a>";} ?></div>
         <div class="mobileMenuPoint <?php if($url[1] == "blog") {echo "active";} ?>"><?php if($url[1] != "blog") {echo "<a href='/blog'>";} ?><span>Блог</span><?php if($url[1] != "blog") {echo "</a>";} ?></div>
-        <div class="mobileMenuPoint"><a href="/contacts/"><span>Контакты</span></a></div>
+        <div class="mobileMenuPoint"><a href="/contacts"><span>Контакты</span></a></div>
+        <div class="mobileMenuPoint"><a href="/basket"><span>Корзина<?php if($basketCount[0] > 0) {echo " (".$basketCount[0].")";} ?></span></a></div>
     </div>
 </div>
 

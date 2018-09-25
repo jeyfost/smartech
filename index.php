@@ -69,7 +69,12 @@
                 <i class="fa fa-bars hidden" aria-hidden="true" onclick="mobileMenu()" id="menuIcon"></i>
             </div>
             <div id="menuPoints">
-                <a href="/contacts/"><div class="menuPoint">Контакты</div></a>
+                <?php
+                    $basketCountResult = $mysqli->query("SELECT COUNT(id) FROM st_basket WHERE ip = '".real_ip()."'");
+                    $basketCount = $basketCountResult->fetch_array(MYSQLI_NUM);
+                ?>
+                <a href="/basket"><div class="menuPoint"><i class="fa fa-shopping-cart" aria-hidden="true"></i><?php if($basketCount[0] > 0) {echo " (".$basketCount[0].")";} ?></div></a>
+                <a href="/contacts"><div class="menuPoint">Контакты</div></a>
                 <a href="/blog"><div class="menuPoint">Блог</div></a>
                 <a href="/iot"><div class="menuPoint">IoT</div></a>
                 <a href="/engineering"><div class="menuPoint">Проектирование</div></a>
@@ -93,6 +98,7 @@
             <div class="mobileMenuPoint"><a href="/iot"><span>IoT</span></a></div>
             <div class="mobileMenuPoint"><a href="/blog"><span>Блог</span></a></div>
             <div class="mobileMenuPoint"><a href="/contacts"><span>Контакты</span></a></div>
+            <div class="mobileMenuPoint"><a href="/basket"><span>Корзина<?php if($basketCount[0] > 0) {echo " (".$basketCount[0].")";} ?></span></a></div>
         </div>
     </div>
 
