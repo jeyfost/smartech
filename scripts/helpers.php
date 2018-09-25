@@ -55,3 +55,26 @@ function dateToString($date) {
 
     return $date;
 }
+
+function calculatePrice($price) {
+    $r = (int)floor($price);
+    $c = (int)($price - $r) * 100;
+
+    if($c == 0) {
+        $price = $r." руб. 00 коп.";
+    } else {
+        $price = $r." руб. ".$c." коп.";
+    }
+
+    return $price;
+}
+
+function real_ip() {
+    if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+        return $_SERVER['HTTP_X_FORWARDED_FOR'];
+    } elseif (isset($_SERVER['HTTP_X_REAL_IP'])) {
+        return $_SERVER['HTTP_X_REAL_IP'];
+    }
+
+    return $_SERVER['REMOTE_ADDR'];
+}

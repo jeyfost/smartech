@@ -70,12 +70,13 @@
             </div>
             <div id="menuPoints">
                 <a href="/contacts/"><div class="menuPoint">Контакты</div></a>
-                <a href="/iot/"><div class="menuPoint">IoT</div></a>
-                <a href="/engineering/"><div class="menuPoint">Проектирование</div></a>
-                <a href="/study/"><div class="menuPoint">Обучение</div></a>
-                <a href="/3d-print/"><div class="menuPoint">3D-печать</div></a>
-                <a href="/3d-printers/"><div class="menuPoint">3D-принтеры</div></a>
-                <div class="menuPoint active">Главная</div>
+                <a href="/blog"><div class="menuPoint">Блог</div></a>
+                <a href="/iot"><div class="menuPoint">IoT</div></a>
+                <a href="/engineering"><div class="menuPoint">Проектирование</div></a>
+                <a href="/study"><div class="menuPoint">Обучение</div></a>
+                <a href="/3d-print"><div class="menuPoint">3D-печать</div></a>
+                <a href="/shop"><div class="menuPoint">Магазин</div></a>
+                <a href="/"><div class="menuPoint active">Главная</div></a>
             </div>
             <div class="clear"></div>
         </div>
@@ -85,12 +86,13 @@
                 <i class="fa fa-times" aria-hidden="true" onclick="closeMobileMenu()"></i>
             </div>
             <div class="mobileMenuPoint active"><span>Главная</span></div>
-            <div class="mobileMenuPoint"><a href="/3d-printers/"><span>3D-принтеры</span></a></div>
-            <div class="mobileMenuPoint"><a href="/3d-print/"><span>3D-печать</span></a></div>
-            <div class="mobileMenuPoint"><a href="/study/"><span>Обучение</span></a></div>
-            <div class="mobileMenuPoint"><a href="/engineering/"><span>Проектирование</span></a></div>
-            <div class="mobileMenuPoint"><a href="/iot/"><span>IoT</span></a></div>
-            <div class="mobileMenuPoint"><a href="/contacts/"><span>Контакты</span></a></div>
+            <div class="mobileMenuPoint"><a href="/shop"><span>Магазин</span></a></div>
+            <div class="mobileMenuPoint"><a href="/3d-print"><span>3D-печать</span></a></div>
+            <div class="mobileMenuPoint"><a href="/study"><span>Обучение</span></a></div>
+            <div class="mobileMenuPoint"><a href="/engineering"><span>Проектирование</span></a></div>
+            <div class="mobileMenuPoint"><a href="/iot"><span>IoT</span></a></div>
+            <div class="mobileMenuPoint"><a href="/blog"><span>Блог</span></a></div>
+            <div class="mobileMenuPoint"><a href="/contacts"><span>Контакты</span></a></div>
         </div>
     </div>
 

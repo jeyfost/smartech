@@ -2,12 +2,13 @@
 
 /* Large Devices, Wide Screens */
 @media only screen and (max-width : 1200px) {
-
+    .goodPhoto {float: none; margin: 0 auto;}
+    .goodProperties {float: none; margin-top: 20px; width: 100%;}
 }
 
 /* Medium Devices, Desktops */
 @media only screen and (max-width : 992px) {
-    .menuPoint {font-size: 15px; padding-left: 5px; padding-right: 5px;}
+    .menuPoint {font-size: 14px; padding-left: 5px; padding-right: 5px;}
     .footerLogo {width: 30%;}
     .footerText {width: 65%;}
     .column {width: 100%; margin-top: 20px;}
@@ -34,6 +35,8 @@
     .goodContainer {width: 96%;}
     .goodPhoto {float: none; margin: 0 auto;}
     .goodDescription {float: none; width: 100%;}
+    .catalogueMenu {width: 100%; float: none;}
+    .catalogueContent {width: 100%; float: none; margin-top: 20px;}
 }
 
 /* Extra Small Devices, Phones */

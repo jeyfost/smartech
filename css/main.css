@@ -9,6 +9,8 @@ input {font-size: 16px; font-family: "Istok Web", sans-serif; width: 95%; height
 textarea {font-size: 16px; font-family: "Montserrat", sans-serif;, width: 95%; padding: 5px; resize: none; transition: .3s;}
 label {font-family: "Istok Web", sans-serif;}
 h1 {font-family: "Istok Web", sans-serif; color: #000; font-size: 20px;}
+td a {color: #000;}
+td a span {transition: .3s;}
 
 #mobileMenuIcon:hover {color: #a01a21;}
 #scroll:hover {background-color: #a01a21;}
@@ -18,6 +20,7 @@ h1 {font-family: "Istok Web", sans-serif; color: #000; font-size: 20px;}
 .activityPhoto img:hover, .goodPhoto img:hover, .goodPhotoPreview img:hover {opacity: .6;}
 .breadcrumbs a:hover {text-decoration: underline;}
 .goodOverlay:hover {opacity: 1; color: #fff;}
+.goodAdditionalPhoto:hover {box-shadow: 0 5px 15px -4px rgba(0, 0, 0, 0.4);}
 
 #menu {width: 100%; height: 80px; background-color: #fff; box-shadow: 0 5px 6px -4px rgba(0, 0, 0, 0.17); z-index: 100 !important; position: fixed; top: 0; left: 0; transition: .3s;}
 #menuContent {width: 96%; margin: 0 auto;}
@@ -55,6 +58,7 @@ h1 {font-family: "Istok Web", sans-serif; color: #000; font-size: 20px;}
 .mobileMenuPoint i {font-size: 18px; color: #000; transition: .3s; cursor: pointer;}
 .header {width: 100%; text-align: center;}
 .headerFont {font-family: "Montserrat", sans-serif; font-size: 42px; color: #000;}
+.catalogueContent .headerFont {font-size: 36px;}
 .activityBlock {margin-top: 70px; padding: 20px;}
 .activityPhoto {position: relative; float: left; width: 40%;}
 .activityPhoto img {transition: .3s;}
@@ -104,7 +108,24 @@ h1 {font-family: "Istok Web", sans-serif; color: #000; font-size: 20px;}
 .goodPhotoPreview {width: 80px; display: inline-block; vertical-align: middle; margin: 20px auto auto 20px;}
 .goodPhoto img, .goodPhotoPreview img {width: 100%; transition: .3s;}
 .breadcrumbs, .breadcrumbs a {text-align: left; font-family: "Istok Web", sans-serif; font-size: 14px; color: #888; font-style: italic; transition: .3s;}
+.breadcrumbs a {color: #fb5c25;}
 .remodal textarea {width: 95%;}
 .remodal-confirm {background-color: #fb5c25; transition: .3s; color: #fff; font-family: "Istok Web", sans-serif; font-size: 16px; border-radius: 25px; padding-left: 20px; padding-right: 20px;}
 .g-recaptcha {width: 300px; margin: 0 auto;}
 .notifyjs-corner, .notifyjs-wrapper {z-index: 9999999 !important;}
+.catalogueMenu {width: 25%; float: left; border-collapse: collapse; font-size: 14px;}
+.catalogueMenu td {padding-left: 10px; padding-right: 10px; cursor: pointer; transition: .3s;}
+.catalogueMenuPoint, .catalogueMenuPoint td {width: 100%; height: 40px; vertical-align: middle; text-align: left; border-collapse: collapse; border: 1px solid #e0e0e0;}
+.tdHead {background-color: #e9e9e9; cursor: auto !important;}
+.tdActive {background-color: #f5f5f5;}
+.tdActive a, .tdActive a span{color: #fb5c25;}
+.catalogueContent {width: 70%; float: right;}
+.goodDataRow {width: 100%; border: 1px solid #e0e0e0; padding-top: 8px; padding-bottom: 8px; font-size: 14px;}
+.goodDataFont {color: #fb5c25;}
+.goodDataContainer {float: left; margin-left: 20px;}
+.goodPhoto {float: left; width: 450px;}
+.goodPhoto img {width: 100%;}
+.goodAdditionalPhoto {display: inline-block; margin-left: 10px; transition: .3s; width: 100px;}
+.goodAdditionalPhoto img {transition: .3s;}
+.goodProperties {float: left; margin-left: 20px; font-family: "Istok Web", sans-serif;}
+.priceFont {font-family: "Istok Web", sans-serif; font-size: 24px; color: #fb5c25;}

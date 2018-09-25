@@ -8,6 +8,16 @@ $(window).on("load", function () {
             $('#goodOverlay' + id).css("display", "none");
         }
     });
+
+    if($("div").is(".goodProperties")) {
+        goodResize();
+    }
+});
+
+$(window).on("resize", function () {
+    if($("div").is(".goodProperties")) {
+        goodResize();
+    }
 });
 
 function pageBlock(action, block, text) {
@@ -105,5 +115,58 @@ function send(id) {
         }
     } else {
         $.notify("Вы не ввели своё имя.", "error");
+    }
+}
+
+function catalogueMenu(action, id, text) {
+    if($("#" + id).attr("class") !== "tdActive") {
+        if(action === 1) {
+            $("#" + id).css("background-color", "#f5f5f5");
+            $("#" + text).css("color", "#fb5c25");
+        } else {
+            $("#" + id).css("background-color", "#fff");
+            $("#" + text).css("color", "#000");
+        }
+    }
+}
+
+function addToBasket(id) {
+    $.ajax({
+        type: "POST",
+        data: {"id": id},
+        url: "/scripts/shop/ajaxAddToBasket.php",
+        success: function(response) {
+            switch(response) {
+                case "ok insert":
+                    $.notify("Товар был успешно добавлен в корзину.", "success");
+
+                    $("#icon" + id).attr("class", "fa fa-cart-plus");
+                    $("#addButton" + id).attr("title", "Увеличить количество товара в корзине");
+                    break;
+                case "ok update":
+                    $.notify("Количество выбранного товара в корзине было увеличено.", "success");
+                    break;
+                case "failed":
+                    $.notify("При добавлении товара в корзину произошла ошибка. Попробуйте снова.", "error");
+                    break;
+                case "id":
+                    $.notify("Товара с указанным идентификатором не существует.", "error");
+                    break;
+                default:
+                    $.notify(response, "warn");
+                    break;
+            }
+        }
+    });
+}
+
+function goodResize() {
+    if($(window).width() >= 1200) {
+        $(".goodProperties").width(parseInt($(".catalogueContent").width() - $('.goodPhoto').width() - 20));
+    } else {
+        $(".goodPhoto").css("float", "none");
+        $(".goodProperties").css("float", "none");
+        $(".goodProperties").css("margin-top", "20px");
+        $(".goodProperties").css("width", "100%");
     }
 }
