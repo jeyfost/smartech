@@ -142,6 +142,15 @@ function addToBasket(id) {
 
                     $("#icon" + id).attr("class", "fa fa-cart-plus");
                     $("#addButton" + id).attr("title", "Увеличить количество товара в корзине");
+
+                    $.ajax({
+                        type: "POST",
+                        url: "/scripts/shop/ajaxGoodsQuantity.php",
+                        success: function (quantity) {
+                            $("#basketPoint").html("<i class='fa fa-shopping-cart' aria-hidden='true'></i> (" + quantity + ")");
+                            $("#mobileBasketPoint").html("Корзина (" + quantity + ")");
+                        }
+                    });
                     break;
                 case "ok update":
                     $.notify("Количество выбранного товара в корзине было увеличено.", "success");
@@ -162,7 +171,7 @@ function addToBasket(id) {
 
 function goodResize() {
     if($(window).width() >= 1200) {
-        $(".goodProperties").width(parseInt($(".catalogueContent").width() - $('.goodPhoto').width() - 20));
+        $(".goodProperties").width(parseInt($(".catalogueContent").width() - $('.goodPhoto').width() - 20 - 50));
     } else {
         $(".goodPhoto").css("float", "none");
         $(".goodProperties").css("float", "none");

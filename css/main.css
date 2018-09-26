@@ -21,6 +21,9 @@ td a span {transition: .3s;}
 .breadcrumbs a:hover {text-decoration: underline;}
 .goodOverlay:hover {opacity: 1; color: #fff;}
 .goodAdditionalPhoto:hover {box-shadow: 0 5px 15px -4px rgba(0, 0, 0, 0.4);}
+.basketNameFont a:hover {color: #000;}
+.icon:hover {color: #a01a21;}
+.activityButtonDelete:hover {color: #a01a21; background-color: #ededed;}
 
 #menu {width: 100%; height: 80px; background-color: #fff; box-shadow: 0 5px 6px -4px rgba(0, 0, 0, 0.17); z-index: 100 !important; position: fixed; top: 0; left: 0; transition: .3s;}
 #menuContent {width: 96%; margin: 0 auto;}
@@ -68,6 +71,7 @@ td a span {transition: .3s;}
 .activityHeaderFont {font-family: "Montserat", sans-serif; color: #000; font-size: 20px; transition: .3s;}
 .activityText {font-family: "Istok Web", sans-serif; color: #282828; font-size: 16px;}
 .activityButton {padding-left: 20px; padding-right: 20px; height: 30px; line-height: 30px; color: #ededed; background-color: #fb5c25; border-radius: 25px; border: none; transition: .3s; cursor: pointer; font-variant: small-caps; font-size: 16px; font-family: "Istok Web", sans-serif; margin-top: 20px;}
+.activityButtonDelete {padding-left: 20px; padding-right: 20px; height: 30px; line-height: 30px; color: #ededed; background-color: #a01a21; border-radius: 25px; border: none; transition: .3s; cursor: pointer; font-variant: small-caps; font-size: 16px; font-family: "Istok Web", sans-serif; margin-top: 20px;}
 .bigSection {width: 100%; background: url(/img/system/img11.jpg) center center no-repeat; background-size: cover;}
 .sloganBottom {color: #ededed;}
 .sloganBottomFont {font-family: 'Istok Web', sans-serif; font-size: 3vw; opacity: .75;}
@@ -129,3 +133,13 @@ td a span {transition: .3s;}
 .goodAdditionalPhoto img {transition: .3s;}
 .goodProperties {float: left; margin-left: 20px; font-family: "Istok Web", sans-serif;}
 .priceFont {font-family: "Istok Web", sans-serif; font-size: 24px; color: #fb5c25;}
+.link, .basketNameFont a {color: #fb5c25;}
+.basketRow {width: 60%; margin: 10px auto auto auto;}
+.basketPhoto {width: 100px; float: left;}
+.basketPhoto img {width: 100px;}
+.basketDescription {float: left; padding-left: 20px; text-align: left;}
+.basketNameFont {font-family: "Istok Web", sans-serif; font-size: 20px; color: #fb5c25;}
+.transition {transition: .3s;}
+.basketControls {width: 80px; float: right;}
+.icon {cursor: pointer; font-size: 18px;}
+.basketControls form input {width: 40px; text-align: center;}

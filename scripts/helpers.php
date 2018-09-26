@@ -57,14 +57,7 @@ function dateToString($date) {
 }
 
 function calculatePrice($price) {
-    $r = (int)floor($price);
-    $c = (int)($price - $r) * 100;
-
-    if($c == 0) {
-        $price = $r." руб. 00 коп.";
-    } else {
-        $price = $r." руб. ".$c." коп.";
-    }
+    $price = $price." руб.";
 
     return $price;
 }
