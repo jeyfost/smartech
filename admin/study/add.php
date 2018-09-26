@@ -78,9 +78,18 @@ include("../../scripts/connect.php");
             <i class="fa fa-file-text-o" aria-hidden="true"></i><span> Страницы</span>
         </div>
     </a>
-    <a href="/admin/3d-printers/">
+    <a href="/admin/shop/">
         <div class="menuPoint">
-            <i class="fa fa-print" aria-hidden="true"></i><span> 3D-принтеры</span>
+            <i class="fa fa-shopping-bag" aria-hidden="true"></i><span> Магазин</span>
+        </div>
+    </a>
+    <?php
+        $ordersCountResult = $mysqli->query("SELECT COUNT(id) FROM st_orders WHERE accepted = '0'");
+        $ordersCount = $ordersCountResult->fetch_array(MYSQLI_NUM);
+    ?>
+    <a href="/admin/orders/">
+        <div class="menuPoint">
+            <i class="fa fa-shopping-cart" aria-hidden="true"></i><span> Заказы<?php if($ordersCount[0] > 0) {echo " (".$ordersCount[0].")";} ?></span>
         </div>
     </a>
     <a href="/admin/3d-print/">

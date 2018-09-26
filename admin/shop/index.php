@@ -2,29 +2,24 @@
 /**
  * Created by PhpStorm.
  * User: jeyfost
- * Date: 14.02.2018
- * Time: 11:30
+ * Date: 26.09.2018
+ * Time: 12:17
  */
 
 session_start();
+
 include("../../scripts/connect.php");
 
 if($_SESSION['userID'] != 1) {
     header("Location: ../../");
 }
 
-$categoryResult = $mysqli->query("SELECT * FROM st_catalogue_categories WHERE url = 'engineering'");
-$category = $categoryResult->fetch_assoc();
-
 if(!empty($_REQUEST['id'])) {
-    $goodCheckResult = $mysqli->query("SELECT COUNT(id) FROM st_catalogue WHERE id = '".$mysqli->real_escape_string($_REQUEST['id'])."' AND category_id = '".$category['id']."'");
+    $goodCheckResult = $mysqli->query("SELECT COUNT(id) FROM st_shop WHERE id = '".$mysqli->real_escape_string($_REQUEST['id'])."'");
     $goodCheck = $goodCheckResult->fetch_array(MYSQLI_NUM);
 
     if($goodCheck[0] == 0) {
-        header("Location: index.php");
-    } else {
-        $goodResult = $mysqli->query("SELECT * FROM st_catalogue WHERE id = '".$mysqli->real_escape_string($_REQUEST['id'])."'");
-        $good = $goodResult->fetch_assoc();
+        header("Location: /admin/shop");
     }
 }
 
@@ -34,7 +29,7 @@ if(!empty($_REQUEST['id'])) {
 
     <meta charset="utf-8" />
 
-    <title>Панель администрирования | Проектирование</title>
+    <title>Панель администрирования | Магазин</title>
 
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -50,14 +45,14 @@ if(!empty($_REQUEST['id'])) {
     <link rel="stylesheet" type="text/css" href="/css/fonts.css" />
     <link rel="stylesheet" type="text/css" href="/css/admin.css" />
     <link rel="stylesheet" href="/libs/font-awesome-4.7.0/css/font-awesome.css" />
-    <link rel="stylesheet" href="/libs/lightview/css/lightview/lightview.css" />
+    <link rel="stylesheet" href="/libs/strip/dist/css/strip.css" />
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript" src="/libs/lightview/js/lightview/lightview.js"></script>
+    <script src="/libs/strip/dist/js/strip.pkgd.min.js"></script>
     <script type="text/javascript" src="/libs/ckeditor/ckeditor.js"></script>
     <script type="text/javascript" src="/libs/notify/notify.js"></script>
     <script type="text/javascript" src="/js/admin/common.js"></script>
-    <script type="text/javascript" src="/js/admin/engineering/index.js"></script>
+    <script type="text/javascript" src="/js/admin/shop/index.js"></script>
 
     <style>
         #page-preloader {position: fixed; left: 0; top: 0; right: 0; bottom: 0; background: #fff; z-index: 100500;}
@@ -76,7 +71,7 @@ if(!empty($_REQUEST['id'])) {
     <!-- Google Analytics counter --><!-- /Google Analytics counter -->
 </head>
 
-<body <?php if(!empty($_REQUEST['id'])) {echo "onload='loadText(\"".$good['id']."\")'";} ?>>
+<body <?php if(!empty($_REQUEST['id'])) {echo "onload='loadGoodText(\"".$mysqli->real_escape_string($_REQUEST['id'])."\")'";} ?>>
 
 <div id="page-preloader"><span class="spinner"></span></div>
 
@@ -96,7 +91,7 @@ if(!empty($_REQUEST['id'])) {
         </div>
     </a>
     <a href="/admin/shop/">
-        <div class="menuPoint">
+        <div class="menuPointActive">
             <i class="fa fa-shopping-bag" aria-hidden="true"></i><span> Магазин</span>
         </div>
     </a>
@@ -120,7 +115,7 @@ if(!empty($_REQUEST['id'])) {
         </div>
     </a>
     <a href="/admin/engineering/">
-        <div class="menuPointActive">
+        <div class="menuPoint">
             <i class="fa fa-cogs" aria-hidden="true"></i><span> Проектирование</span>
         </div>
     </a>
@@ -137,31 +132,73 @@ if(!empty($_REQUEST['id'])) {
 </div>
 
 <div id="content">
-    <span class="headerFont">Редактирование услуг</span>
+    <span class="headerFont">Управление товарами в магазине</span>
+    <br /><br />
+    <input type='button' id='addGoodSubmit' value='Добавить товар' onmouseover='buttonHover("addGoodSubmit", 1)' onmouseout='buttonHover("addGoodSubmit", 0)' onclick='window.location.href = "/admin/shop/add.php"' class='button' />
     <br /><br />
     <form method="post" id="goodForm">
-        <label for="goodSelect"></label>
-        <select id="goodSelect" name="good" onchange="window.location = '?id=' + this.options[this.selectedIndex].value">
-            <option value="">- Выберите услугу -</option>
+        <label for="categorySelect">Раздел:</label>
+        <br />
+        <select id="catgorySelect" name="category" onchange="window.location = '?c=' + this.options[this.selectedIndex].value">
+            <option value="">- Выберите раздел -</option>
             <?php
-            $catalogueResult = $mysqli->query("SELECT * FROM st_catalogue WHERE category_id = '".$category['id']."' ORDER BY id");
-            while($catalogue = $catalogueResult->fetch_assoc()) {
-                echo "<option value='".$catalogue['id']."'"; if($_REQUEST['id'] == $catalogue['id']) {echo " selected";} echo ">".$catalogue['name']."</option>";
+                $categoryResult = $mysqli->query("SELECT * FROM st_shop_categories ORDER BY name");
+                while($category = $categoryResult->fetch_assoc()) {
+                    echo "<option value='".$category['id']."'"; if($_REQUEST['c'] == $category['id']) {echo " selected";} echo ">".$category['name']."</option>";
             }
             ?>
         </select>
         <br /><br />
-        <input type='button' id='addGoodSubmit' value='Добавить услугу' onmouseover='buttonHover("addGoodSubmit", 1)' onmouseout='buttonHover("addGoodSubmit", 0)' onclick='window.location.href = "/admin/engineering/add.php"' class='button' />
 
         <?php
+            if(!empty($_REQUEST['c'])) {
+                echo "
+                    <label for='subcategorySelect'>Подраздел:</label>
+                    <br />
+                    <select id='subcategorySelect' name='subcategory' onchange='window.location = \"?c=".$_REQUEST['c']."&s=\" + this.options[this.selectedIndex].value'>
+                        <option value=''>- Выберите подраздел -</option>
+                ";
+
+                $subcategoryResult = $mysqli->query("SELECT * FROM st_shop_subcategories WHERE category_id = '".$mysqli->real_escape_string($_REQUEST['c'])."' ORDER BY name");
+                while($subcategory = $subcategoryResult->fetch_assoc()) {
+                    echo "<option value='".$subcategory['id']."'"; if($_REQUEST['s'] == $subcategory['id']) {echo " selected";} echo ">".$subcategory['name']."</option>";
+                }
+
+                echo "
+                    </select>
+                ";
+            }
+
+            if(!empty($_REQUEST['s'])) {
+                echo "
+                    <br /><br />
+                    <label for='goodSelect'>Товар:</label>
+                    <br />
+                    <select id='goodSelect' name='good' onchange='window.location = \"?c=".$_REQUEST['c']."&s=".$_REQUEST['s']."&id=\" + this.options[this.selectedIndex].value'>
+                        <option value=''>- Выберите товар -</option>
+                ";
+
+                $goodResult = $mysqli->query("SELECT * FROM st_shop WHERE subcategory_id = '".$mysqli->real_escape_string($_REQUEST['s'])."' ORDER BY name");
+                while($good = $goodResult->fetch_assoc()) {
+                    echo "<option value='".$good['id']."'"; if($_REQUEST['id'] == $good['id']) {echo " selected";} echo ">".$good['name']."</option>";
+                }
+
+                echo "
+                    </select>
+                ";
+            }
+
         if(!empty($_REQUEST['id'])) {
+                $goodResult = $mysqli->query("SELECT * FROM st_shop WHERE id = '".$mysqli->real_escape_string($_REQUEST['id'])."'");
+                $good = $goodResult->fetch_assoc();
+
             echo "
                     <br /><br /><br /><br />
                     <hr />
                     <br /><br />
-                    <span class='headerFont'>Редактирование услуги <span style='color: #939393;'>&laquo;".$good['name']."&raquo;</span></span>
+                    <span class='headerFont'>Редактирование товара <span style='color: #939393;'>&laquo;".$good['name']."&raquo;</span></span>
                     <br /><br />
-                    <label for='nameInput'>Название услуги:</label>
+                    <label for='nameInput'>Название товара:</label>
                     <br />
                     <input id='nameInput' name='name' value='".$good['name']."' />
                     <br /><br />
@@ -169,9 +206,9 @@ if(!empty($_REQUEST['id'])) {
                     <br />
                     <input type='file' class='file' id='previewInput' name='preview' />
                     <br /><br />
-                    <a href='/img/catalogue/big/".$good['photo']."' class='lightview' data-lightview-options='skin: \"light\"'>
+                    <a href='/img/shop/big/".$good['photo']."' class='strip' data-strip-caption='".$good['name']."'>
                         <div class='photoPreview'>
-                            <img src='/img/catalogue/small/".$good['preview']."' />
+                            <img src='/img/shop/small/".$good['preview']."' />
                             <br />
                             <span>Увеличить</span>
                         </div>
@@ -183,7 +220,7 @@ if(!empty($_REQUEST['id'])) {
 		            <br /><br />
                 ";
 
-            $photoResult = $mysqli->query("SELECT * FROM st_photos WHERE good_id = '".$good['id']."'");
+            $photoResult = $mysqli->query("SELECT * FROM st_shop_photos WHERE good_id = '".$good['id']."'");
 
             if($photoResult->num_rows > 0) {
                 echo "<div id='additionalPhotosContainer'>";
@@ -191,11 +228,11 @@ if(!empty($_REQUEST['id'])) {
                 while($photo = $photoResult->fetch_assoc()) {
                     echo "
                             <div class='photoPreview'>
-                                <a href='/img/photos/big/".$photo['photo']."' class='lightview' data-lightview-group='additional-photos' data-lightview-options='skin: \"light\"'>
-                                    <img src='/img/photos/small/".$photo['preview']."' />
+                                <a href='/img/shop/big/".$photo['photo']."' class='strip' data-strip-caption='".$good['name']."' data-strip-group='good'>
+                                    <img src='/img/shop/small/".$photo['preview']."' />
                                 </a>
                                 <br />
-                                <span onclick='deletePhoto(\"".$photo['id']."\")'>Удалить</span>
+                                <span onclick='deleteGoodPhoto(\"".$photo['id']."\")'>Удалить</span>
                             </div>
                         ";
                 }
@@ -213,10 +250,16 @@ if(!empty($_REQUEST['id'])) {
                     <br />
                     <input id='urlInput' name='url' value='".$good['url']."' />
                     <br /><br />
+                    <label for='codeInput'>Артикул:</label>
+                    <br />
+                    <input id='codeInput' name='code' value='".$good['code']."' />
+                    <br /><br />
+                    <label for='priceInput'>Цена:</label>
+                    <br />
+                    <input type='number' min='0.01' step='0.01' id='priceInputInput' name='price' value='".$good['price']."' />
+                    <br /><br />
                     <label for='descriptionInput'>Краткое описание:</label>
                     <br />
-                    <textarea id='descriptionInput' name='description' onkeydown='textAreaHeight(this)'>".$good['description']."</textarea>
-                    <br /><br />
                     <label for='textInput'>Описание:</label>
                     <br />
                     <textarea id='textInput' name='text'></textarea>
