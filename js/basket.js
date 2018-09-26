@@ -1,8 +1,16 @@
 $(window).on("load", function () {
+    basketRowResize();
+});
+
+$(window).on("resize", function () {
+    basketRowResize();
+});
+
+function basketRowResize() {
     if($("div").is(".basketRow")) {
         $(".basketDescription").width(parseInt($(".basketRow").width() - $(".basketPhoto").width() - 20 - 90));
     }
-});
+}
 
 function deleteGood(id) {
     if(confirm("Вы действительно хотите удалить этот товар из корзины?")) {

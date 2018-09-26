@@ -51,6 +51,7 @@
     .footerLogo {width: 100%; float: none;}
     .footerText {width: 100%; float: none; margin-top: 50px; text-align: center;}
     .policyHeaderFont {font-size: 14px;}
+    .basketDescriptionText {display: none;}
 }
 
 /* Custom, iPhone Retina */

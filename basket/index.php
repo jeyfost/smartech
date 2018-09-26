@@ -140,7 +140,7 @@ include('../scripts/connect.php');
                                 <div class='basketDescription'>
                                     <div class='basketNameFont'><a href='/shop/".$categoryURL[0]."/".$subcategoryURL[0]."/".$good['url']."' class='transition'>".$good['name']."</a></div>
                                     <br />
-                                    <div class='goodFont'>".$good['description']."</div>
+                                    <div class='goodFont basketDescriptionText'>".$good['description']."</div>
                                     <br />
                                     <b>Цена за единицу:</b><span> ".calculatePrice($good['price'])."</span>
                                 </div>
