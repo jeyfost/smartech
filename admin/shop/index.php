@@ -43,6 +43,8 @@ if(!empty($_REQUEST['id'])) {
 
 ?>
 
+<html>
+
 <head>
 
     <meta charset="utf-8" />
@@ -157,7 +159,7 @@ if(!empty($_REQUEST['id'])) {
     <form method="post" id="goodForm">
         <label for="categorySelect">Раздел:</label>
         <br />
-        <select id="catgorySelect" name="category" onchange="window.location = '?c=' + this.options[this.selectedIndex].value">
+        <select id="categorySelect" name="category" onchange="window.location = '?c=' + this.options[this.selectedIndex].value">
             <option value="">- Выберите раздел -</option>
             <?php
                 $categoryResult = $mysqli->query("SELECT * FROM st_shop_categories ORDER BY name");

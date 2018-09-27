@@ -9,7 +9,7 @@ textarea {width: 300px; padding: 10px; min-height: 20px; font-style: italic; bor
 
 .menuPoint:hover {background-color: #d6d6d6; color: #000;}
 .photoPreview:hover {background-color: #dbdbdb;}
-.photoPreview span:hover {text-decoration: underline;}
+.photoPreview span:hover, .ordersTable a:hover {text-decoration: underline;}
 
 #loginContainer {margin: 200px auto auto auto; background-color: #fff; box-shadow: 0 5px 15px -4px rgba(0, 0, 0, 0.4); width: 320px; padding: 20px;}
 #loginSubmit {width: 100%;}
@@ -32,3 +32,12 @@ textarea {width: 300px; padding: 10px; min-height: 20px; font-style: italic; bor
 .photoPreview img {width: 100%;}
 .photoPreview span {cursor: pointer;}
 .relative {position: relative; float: left;}
+.ordersTable {border-collapse: collapse;}
+.ordersTable td {padding-left: 5px; padding-right:5px; padding-top: 10px; padding-bottom: 10px; border: 1px solid #e0e0e0; border-collapse: collapse; text-align: center;}
+.ordersTable thead tr td {background-color: #f5f5f5;}
+.ordersTable a {color: #fb5c25;}
+.basketRow {width: 60%; margin: 10px auto auto auto;}
+.basketPhoto {width: 100px; float: left;}
+.basketPhoto img {width: 100px;}
+.basketDescription {float: left; padding-left: 20px; text-align: left;}
+.basketNameFont {font-family: "Istok Web", sans-serif; font-size: 20px; color: #fb5c25;}
