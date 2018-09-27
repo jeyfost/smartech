@@ -26,7 +26,7 @@ while($basket = $basketResult->fetch_assoc()) {
     $total += $basket['quantity'] * $good['price'];
 }
 
-if($mysqli->query("INSERT INTO st_orders (date, name, email, phone, price, accepted) VALUES ('".date('Y-m-d H:i:s')."', '".$name."', '".$email."', '".$phone."', '".$total."', '0')")) {
+if($mysqli->query("INSERT INTO st_orders (id, date, name, email, phone, price, accepted) VALUES ('".$newID."', '".date('Y-m-d H:i:s')."', '".$name."', '".$email."', '".$phone."', '".$total."', '0')")) {
     $basketResult = $mysqli->query("SELECT * FROM st_basket WHERE ip = '".real_ip()."'");
     while($basket = $basketResult->fetch_assoc()) {
         $mysqli->query("INSERT INTO st_orders_goods (order_id, good_id, quantity) VALUES ('".$newID."', '".$basket['good_id']."', '".$basket['quantity']."')");

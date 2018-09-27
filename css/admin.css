@@ -20,6 +20,7 @@ textarea {width: 300px; padding: 10px; min-height: 20px; font-style: italic; bor
 #leftMenu {background-color: #fff; width: 220px; display: inline-block; box-shadow: 0 5px 15px -4px rgba(0, 0, 0, 0.4);}
 #content {display: inline-block; background-color: #fff; padding: 20px; box-shadow: 0 5px 15px -4px rgba(0, 0, 0, 0.4); vertical-align: top; margin: 40px auto auto 40px;}
 #additionalPhotosContainer {transition: .3s;}
+#pageNumbers {display: inline-block; text-align: center; font-family: "Istok Web", sans-serif;}
 
 .button {height: 30px; width: auto; border: none; background-color: #dedede; color: #4c4c4c; font-family: Calibri, Helvetica, Arial, sans-serif; font-size: 16px; font-style: normal; cursor: pointer; padding: auto 5px; transition: .3s; margin: 0 auto;}
 .clear {clear: both;}
@@ -41,3 +42,9 @@ textarea {width: 300px; padding: 10px; min-height: 20px; font-style: italic; bor
 .basketPhoto img {width: 100px;}
 .basketDescription {float: left; padding-left: 20px; text-align: left;}
 .basketNameFont {font-family: "Istok Web", sans-serif; font-size: 20px; color: #fb5c25;}
+.pageNumberBlockSide {position: relative; float: left; height: 30px; line-height: 30px; padding-left: 10px; padding-right: 10px; text-align: center; border-radius: 3px; margin-left: 2px; transition: .3s;}
+.pageNumberBlock {position: relative; float: left; width: 40px; height: 30px; line-height: 30px; text-align: center; border-radius: 3px; margin-left: 2px; transition: .3s;}
+.pageNumberBlockActive {position: relative; float: left; background-color: #fb5c25; width: 40px; height: 30px; line-height: 30px; text-align: center; border-radius: 3px; margin-left: 2px;}
+.paginationInactive {color: #191919;}
+.paginationActive {color: #fff;}
+.paginationLink {color: #fb5c25;}

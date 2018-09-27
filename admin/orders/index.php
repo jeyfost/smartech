@@ -149,6 +149,7 @@ if(!empty($_REQUEST['id'])) {
                             <td>Детализация</td>
                             <td>Дата совершения заказа</td>
                             <td>Итоговая сумма</td>
+                            <td>Статус заказа</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -189,6 +190,7 @@ if(!empty($_REQUEST['id'])) {
                         </td>
                         <td>".dateTimeToString($order['date'])."</td>
                         <td>".$order['price']." руб.</td>
+                        <td>Не принят</td>
                     </tr>
                 ";
                 }
@@ -246,10 +248,6 @@ if(!empty($_REQUEST['id'])) {
         }
     ?>
 </div>
-
-<script type="text/javascript">
-    CKEDITOR.replace("text");
-</script>
 
 </body>
 
