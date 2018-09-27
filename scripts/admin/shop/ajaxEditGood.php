@@ -24,6 +24,9 @@ $goodResult = $mysqli->query("SELECT * FROM st_shop WHERE id = '".$id."'");
 $good = $goodResult->fetch_assoc();
 
 if(!is_numeric($url)) {
+    $url = str_replace(" ", "-", $url);
+    $url = str_replace("_", "-", $url);
+
     $urlCheckResult = $mysqli->query("SELECT COUNT(id) FROM st_shop WHERE url = '".$url."' AND id <> '".$good['id']."'");
     $urlCheck = $urlCheckResult->fetch_array(MYSQLI_NUM);
 

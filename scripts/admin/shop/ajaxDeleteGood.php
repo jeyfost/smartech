@@ -6,7 +6,7 @@
  * Time: 14:00
  */
 
-include("../connect.php");
+include("../../connect.php");
 
 $id = $mysqli->real_escape_string($_POST['id']);
 
@@ -21,7 +21,7 @@ if($idCheck[0] > 0) {
     $photosCount = $photosCountResult->fetch_array(MYSQLI_NUM);
 
     if($photosCount[0] > 0) {
-        $photoResult = $mysqli->query("SELECT * FROM st_shop_photos WHERE id = '".$good['id']."'");
+        $photoResult = $mysqli->query("SELECT * FROM st_shop_photos WHERE good_id = '".$good['id']."'");
         while($photo = $photoResult->fetch_assoc()) {
             if($mysqli->query("DELETE FROM st_shop_photos WHERE id = '".$photo['id']."'")) {
                 unlink("../../../img/shop/big/".$photo['photo']);
