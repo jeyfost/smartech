@@ -74,14 +74,16 @@ include('../scripts/connect.php');
         </div>
         <div id="menuPoints">
             <?php
-            $basketCountResult = $mysqli->query("SELECT COUNT(id) FROM st_basket WHERE ip = '".real_ip()."'");
-            $basketCount = $basketCountResult->fetch_array(MYSQLI_NUM);
+                $basketCountResult = $mysqli->query("SELECT COUNT(id) FROM st_basket WHERE ip = '".real_ip()."'");
+                $basketCount = $basketCountResult->fetch_array(MYSQLI_NUM);
             ?>
             <a href="/basket"><div class="menuPoint"><i class="fa fa-shopping-cart" aria-hidden="true"></i><?php if($basketCount[0] > 0) {echo " (".$basketCount[0].")";} ?></div></a>
             <a href="/contacts"><div class="menuPoint active">Контакты</div></a>
             <a href="/blog"><div class="menuPoint">Блог</div></a>
+            <!--
             <a href="/iot"><div class="menuPoint">IoT</div></a>
             <a href="/engineering"><div class="menuPoint">Проектирование</div></a>
+            -->
             <a href="/study"><div class="menuPoint">Обучение</div></a>
             <a href="/3d-print"><div class="menuPoint">3D-печать</div></a>
             <a href="/shop"><div class="menuPoint">Магазин</div></a>
@@ -98,8 +100,10 @@ include('../scripts/connect.php');
         <div class="mobileMenuPoint"><a href="/shop"><span>3D-принтеры</span></a></div>
         <div class="mobileMenuPoint"><a href="/3d-print"><span>3D-печать</span></a></div>
         <div class="mobileMenuPoint"><a href="/study"><span>Обучение</span></a></div>
+        <!--
         <div class="mobileMenuPoint"><a href="/engineering"><span>Проектирование</span></a></div>
         <div class="mobileMenuPoint"><a href="/iot"><span>IoT</span></a></div>
+        -->
         <div class="mobileMenuPoint"><a href="/blog"><span>Блог</span></a></div>
         <div class="mobileMenuPoint active"><a href="/contacts"><span>Контакты</span></a></div>
         <div class="mobileMenuPoint"><a href="/basket"><span>Корзина<?php if($basketCount[0] > 0) {echo " (".$basketCount[0].")";} ?></span></a></div>

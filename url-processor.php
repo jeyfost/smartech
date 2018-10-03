@@ -414,8 +414,10 @@ if($url[1] == "blog") {
             <a href="/basket"><div class="menuPoint" id="basketPoint"><i class="fa fa-shopping-cart" aria-hidden="true"></i><?php if($basketCount[0] > 0) {echo " (".$basketCount[0].")";} ?></div></a>
             <a href="/contacts"><div class="menuPoint">Контакты</div></a>
             <?php if($url[1] != "blog" or !empty($url[2])) {echo "<a href='/blog'>";} ?><div class="menuPoint <?php if($url[1] == "blog") {echo "active";} ?>">Блог</div><?php if($url[1] != "blog" or !empty($url[2])) {echo "</a>";} ?>
-            <?php if($url[1] != "iot" or !empty($url[2])) {echo "<a href='/iot'>";} ?><div class="menuPoint <?php if($url[1] == "iot") {echo "active";} ?>">IoT</div><?php if($url[1] != "iot" or !empty($url[2])) {echo "</a>";} ?>
-            <?php if($url[1] != "engineering" or !empty($url[2])) {echo "<a href='/engineering'>";} ?><div class="menuPoint <?php if($url[1] == "engineering") {echo "active";} ?>">Проектирование</div><?php if($url[1] != "engineering" or !empty($url[2])) {echo "</a>";} ?>
+            <!--
+            <?php //if($url[1] != "iot" or !empty($url[2])) {echo "<a href='/iot'>";} ?><div class="menuPoint <?php //if($url[1] == "iot") {echo "active";} ?>">IoT</div><?php //if($url[1] != "iot" or !empty($url[2])) {echo "</a>";} ?>
+            <?php //if($url[1] != "engineering" or !empty($url[2])) {echo "<a href='/engineering'>";} ?><div class="menuPoint <?php //if($url[1] == "engineering") {echo "active";} ?>">Проектирование</div><?php //if($url[1] != "engineering" or !empty($url[2])) {echo "</a>";} ?>
+            -->
             <?php if($url[1] != "study" or !empty($url[2])) {echo "<a href='/study'>";} ?><div class="menuPoint <?php if($url[1] == "study") {echo "active";} ?>">Обучение</div><?php if($url[1] != "study" or !empty($url[2])) {echo "</a>";} ?>
             <?php if($url[1] != "3d-print" or !empty($url[2])) {echo "<a href='/3d-print'>";} ?><div class="menuPoint <?php if($url[1] == "3d-print") {echo "active";} ?>">3D-печать</div><?php if($url[1] != "3d-print" or !empty($url[2])) {echo "</a>";} ?>
             <?php if($url[1] != "shop" or !empty($url[2])) {echo "<a href='/shop'>";} ?><div class="menuPoint <?php if($url[1] == "shop") {echo "active";} ?>">Магазин</div><?php if($url[1] != "shop" or !empty($url[2])) {echo "</a>";} ?>
@@ -432,8 +434,10 @@ if($url[1] == "blog") {
         <div class="mobileMenuPoint <?php if($url[1] == "shop") {echo "active";} ?>"><?php if($url[1] != "shop") {echo "<a href='/shop'>";} ?><span>Магазин</span><?php if($url[1] != "shop") {echo "</a>";} ?></div>
         <div class="mobileMenuPoint <?php if($url[1] == "3d-print") {echo "active";} ?>"><?php if($url[1] != "3d-print") {echo "<a href='/3d-print'>";} ?><span>3D-печать</span><?php if($url[1] != "3d-print") {echo "</a>";} ?></div>
         <div class="mobileMenuPoint <?php if($url[1] == "study") {echo "active";} ?>"><?php if($url[1] != "study") {echo "<a href='/study'>";} ?><span>Обучение</span><?php if($url[1] != "study") {echo "</a>";} ?></div>
-        <div class="mobileMenuPoint <?php if($url[1] == "engineering") {echo "active";} ?>"><?php if($url[1] != "engineering") {echo "<a href='/engineering'>";} ?><span>Проектирование</span><?php if($url[1] != "engineering") {echo "</a>";} ?></div>
-        <div class="mobileMenuPoint <?php if($url[1] == "iot") {echo "active";} ?>"><?php if($url[1] != "iot") {echo "<a href='/iot'>";} ?><span>IoT</span><?php if($url[1] != "iot") {echo "</a>";} ?></div>
+        <!--
+        <div class="mobileMenuPoint <?php //if($url[1] == "engineering") {echo "active";} ?>"><?php //if($url[1] != "engineering") {echo "<a href='/engineering'>";} ?><span>Проектирование</span><?php //if($url[1] != "engineering") {echo "</a>";} ?></div>
+        <div class="mobileMenuPoint <?php //if($url[1] == "iot") {echo "active";} ?>"><?php //if($url[1] != "iot") {echo "<a href='/iot'>";} ?><span>IoT</span><?php //if($url[1] != "iot") {echo "</a>";} ?></div>
+        -->
         <div class="mobileMenuPoint <?php if($url[1] == "blog") {echo "active";} ?>"><?php if($url[1] != "blog") {echo "<a href='/blog'>";} ?><span>Блог</span><?php if($url[1] != "blog") {echo "</a>";} ?></div>
         <div class="mobileMenuPoint"><a href="/contacts"><span>Контакты</span></a></div>
         <div class="mobileMenuPoint"><a href="/basket"><span id="mobileBasketPoint">Корзина<?php if($basketCount[0] > 0) {echo " (".$basketCount[0].")";} ?></span></a></div>

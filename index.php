@@ -76,8 +76,10 @@
                 <a href="/basket"><div class="menuPoint"><i class="fa fa-shopping-cart" aria-hidden="true"></i><?php if($basketCount[0] > 0) {echo " (".$basketCount[0].")";} ?></div></a>
                 <a href="/contacts"><div class="menuPoint">Контакты</div></a>
                 <a href="/blog"><div class="menuPoint">Блог</div></a>
+                <!--
                 <a href="/iot"><div class="menuPoint">IoT</div></a>
                 <a href="/engineering"><div class="menuPoint">Проектирование</div></a>
+                -->
                 <a href="/study"><div class="menuPoint">Обучение</div></a>
                 <a href="/3d-print"><div class="menuPoint">3D-печать</div></a>
                 <a href="/shop"><div class="menuPoint">Магазин</div></a>
@@ -94,8 +96,10 @@
             <div class="mobileMenuPoint"><a href="/shop"><span>Магазин</span></a></div>
             <div class="mobileMenuPoint"><a href="/3d-print"><span>3D-печать</span></a></div>
             <div class="mobileMenuPoint"><a href="/study"><span>Обучение</span></a></div>
+            <!--
             <div class="mobileMenuPoint"><a href="/engineering"><span>Проектирование</span></a></div>
             <div class="mobileMenuPoint"><a href="/iot"><span>IoT</span></a></div>
+            -->
             <div class="mobileMenuPoint"><a href="/blog"><span>Блог</span></a></div>
             <div class="mobileMenuPoint"><a href="/contacts"><span>Контакты</span></a></div>
             <div class="mobileMenuPoint"><a href="/basket"><span>Корзина<?php if($basketCount[0] > 0) {echo " (".$basketCount[0].")";} ?></span></a></div>
@@ -125,11 +129,11 @@
         </div>
         <div class="activityBlock white">
             <div class="activityPhoto">
-                <a href="/3d-printers/"><img src="/img/system/img5.jpg" /></a>
+                <a href="/shop/"><img src="/img/system/img5.jpg" /></a>
             </div>
             <div class="activityDescription">
                 <div class="header">
-                    <a href="/3d-printers/"><span class="activityHeaderFont">3D-принтеры</span></a>
+                    <a href="/shop/"><span class="activityHeaderFont">3D-принтеры</span></a>
                 </div>
                 <div class="activityText">
                     <?php
@@ -139,7 +143,7 @@
                     <p><?= $category['text'] ?></p>
                 </div>
                 <div class="header text-right">
-                    <a href="/3d-printers/"><button class="activityButton" onmouseover="iconColor('3d-printers-icon', 1)" onmouseout="iconColor('3d-printers-icon', 0)">подробнее&nbsp;&nbsp;<i class="fa fa-hand-o-right" aria-hidden="true" id="3d-printers-icon" style="color: #ededed;"></i></button></a>
+                    <a href="/shop/"><button class="activityButton" onmouseover="iconColor('3d-printers-icon', 1)" onmouseout="iconColor('3d-printers-icon', 0)">подробнее&nbsp;&nbsp;<i class="fa fa-hand-o-right" aria-hidden="true" id="3d-printers-icon" style="color: #ededed;"></i></button></a>
                 </div>
             </div>
             <div class="clear"></div>
@@ -189,6 +193,7 @@
             <div class="clear"></div>
         </div>
         <div class="clear"></div>
+        <!--
         <div class="activityBlock grey">
             <div class="activityPhoto">
                 <a href="/engineering/"><img src="/img/system/img14.jpg" /></a>
@@ -199,10 +204,12 @@
                 </div>
                 <div class="activityText">
                     <?php
-                    $categoryResult = $mysqli->query("SELECT * FROM st_catalogue_categories WHERE url = 'engineering'");
-                    $category = $categoryResult->fetch_assoc();
+                        /*
+                        $categoryResult = $mysqli->query("SELECT * FROM st_catalogue_categories WHERE url = 'engineering'");
+                        $category = $categoryResult->fetch_assoc();
+                        */
                     ?>
-                    <p><?= $category['text'] ?></p>
+                    <p><?= /*$category['text']*/ "" ?></p>
                 </div>
                 <div class="header text-right">
                     <a href="/engineering/"><button class="activityButton" onmouseover="iconColor('engineering-icon', 1)" onmouseout="iconColor('engineering-icon', 0)">подробнее&nbsp;&nbsp;<i class="fa fa-hand-o-right" aria-hidden="true" id="engineering-icon" style="color: #ededed;"></i></button></a>
@@ -221,10 +228,12 @@
                 </div>
                 <div class="activityText">
                     <?php
-                    $categoryResult = $mysqli->query("SELECT * FROM st_catalogue_categories WHERE url = 'iot'");
-                    $category = $categoryResult->fetch_assoc();
+                        /*
+                        $categoryResult = $mysqli->query("SELECT * FROM st_catalogue_categories WHERE url = 'iot'");
+                        $category = $categoryResult->fetch_assoc();
+                        */
                     ?>
-                    <p><?= $category['text'] ?></p>
+                    <p><?= /*$category['text']*/"" ?></p>
                 </div>
                 <div class="header text-right">
                     <a href="/iot/"><button class="activityButton" onmouseover="iconColor('iot-icon', 1)" onmouseout="iconColor('iot-icon', 0)">подробнее&nbsp;&nbsp;<i class="fa fa-hand-o-right" aria-hidden="true" id="iot-icon" style="color: #ededed;"></i></button></a>
@@ -233,6 +242,7 @@
             <div class="clear"></div>
         </div>
         <div class="clear"></div>
+        -->
     </div>
 
     <div class="bigSection">
