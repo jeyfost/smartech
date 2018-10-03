@@ -116,6 +116,11 @@ $start = $page * GOODS_ON_PAGE - GOODS_ON_PAGE;
             <i class="fa fa-shopping-bag" aria-hidden="true"></i><span> Магазин</span>
         </div>
     </a>
+    <a href="/admin/categories/">
+        <div class="menuPoint">
+            <i class="fa fa-bars" aria-hidden="true"></i><span> Разделы магазина</span>
+        </div>
+    </a>
     <?php
         $ordersCountResult = $mysqli->query("SELECT COUNT(id) FROM st_orders WHERE accepted = '0'");
         $ordersCount = $ordersCountResult->fetch_array(MYSQLI_NUM);

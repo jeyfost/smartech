@@ -2,8 +2,8 @@
 /**
  * Created by PhpStorm.
  * User: jeyfost
- * Date: 26.09.2018
- * Time: 17:36
+ * Date: 27.09.2018
+ * Time: 18:07
  */
 
 session_start();
@@ -40,7 +40,7 @@ if(!empty($_REQUEST['s'])) {
 
     <meta charset="utf-8" />
 
-    <title>Панель администрирования | Добавление товаров в магазине</title>
+    <title>Панель администрирования | Разделы магазина</title>
 
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -58,10 +58,10 @@ if(!empty($_REQUEST['s'])) {
     <link rel="stylesheet" href="/libs/font-awesome-4.7.0/css/font-awesome.css" />
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript" src="/libs/ckeditor/ckeditor.js"></script>
+    <script src="/libs/strip/dist/js/strip.pkgd.min.js"></script>
     <script type="text/javascript" src="/libs/notify/notify.js"></script>
     <script type="text/javascript" src="/js/admin/common.js"></script>
-    <script type="text/javascript" src="/js/admin/shop/add.js"></script>
+    <script type="text/javascript" src="/js/admin/categories/index.js"></script>
 
     <style>
         #page-preloader {position: fixed; left: 0; top: 0; right: 0; bottom: 0; background: #fff; z-index: 100500;}
@@ -100,18 +100,18 @@ if(!empty($_REQUEST['s'])) {
         </div>
     </a>
     <a href="/admin/shop/">
-        <div class="menuPointActive">
+        <div class="menuPoint">
             <i class="fa fa-shopping-bag" aria-hidden="true"></i><span> Магазин</span>
         </div>
     </a>
     <a href="/admin/categories/">
-        <div class="menuPoint">
+        <div class="menuPointActive">
             <i class="fa fa-bars" aria-hidden="true"></i><span> Разделы магазина</span>
         </div>
     </a>
     <?php
-        $ordersCountResult = $mysqli->query("SELECT COUNT(id) FROM st_orders WHERE accepted = '0'");
-        $ordersCount = $ordersCountResult->fetch_array(MYSQLI_NUM);
+    $ordersCountResult = $mysqli->query("SELECT COUNT(id) FROM st_orders WHERE accepted = '0'");
+    $ordersCount = $ordersCountResult->fetch_array(MYSQLI_NUM);
     ?>
     <a href="/admin/orders/">
         <div class="menuPoint">
@@ -146,88 +146,80 @@ if(!empty($_REQUEST['s'])) {
 </div>
 
 <div id="content">
-    <span class="headerFont">Добавление товаров в магазин</span>
+    <span class="headerFont">Управление разделами магазина</span>
     <br /><br />
-    <form method="post" id="goodForm">
+    <input type='button' id='addCategorySubmit' value='Добавить разделы' onmouseover='buttonHover("addCategorySubmit", 1)' onmouseout='buttonHover("addCategorySubmit", 0)' onclick='window.location.href = "/admin/categories/add.php"' class='button' />
+    <br /><br />
+    <form method="post" id="categoryForm">
         <label for="categorySelect">Раздел:</label>
         <br />
         <select id="categorySelect" name="category" onchange="window.location = '?c=' + this.options[this.selectedIndex].value">
             <option value="">- Выберите раздел -</option>
             <?php
-                $categoryResult = $mysqli->query("SELECT * FROM st_shop_categories ORDER BY name");
-                while($category = $categoryResult->fetch_assoc()) {
-                    echo "<option value='".$category['id']."'"; if($_REQUEST['c'] == $category['id']) {echo " selected";} echo ">".$category['name']."</option>";
-                }
+            $categoryResult = $mysqli->query("SELECT * FROM st_shop_categories ORDER BY name");
+            while($category = $categoryResult->fetch_assoc()) {
+                echo "<option value='".$category['id']."'"; if($_REQUEST['c'] == $category['id']) {echo " selected";} echo ">".$category['name']."</option>";
+            }
             ?>
         </select>
         <br /><br />
 
         <?php
-            if(!empty($_REQUEST['c'])) {
-                echo "
-                        <label for='subcategorySelect'>Подраздел:</label>
-                        <br />
-                        <select id='subcategorySelect' name='subcategory' onchange='window.location = \"?c=".$_REQUEST['c']."&s=\" + this.options[this.selectedIndex].value'>
-                            <option value=''>- Выберите подраздел -</option>
-                    ";
+        if(!empty($_REQUEST['c'])) {
+            $categoryResult = $mysqli->query("SELECT * FROM st_shop_categories WHERE id = '".$mysqli->real_escape_string($_REQUEST['c'])."'");
+            $category = $categoryResult->fetch_assoc();
 
-                $subcategoryResult = $mysqli->query("SELECT * FROM st_shop_subcategories WHERE category_id = '".$mysqli->real_escape_string($_REQUEST['c'])."' ORDER BY name");
-                while($subcategory = $subcategoryResult->fetch_assoc()) {
-                    echo "<option value='".$subcategory['id']."'"; if($_REQUEST['s'] == $subcategory['id']) {echo " selected";} echo ">".$subcategory['name']."</option>";
-                }
+            echo "
+                    <label for='subcategorySelect'>Подраздел:</label>
+                    <br />
+                    <select id='subcategorySelect' name='subcategory' onchange='window.location = \"?c=".$_REQUEST['c']."&s=\" + this.options[this.selectedIndex].value'>
+                        <option value=''>- Выберите подраздел -</option>
+                ";
 
-                echo "
-                        </select>
-                    ";
+            $subcategoryResult = $mysqli->query("SELECT * FROM st_shop_subcategories WHERE category_id = '".$mysqli->real_escape_string($_REQUEST['c'])."' ORDER BY name");
+            while($subcategory = $subcategoryResult->fetch_assoc()) {
+                echo "<option value='".$subcategory['id']."'"; if($_REQUEST['s'] == $subcategory['id']) {echo " selected";} echo ">".$subcategory['name']."</option>";
             }
 
-            if(!empty($_REQUEST['s'])) {
+            echo "
+                    </select>
+                    <br /><br />
+                ";
+
+            if(empty($_REQUEST['s'])) {
                 echo "
-                    <br /><br /><br /><br />
-                    <hr />
-                    <br /><br />
-                    <span class='headerFont'>Добавление товара</span>
-                    <br /><br />
-                    <label for='nameInput'>Название товара:</label>
+                    <label for='categoryNameInput'>Название раздела:</label>
                     <br />
-                    <input id='nameInput' name='name' />
+                    <input id='categoryNameInput' name='categoryName' value='".$category['name']."' />
                     <br /><br />
-                    <label for='previewInput'>Превью:</label>
+                    <label for='categoryURLInput'>URL раздела:</label>
                     <br />
-                    <input type='file' class='file' id='previewInput' name='preview' />
+                    <input id='categoryURLInput' name='categoryURL' value='".$category['url']."' />
                     <br /><br />
-                    <label for='additionalPhotosInput'>Дополнительные фотографии:</label>
-                    <br />
-                    <input type='file' class='file' id='additionalPhotosInput' name='additionalPhotos[]' multiple='multiple' />
-                    <br /><br />
-                    <label for='urlInput'>URL:</label>
-                    <br />
-                    <input id='urlInput' name='url' />
-                    <br /><br />
-                    <label for='codeInput'>Артикул:</label>
-                    <br />
-                    <input id='codeInput' name='code' value='".$good['code']."' />
-                    <br /><br />
-                    <label for='priceInput'>Цена:</label>
-                    <br />
-                    <input type='number' min='0.01' step='0.01' id='priceInput' name='price' />
-                    <br /><br />
-                    <label for='textInput'>Описание:</label>
-                    <br />
-                    <textarea id='textInput' name='text'></textarea>
-                    <br /><br />
-                    <div style='width: 100%;'>
-                        <input type='button' id='addSubmit' value='Добавить' onmouseover='buttonHover(\"addSubmit\", 1)' onmouseout='buttonHover(\"addSubmit\", 0)' onclick='addGood()' class='button' />
-                    </div>
+                    <input type='button' id='editSubmit' value='Редактировать' onmouseover='buttonHover(\"editSubmit\", 1)' onmouseout='buttonHover(\"editSubmit\", 0)' onclick='editCategory()' class='button' />
                 ";
             }
+        }
+
+        if(!empty($_REQUEST['s'])) {
+            $subcategoryResult = $mysqli->query("SELECT * FROM st_shop_subcategories WHERE id = '".$mysqli->real_escape_string($_REQUEST['s'])."'");
+            $subcategory = $subcategoryResult->fetch_assoc();
+
+            echo "
+                <label for='subcategoryNameInput'>Название подраздела:</label>
+                <br />
+                <input id='subcategoryNameInput' name='subcategoryName' value='".$subcategory['name']."' />
+                <br /><br />
+                <label for='subcategoryURLInput'>URL подраздела:</label>
+                <br />
+                <input id='subcategoryURLInput' name='subcategoryURL' value='".$subcategory['url']."' />
+                <br /><br />
+                <input type='button' id='editSubmit' value='Редактировать' onmouseover='buttonHover(\"editSubmit\", 1)' onmouseout='buttonHover(\"editSubmit\", 0)' onclick='editCategory()' class='button' />
+            ";
+        }
         ?>
     </form>
 </div>
-
-<script type="text/javascript">
-    CKEDITOR.replace("text");
-</script>
 
 </body>
 

@@ -99,7 +99,7 @@ include('../scripts/connect.php');
                 <i class="fa fa-times" aria-hidden="true" onclick="closeMobileMenu()"></i>
             </div>
             <div class="mobileMenuPoint"><a href="/"><span>Главная</span></a></div>
-            <div class="mobileMenuPoint"><a href="/shop"><span>3D-принтеры</span></a></div>
+            <div class="mobileMenuPoint"><a href="/shop"><span>Магазин</span></a></div>
             <div class="mobileMenuPoint"><a href="/3d-print"><span>3D-печать</span></a></div>
             <div class="mobileMenuPoint"><a href="/study"><span>Обучение</span></a></div>
             <div class="mobileMenuPoint"><a href="/engineering"><span>Проектирование</span></a></div>
