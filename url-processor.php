@@ -316,6 +316,143 @@ if($url[1] == "shop") {
 
 if($url[1] == "blog") {
     //Условия для блога
+    if(!empty($url[2])) {
+        if($url[2] == 1) {
+            header("Location: /blog");
+        }
+
+        $addressNew = (int)$url[2];
+        $address = (string)$url[2];
+        $addressNew = (string)$addressNew;
+
+        if($address == $addressNew) {
+            //$url[2] — номер страницы
+
+            $quantityResult = $mysqli->query("SELECT COUNT(id) FROM st_blog");
+            $quantity = $quantityResult->fetch_array(MYSQLI_NUM);
+
+            if ($quantity[0] > GOODS_ON_PAGE) {
+                if ($quantity[0] % GOODS_ON_PAGE != 0) {
+                    $numbers = intval(($quantity[0] / GOODS_ON_PAGE) + 1);
+                } else {
+                    $numbers = intval($quantity[0] / GOODS_ON_PAGE);
+                }
+            } else {
+                $numbers = 1;
+            }
+
+            $page = (int)$addressNew;
+
+            if($page < 1 or $page > $numbers) {
+                header("Location: /shop");
+            }
+
+            $start = $page * GOODS_ON_PAGE - GOODS_ON_PAGE;
+
+            $type = "all";
+        } else {
+            $categoryCheckResult = $mysqli->query("SELECT COUNT(id) FROM st_blog_categories WHERE url = '".$mysqli->real_escape_string($url[2])."'");
+            $categoryCheck = $categoryCheckResult->fetch_array(MYSQLI_NUM);
+
+            if($categoryCheck[0] == 0) {
+                header("Location: /blog");
+            } else {
+                $categoryResult = $mysqli->query("SELECT * FROM st_blog_categories WHERE url = '".$mysqli->real_escape_string($url[2])."'");
+                $category = $categoryResult->fetch_assoc();
+
+                if(!empty($url[3])) {
+                    if($url[3] == 1) {
+                        header("Location: /blog/".$url[2]);
+                    }
+
+                    $addressNew = (int)$url[3];
+                    $address = (string)$url[3];
+                    $addressNew = (string)$addressNew;
+
+                    if($address == $addressNew) {
+                        //$url[3] — номер страницы
+
+                        $quantityResult = $mysqli->query("SELECT COUNT(id) FROM st_blog WHERE category_id = '".$category['id']."'");
+                        $quantity = $quantityResult->fetch_array(MYSQLI_NUM);
+
+                        if ($quantity[0] > GOODS_ON_PAGE) {
+                            if ($quantity[0] % GOODS_ON_PAGE != 0) {
+                                $numbers = intval(($quantity[0] / GOODS_ON_PAGE) + 1);
+                            } else {
+                                $numbers = intval($quantity[0] / GOODS_ON_PAGE);
+                            }
+                        } else {
+                            $numbers = 1;
+                        }
+
+                        $page = (int)$addressNew;
+
+                        if($page < 1 or $page > $numbers) {
+                            header("Location: /blog/".$url[2]);
+                        }
+
+                        $start = $page * GOODS_ON_PAGE - GOODS_ON_PAGE;
+
+                        $type = "category";
+                    } else {
+                        $postCheckResult = $mysqli->query("SELECT COUNT(id) FROM st_blog WHERE category_id = '".$category['id']."' AND url = '".$mysqli->real_escape_string($url[3])."'");
+                        $postCheck = $postCheckResult->fetch_array();
+
+                        if($postCheck[0] == 0) {
+                            header("Location: /blog/".$url[2]);
+                        } else {
+                            $type = "post";
+
+                            $postResult = $mysqli->query("SELECT * FROM st_blog WHERE url = '".$mysqli->real_escape_string($url[3])."'");
+                            $post = $postResult->fetch_assoc();
+
+                            if(!empty($url[4])) {
+                                header("Location: /shop/".$url[2]."/".$url[3]);
+                            }
+                        }
+                    }
+                } else {
+                    $type = "category";
+
+                    $quantityResult = $mysqli->query("SELECT COUNT(id) FROM st_blog WHERE category_id = '".$category['id']."'");
+                    $quantity = $quantityResult->fetch_array(MYSQLI_NUM);
+
+                    if ($quantity[0] > GOODS_ON_PAGE) {
+                        if ($quantity[0] % GOODS_ON_PAGE != 0) {
+                            $numbers = intval(($quantity[0] / GOODS_ON_PAGE) + 1);
+                        } else {
+                            $numbers = intval($quantity[0] / GOODS_ON_PAGE);
+                        }
+                    } else {
+                        $numbers = 1;
+                    }
+
+                    $page = 1;
+
+                    $start = $page * GOODS_ON_PAGE - GOODS_ON_PAGE;
+                }
+            }
+        }
+    } else {
+        $type = "all";
+
+        $quantityResult = $mysqli->query("SELECT COUNT(id) FROM st_blog");
+        $quantity = $quantityResult->fetch_array(MYSQLI_NUM);
+
+        if ($quantity[0] > GOODS_ON_PAGE) {
+            if ($quantity[0] % GOODS_ON_PAGE != 0) {
+                $numbers = intval(($quantity[0] / GOODS_ON_PAGE) + 1);
+            } else {
+                $numbers = intval($quantity[0] / GOODS_ON_PAGE);
+            }
+        } else {
+            $numbers = 1;
+        }
+
+        $page = 1;
+
+        $start = $page * GOODS_ON_PAGE - GOODS_ON_PAGE;
+    }
 }
 
 ?>
@@ -329,22 +466,43 @@ if($url[1] == "blog") {
 <!--<![endif]-->
 <head>
     <?php
-        switch ($type) {
-            case "all":
+        if($url[1] == "shop") {
+            switch ($type) {
+                case "all":
+                    $title = $category['title'];
+                    break;
+                case "category":
+                    $title = $category['name'];
+                    break;
+                case "subcategory":
+                    $title = $subcategory['name'];
+                    break;
+                case "good":
+                    $title = $good['name'];
+                    break;
+                default:
+                    $title = $category['title'];
+                    break;
+            }
+        } else {
+            if($url[1] == "blog") {
+                switch($type) {
+                    case "all":
+                        $title = $category['title'];
+                        break;
+                    case "category":
+                        $title = $category['name'];
+                        break;
+                    case "post":
+                        $title = $post['name'];
+                        break;
+                    default:
+                        $title = $category['title'];
+                        break;
+                }
+            } else {
                 $title = $category['title'];
-                break;
-            case "category":
-                $title = $category['name'];
-                break;
-            case "subcategory":
-                $title = $subcategory['name'];
-                break;
-            case "good":
-                $title = $good['name'];
-                break;
-            default:
-                $title = $category['title'];
-                break;
+            }
         }
     ?>
     <title><?= $title ?></title>
@@ -446,6 +604,7 @@ if($url[1] == "blog") {
 
 <?php
     if($url[1] == "shop") {
+        //Магазин
         echo "
             <div class='section white' id='section'>
                 <div class='breadcrumbs'>
@@ -581,6 +740,7 @@ if($url[1] == "blog") {
                 $goodResult = $mysqli->query("SELECT * FROM st_shop WHERE url = '".$mysqli->real_escape_string($url[4])."'");
                 break;
             default:
+                $goodResult = $mysqli->query("SELECT * FROM st_shop ORDER BY name LIMIT ".$start.", ".GOODS_ON_PAGE);
                 break;
         }
 
@@ -638,7 +798,7 @@ if($url[1] == "blog") {
                 $s = $sResult->fetch_assoc();
 
                 echo "
-                    <div class='catalogueContainer' id='catalogueContainer".$good['id']."' name='".$good['id']."'>
+                    <div class='catalogueContainer flex' id='catalogueContainer".$good['id']."' name='".$good['id']."'>
                         <div class='cataloguePhoto'>
                             <a href='/shop/".$c['url']."/".$s['url']."/".$good['url']."'><img src='/img/shop/small/".$good['preview']."' /></a>
                         </div>
@@ -820,69 +980,190 @@ if($url[1] == "blog") {
             <br /><br />
         ";
     } else {
-        echo "
+        if($url[1] == "blog") {
+            //Блог
+            echo "
             <div class='section white' id='section'>
-                <div class='header'>
-                    <br /><br />
-                    <span class='headerFont'>
+                <div class='breadcrumbs'>
+                    <a href='/'><i class='fa fa-home' aria-hidden='true'></i> Главная</a>
         ";
 
-        if($type == "good") {
-            $goodResult = $mysqli->query("SELECT * FROM st_catalogue WHERE url = '".$mysqli->real_escape_string($url[2])."'");
-            $good = $goodResult->fetch_assoc();
+            if(empty($url[2])) {
+                echo " > Блог";
+            } else {
+                echo " > <a href='/blog'>Блог</a>";
+                if(!empty($url[3])) {
+                    if($type != "category") {
+                        $postResult = $mysqli->query("SELECT * FROM st_blog WHERE url = '".$mysqli->real_escape_string($url[3])."'");
+                        $post = $postResult->fetch_assoc();
 
-            echo $good['name'];
-        } else {
-            echo $category['title'];
-        }
+                        echo " > <a href='/blog/".$url[2]."'>".$category['name']."</a> > ".$post['name'];
+                    } else {
+                        echo " > ".$category['name'];
+                    }
+                } else {
+                    echo " > ".$category['name'];
+                }
+            }
 
-        echo "            
-                        </span>
-                    <br />
+            echo "
                 </div>
-            </div>
-            
-            <div class='section100 grey text-center' style='margin-top: 30px; padding-bottom: 100px;'>
                 <br />
-        ";
+                <table class='catalogueMenu'>
+                    <thead>
+                        <tr class='catalogueMenuPoint'>
+                            <td class='tdHead'><i class='fa fa-level-down' aria-hidden='true'></i> Выберите раздел</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+            ";
 
-        if($type != "good") {
-            //Список всех товаров и услуг
-            $catalogueResult = $mysqli->query("SELECT * FROM st_catalogue WHERE category_id = '".$category['id']."' ORDER BY id DESC LIMIT ".$start.", ".GOODS_ON_PAGE);
+            $blogCategoryResult = $mysqli->query("SELECT * FROM st_blog_categories ORDER BY name");
+            while($blogCategory = $blogCategoryResult->fetch_assoc()) {
+                echo "
+                    <tr class='catalogueMenuPoint'>
+                        <td id='category" . $blogCategory['id'] . "' onclick='document.location = \"/blog/" . $blogCategory['url'] . "\"' onmouseover='catalogueMenu(1, \"category" . $blogCategory['id'] . "\", \"categoryName" . $blogCategory['id'] . "\")' onmouseout='catalogueMenu(0, \"category" . $blogCategory['id'] . "\", \"categoryName" . $blogCategory['id'] . "\")'";
+                    if (!empty($url[2]) and $url[2] == $blogCategory['url']) {
+                        echo " class='tdActive'";
+                    }
+                    echo ">
+                            <a href='/blog/" . $blogCategory['url'] . "'>
+                                <span id='categoryName" . $blogCategory['id'] . "'>" . $blogCategory['name'] . "</span>
+                            </a>
+                        </td>
+                    </tr>
+                ";
 
-            if($catalogueResult->num_rows > 0) {
-                while($catalogue = $catalogueResult->fetch_assoc()) {
-                    echo "
-                            <div class='catalogueContainer' id='catalogueContainer".$catalogue['id']."' name='".$catalogue['id']."'>
-                                <div class='goodOverlay' id='goodOverlay".$catalogue['id']."' onclick='expand(\"".$catalogue['id']."\")'>
-                                    <div class='goodOverlayContent'><i class=\"fa fa-angle-double-down\" aria-hidden=\"true\"></i></div>
-                                </div>
-                                <div class='cataloguePhoto'>
-                                    <a href='/".$category['url']."/".$catalogue['url']."'><img src='/img/catalogue/small/".$catalogue['preview']."' /></a>
-                                </div>
-                                <div class='catalogueDescription' id='catalogueDescription".$catalogue['id']."'>
-                                    <div class='catalogueName'>".$catalogue['name']."</div>
-                                    <div class='catalogueShortDescription'>".$catalogue['description']."</div>
-                                </div>
-                                <div class='catalogueButtonContainer text-center' id='catalogueButtonContainer".$catalogue['id']."'>
-                                    <a href='/".$category['url']."/".$catalogue['url']."'><button class='activityButton' onmouseover='iconColor(\"icon".$catalogue['id']."\", 1)' onmouseout='iconColor(\"icon".$catalogue['id']."\", 0)'>подробнее&nbsp;&nbsp;<i class='fa fa-hand-o-right' aria-hidden='true' id='icon".$catalogue['id']."' style='color: #ededed;'></i></button></a>
-                                </div>
-                            </div>
+                if(!empty($url[2]) and $url[2] == $blogCategory['url']) {
+                    $postResult = $mysqli->query("SELECT * FROM st_blog WHERE category_id = '".$blogCategory['id']."' ORDER BY name");
+                    while($post = $postResult->fetch_assoc()) {
+                        echo "
+                            <tr class='catalogueMenuPoint'>
+                                <td id='menuGood".$post['id']."' onclick='document.location = \"/blog/".$url[2]."/".$post['url']."\"' onmouseover='catalogueMenu(1, \"menuGood".$post['id']."\", \"menuGoodName".$post['id']."\")' onmouseout='catalogueMenu(0, \"menuGood".$post['id']."\", \"menuGoodName".$post['id']."\")'"; if(!empty($url[3]) and $url[3] == $post['url']) {echo " class='tdActive'";} echo ">
+                                    <a href='/blog/".$url[2]."/".$post['url']."'>
+                                        <span id='menuGoodName".$post['id']."'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; — ".$post['name']."</span>
+                                    </a>
+                                </td>
+                            </tr>
                         ";
+                    }
+                }
+            }
+
+            echo "
+                    </tbody>
+                </table>
+                </div>
+                <div class='catalogueContent'>
+                    <div class='header'>
+                        <span class='headerFont'>
+            ";
+
+            switch ($type) {
+                case "all":
+                    echo "Блог";
+                    break;
+                case "category":
+                    echo $category['name'];
+                    break;
+                case "post":
+                    $postResult = $mysqli->query("SELECT * FROM st_blog WHERE url = '".$mysqli->real_escape_string($url[3])."'");
+                    $post = $postResult->fetch_assoc();
+
+                    echo $post['name'];
+                    break;
+                default:
+                    break;
+            }
+
+            echo "
+                        </span>
+                    </div>
+            ";
+
+            switch($type) {
+                case "all":
+                    $postResult = $mysqli->query("SELECT * FROM st_blog ORDER BY date DESC LIMIT ".$start.", ".GOODS_ON_PAGE);
+                    break;
+                case "category":
+                    $postResult = $mysqli->query("SELECT * FROM st_blog WHERE category_id = '".$category['id']."' ORDER BY date DESC LIMIT ".$start.", ".GOODS_ON_PAGE);
+                    break;
+                default:
+                    $postResult = $mysqli->query("SELECT * FROM st_blog ORDER BY date DESC LIMIT ".$start.", ".GOODS_ON_PAGE);
+                    break;
+            }
+
+            if($type == "post") {
+                echo "
+                    <br />
+                    <span class='catalogueDate'>".dateTimeToString($post['date'])."</span>
+                    <br /><br />
+                    <div class='postPhoto'>
+                        <a href='/img/blog/big/".$post['photo']."' class='lightview' data-lightview-options='skin: \"light\"'><img src='/img/blog/small/".$post['preview']."' /></a>
+                    </div>
+                    <br /><br />
+                    <div class='basicFont'>".$post['text']."</div>
+                    <br /><br />
+                    <center>
+                    <a href='/blog/".$url['2']."'>
+                        <button class='activityButton'><i class='fa fa-angle-left' aria-hidden='true'></i> назад к списку статей</button>
+                    </a>
+                    </center>
+                ";
+            } else {
+                while($post = $postResult->fetch_assoc()) {
+                    $cResult = $mysqli->query("SELECT * FROM st_blog_categories WHERE id = '".$post['category_id']."'");
+                    $c = $cResult->fetch_assoc();
+
+                    echo "
+                        <div class='catalogueContainer flex' id='catalogueContainer".$post['id']."' name='".$post['id']."'>
+                            <div class='cataloguePhoto'>
+                                <a href='/blog/".$c['url']."/".$post['url']."'><img src='/img/blog/small/".$post['preview']."' /></a>
+                            </div>
+                            <div class='catalogueDescription' id='catalogueDescription".$post['id']."'>
+                                <div class='catalogueName'>".$post['name']."</div>
+                                <br />
+                                <div class='catalogueDate'>".dateTimeToString($post['date'])."</div>
+                                <br />
+                                <div class='catalogueDescriptionContainer'>".$post['description']."</div>
+                            </div>
+                            <div class='catalogueButtonContainer text-center' id='showButton".$post['id']."'>
+                                <a href='/blog/".$c['url']."/".$post['url']."'>
+                                    <button class='activityButton'>читать полностью</button>
+                                </a>
+                            </div>
+                        </div>
+                    ";
                 }
 
                 /* Блок с постраничной навигацией */
+                switch($type) {
+                    case "all":
+                        $uri = $url[2];
+
+                        if(empty($uri)) {
+                            $uri = 1;
+                        }
+
+                        $link = "/".$category['url']."/";
+                        break;
+                    case "category":
+                        $uri = $url[3];
+
+                        if(empty($uri)) {
+                            $uri = 1;
+                        }
+
+                        $link = "/blog/".$category['url']."/";
+                        break;
+                    default:
+                        break;
+                }
+
                 echo "<div class='text-center' style='width: 100%;'>";
                 echo "<div id='pageNumbers'>";
 
                 if($numbers > 1) {
-                    $uri = $url[2];
-
-                    if(empty($uri)) {
-                        $uri = 1;
-                    }
-
-                    $link = "/".$category['url']."/";
                     if($numbers <= 7) {
                         echo "<br /><br />";
 
@@ -993,17 +1274,200 @@ if($url[1] == "blog") {
 
                 echo "</div><div class='clear'></div>";
                 echo "</div>";
-                /* Конец блока постраничной навигации */
+                /* Конец блока с постраничной навигацией */
+            }
+
+            echo "
+                </div>
+                <div class='clear'></div>
+                <br /><br />
+            ";
+        } else {
+            //Разделы сайта
+            echo "
+            <div class='section white' id='section'>
+                <div class='header'>
+                    <br /><br />
+                    <span class='headerFont'>
+        ";
+
+            if($type == "good") {
+                $goodResult = $mysqli->query("SELECT * FROM st_catalogue WHERE url = '".$mysqli->real_escape_string($url[2])."'");
+                $good = $goodResult->fetch_assoc();
+
+                echo $good['name'];
             } else {
-                echo "
+                echo $category['title'];
+            }
+
+            echo "            
+                        </span>
+                    <br />
+                </div>
+            </div>
+            
+            <div class='section100 grey text-center' style='margin-top: 30px; padding-bottom: 100px;'>
+                <br />
+        ";
+
+            if($type != "good") {
+                //Список всех товаров и услуг
+                $catalogueResult = $mysqli->query("SELECT * FROM st_catalogue WHERE category_id = '".$category['id']."' ORDER BY id DESC LIMIT ".$start.", ".GOODS_ON_PAGE);
+
+                if($catalogueResult->num_rows > 0) {
+                    while($catalogue = $catalogueResult->fetch_assoc()) {
+                        echo "
+                            <div class='catalogueContainer' id='catalogueContainer".$catalogue['id']."' name='".$catalogue['id']."'>
+                                <div class='goodOverlay' id='goodOverlay".$catalogue['id']."' onclick='expand(\"".$catalogue['id']."\")'>
+                                    <div class='goodOverlayContent'><i class=\"fa fa-angle-double-down\" aria-hidden=\"true\"></i></div>
+                                </div>
+                                <div class='cataloguePhoto'>
+                                    <a href='/".$category['url']."/".$catalogue['url']."'><img src='/img/catalogue/small/".$catalogue['preview']."' /></a>
+                                </div>
+                                <div class='catalogueDescription' id='catalogueDescription".$catalogue['id']."'>
+                                    <div class='catalogueName'>".$catalogue['name']."</div>
+                                    <div class='catalogueShortDescription'>".$catalogue['description']."</div>
+                                </div>
+                                <div class='catalogueButtonContainer text-center' id='catalogueButtonContainer".$catalogue['id']."'>
+                                    <a href='/".$category['url']."/".$catalogue['url']."'><button class='activityButton' onmouseover='iconColor(\"icon".$catalogue['id']."\", 1)' onmouseout='iconColor(\"icon".$catalogue['id']."\", 0)'>подробнее&nbsp;&nbsp;<i class='fa fa-hand-o-right' aria-hidden='true' id='icon".$catalogue['id']."' style='color: #ededed;'></i></button></a>
+                                </div>
+                            </div>
+                        ";
+                    }
+
+                    /* Блок с постраничной навигацией */
+                    echo "<div class='text-center' style='width: 100%;'>";
+                    echo "<div id='pageNumbers'>";
+
+                    if($numbers > 1) {
+                        $uri = $url[2];
+
+                        if(empty($uri)) {
+                            $uri = 1;
+                        }
+
+                        $link = "/".$category['url']."/";
+                        if($numbers <= 7) {
+                            echo "<br /><br />";
+
+                            if($uri == 1) {
+                                echo "<div class='pageNumberBlockSide' id='pbPrev' style='cursor: url(/img/cursor/no.cur), auto;'><span class='paginationInactive'>Предыдущая</span></div>";
+                            } else {
+                                echo "<a href='".$link.($uri - 1)."'><div class='pageNumberBlockSide' id='pbPrev' onmouseover='pageBlock(1, \"pbPrev\", \"pbtPrev\")' onmouseout='pageBlock(0, \"pbPrev\", \"pbtPrev\")'><span class='paginationLink' id='pbtPrev'>Предыдущая</span></div></a>";
+                            }
+
+                            for($i = 1; $i <= $numbers; $i++) {
+                                if($uri != $i) {
+                                    echo "<a href='".$link.$i."'>";
+                                }
+
+                                echo "<div id='pb".$i."' "; if($i == $uri) {echo "class='pageNumberBlockActive'";} else {echo "class='pageNumberBlock' onmouseover='pageBlock(1, \"pb".$i."\", \"pbt".$i."\")' onmouseout='pageBlock(0, \"pb".$i."\", \"pbt".$i."\")'";} echo "><span "; if($i == $uri) {echo "class='paginationActive'";} else {echo "class='paginationLink' id='pbt".$i."'";} echo ">".$i."</span></div>";
+
+                                if($uri != $i) {
+                                    echo "</a>";
+                                }
+                            }
+
+                            if($uri == $numbers) {
+                                echo "<div class='pageNumberBlockSide' id='pbNext' style='cursor: url(/img/cursor/no.cur), auto;'><span class='paginationInactive'>Следующая</span></div>";
+                            } else {
+                                echo "<a href='".$link.($uri + 1)."'><div class='pageNumberBlockSide' id='pbNext' onmouseover='pageBlock(1, \"pbNext\", \"pbtNext\")' onmouseout='pageBlock(0, \"pbNext\", \"pbtNext\")'><span class='paginationLink' id='pbtNext'>Следующая</span></div></a>";
+                            }
+
+                            echo "</div>";
+
+                        } else {
+                            if($uri < 5) {
+                                if($uri == 1) {
+                                    echo "<div class='pageNumberBlockSide' id='pbPrev' style='cursor: url(/img/cursor/no.cur), auto;'><span class='paginationInactive'>Предыдущая</span></div>";
+                                } else {
+                                    echo "<a href='".$link.($uri - 1)."'><div class='pageNumberBlockSide' id='pbPrev' onmouseover='pageBlock(1, \"pbPrev\", \"pbtPrev\")' onmouseout='pageBlock(0, \"pbPrev\", \"pbtPrev\")'><span class='paginationLink' id='pbtPrev'>Предыдущая</span></div></a>";
+                                }
+
+                                for($i = 1; $i <= 5; $i++) {
+                                    if($uri != $i) {
+                                        echo "<a href='".$link.$i."'>";
+                                    }
+
+                                    echo "<div id='pb".$i."' "; if($i == $uri) {echo "class='pageNumberBlockActive'";} else {echo "class='pageNumberBlock' onmouseover='pageBlock(1, \"pb".$i."\", \"pbt".$i."\")' onmouseout='pageBlock(0, \"pb".$i."\", \"pbt".$i."\")'";} echo "><span "; if($i == $uri) {echo "class='paginationActive'";} else {echo "class='paginationLink' id='pbt".$i."'";} echo ">".$i."</span></div>";
+
+                                    if($uri != $i) {
+                                        echo "</a>";
+                                    }
+                                }
+
+                                echo "<div class='pageNumberBlock' style='cursor: url(/img/cursor/no.cur), auto;'><span class='paginationInactive'>...</span></div>";
+                                echo "<a href='".$link.$numbers."'><div id='pb".$numbers."' class='pageNumberBlock' onmouseover='pageBlock(1, \"pb".$numbers."\", \"pbt".$numbers."\")' onmouseout='pageBlock(0, \"pb".$numbers."\", \"pbt".$numbers."\")'><span class='paginationLink' id='pbt".$numbers."'>".$numbers."</span></div></a>";
+
+                                if($uri == $numbers) {
+                                    echo "<div class='pageNumberBlockSide' id='pbNext' style='cursor: url(/img/cursor/no.cur), auto;'><span class='paginationInactive'>Следующая</span></div>";
+                                } else {
+                                    echo "<a href='".$link.($uri + 1)."'><div class='pageNumberBlockSide' id='pbNext' onmouseover='pageBlock(1, \"pbNext\", \"pbtNext\")' onmouseout='pageBlock(0, \"pbNext\", \"pbtNext\")'><span class='paginationLink' id='pbtNext'>Следующая</span></div></a>";
+                                }
+
+                                echo "</div>";
+                            } else {
+                                $check = $numbers - 3;
+
+                                if($uri >= 5 and $uri < $check) {
+                                    echo "
+                                            <br /><br />
+                                            <div id='pageNumbers'>
+                                                <a href='".$link.($uri - 1)."'><div class='pageNumberBlockSide' id='pbPrev' onmouseover='pageBlock(1, \"pbPrev\", \"pbtPrev\")' onmouseout='pageBlock(0, \"pbPrev\", \"pbtPrev\")'><span class='paginationLink' id='pbtPrev'>Предыдущая</span></div></a>
+                                                <a href='".$link."1'><div id='pb1' class='pageNumberBlock' onmouseover='pageBlock(1, \"pb1\", \"pbt1\")' onmouseout='pageBlock(0, \"pb1\", \"pbt1\")'><span class='paginationLink' id='pbt1'>1</span></div></a>
+                                                <div class='pageNumberBlock' style='cursor: url(/img/cursor/no.cur), auto;'><span class='paginationInactive'>...</span></div>
+                                                <a href='".$link.($uri - 1)."'><div id='pb".($uri - 1)."' class='pageNumberBlock' onmouseover='pageBlock(1, \"pb".($uri - 1)."\", \"pbt".($uri - 1)."\")' onmouseout='pageBlock(0, \"pb".($uri - 1)."\", \"pbt".($uri - 1)."\")'><span class='paginationLink' id='pbt".($uri - 1)."'>".($uri - 1)."</span></div></a>
+                                                <div class='pageNumberBlockActive'><span class='paginationActive'>".$uri."</span></div>
+                                                <a href='".$link.($uri + 1)."'><div id='pb".($uri + 1)."' class='pageNumberBlock' onmouseover='pageBlock(1, \"pb".($uri + 1)."\", \"pbt".($uri + 1)."\")' onmouseout='pageBlock(0, \"pb".($uri + 1)."\", \"pbt".($uri + 1)."\")'><span class='paginationLink' id='pbt".($uri + 1)."'>".($uri + 1)."</span></div></a>
+                                                <div class='pageNumberBlock' style='cursor: url(/img/cursor/no.cur), auto;'><span class='paginationInactive'>...</span></div>
+                                                <a href='".$link.$numbers."'><div id='pb".$numbers."' class='pageNumberBlock' onmouseover='pageBlock(1, \"pb".$numbers."\", \"pbt".$numbers."\")' onmouseout='pageBlock(0, \"pb".$numbers."\", \"pbt".$numbers."\")'><span class='paginationLink' id='pbt".$numbers."'>".$numbers."</span></div></a>
+                                                <a href='".$link.($uri + 1)."'><div class='pageNumberBlockSide' id='pbNext' onmouseover='pageBlock(1, \"pbNext\", \"pbtNext\")' onmouseout='pageBlock(0, \"pbNext\", \"pbtNext\")'><span class='paginationLink' id='pbtNext'>Следующая</span></div></a>
+                                            </div>
+                                        ";
+                                } else {
+                                    echo "
+                                            <br /><br />
+                                            <div id='pageNumbers'>
+                                                <a href='".$link.($uri - 1)."'><div class='pageNumberBlockSide' id='pbPrev' onmouseover='pageBlock(1, \"pbPrev\", \"pbtPrev\")' onmouseout='pageBlock(0, \"pbPrev\", \"pbtPrev\")'><span class='paginationLink' id='pbtPrev'>Предыдущая</span></div></a>
+                                                <a href='".$link."1'><div id='pb1' class='pageNumberBlock' onmouseover='pageBlock(1, \"pb1\", \"pbt1\")' onmouseout='pageBlock(0, \"pb1\", \"pbt1\")'><span class='paginationLink' id='pbt1'>1</span></div></a>
+                                                <div class='pageNumberBlock' style='cursor: url(/img/cursor/no.cur), auto;'><span class='paginationInactive'>...</span></div>
+                                        ";
+
+                                    for($i = ($numbers - 4); $i <= $numbers; $i++) {
+                                        if($uri != $i) {
+                                            echo "<a href='".$link.$i."'>";
+                                        }
+
+                                        echo "<div id='pb".$i."' "; if($i == $uri) {echo "class='pageNumberBlockActive'";} else {echo "class='pageNumberBlock' onmouseover='pageBlock(1, \"pb".$i."\", \"pbt".$i."\")' onmouseout='pageBlock(0, \"pb".$i."\", \"pbt".$i."\")'";} echo "><span "; if($i == $uri) {echo "class='paginationActive'";} else {echo "class='paginationLink' id='pbt".$i."'";} echo ">".$i."</span></div>";
+
+                                        if($uri != $i) {
+                                            echo "</a>";
+                                        }
+                                    }
+
+                                    if($uri == $numbers) {
+                                        echo "<div class='pageNumberBlockSide' id='pbNext' style='cursor: url(/img/cursor/no.cur), auto;'><span class='paginationInactive'>Следующая</span></div>";
+                                    } else {
+                                        echo "<a href='".$link.($uri + 1)."'><div class='pageNumberBlockSide' id='pbNext' onmouseover='pageBlock(1, \"pbNext\", \"pbtNext\")' onmouseout='pageBlock(0, \"pbNext\", \"pbtNext\")'><span class='paginationLink' id='pbtNext'>Следующая</span></div></a>";
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    echo "</div><div class='clear'></div>";
+                    echo "</div>";
+                    /* Конец блока постраничной навигации */
+                } else {
+                    echo "
                         <div class='section text-center'>
                             <p class='activityText'>На данный момент мы ещё ничего не добавили в раздел &laquo;".$category['title']."&raquo;, но скоро мы обязательно опубликуем много интересного &#9786;</p>
                         </div>
                     ";
-            }
-        } else {
-            //Страница товара
-            echo "
+                }
+            } else {
+                //Страница товара
+                echo "
                     <div class='goodContainer'>
                         <div class='breadcrumbs'><a href='/".$category['url']."/'>".$category['title']."</a> > <a href='/".$category['url']."/".$good['url']."'>".$good['name']."</a></div>
                         <br />
@@ -1021,58 +1485,59 @@ if($url[1] == "blog") {
                     </div>
                 ";
 
-            $photoCountResult = $mysqli->query("SELECT COUNT(id) FROM st_photos WHERE good_id = '".$good['id']."'");
-            $photoCount = $photoCountResult->fetch_array(MYSQLI_NUM);
+                $photoCountResult = $mysqli->query("SELECT COUNT(id) FROM st_photos WHERE good_id = '".$good['id']."'");
+                $photoCount = $photoCountResult->fetch_array(MYSQLI_NUM);
 
-            if($photoCount[0] > 0) {
-                echo "
+                if($photoCount[0] > 0) {
+                    echo "
                         <br />
                         <div class='goodContainer' style='text-align: left;'>
                             <div style='margin-left: 20px;'><span class='activityHeaderFont'>Дополнительные фотографии</span></div>
                             <br />
                     ";
 
-                $i = 0;
+                    $i = 0;
 
-                $photoResult = $mysqli->query("SELECT * FROM st_photos WHERE good_id = '".$good['id']."'");
-                while($photo = $photoResult->fetch_assoc()) {
-                    $i++;
+                    $photoResult = $mysqli->query("SELECT * FROM st_photos WHERE good_id = '".$good['id']."'");
+                    while($photo = $photoResult->fetch_assoc()) {
+                        $i++;
 
-                    echo "
+                        echo "
                             <div class='goodPhotoPreview'>
                                 <a href='/img/photos/big/".$photo['photo']."' class='lightview' data-lightview-options='skin: \"light\"' data-lightview-group='photos'><img src='/img/photos/small/".$photo['preview']."' /></a>
                             </div>
                         ";
+                    }
                 }
+
+                echo "
+                    </div>
+                ";
             }
 
             echo "
-                    </div>
-                ";
+                </div>
+                
+                <div class='remodal' data-remodal-id='modal' data-remodal-options='closeOnConfirm: false'>
+                    <button data-remodal-action='close' class='remodal-close'></button>
+                    <div style='width: 80%; margin: 0 auto;'><h1>Задайте свой вопрос или закажите<br /><span style='color: #fb5c25;'>&laquo;".$good['name']."&raquo;</span></h1></div>
+                    <br /><br />
+                    <form method='post' id='modalForm'>
+                        <input id='nameInput' name='name' placeholder='Имя' />
+                        <br /><br />
+                        <input id='emailInput' name='email' placeholder='E-mail' />
+                        <br /><br />
+                        <input id='phoneInput' name='phone' placeholder='Номер телефона' />
+                        <br /><br />
+                        <textarea id='textInput' name='text' placeholder='Сообщение'></textarea>
+                        <br /><br />
+                        <div class='g-recaptcha' data-sitekey='6LfBT0MUAAAAAOMa_302KKxDduJbyDkaB3bYTwGB'></div>
+                    </form>
+                    <br /><br />
+                    <button data-remodal-action='confirm' class='remodal-confirm' onclick='send(\"".$good['id']."\")'>Отправить&nbsp;&nbsp;&nbsp;<i class='fa fa-share' aria-hidden='true'></i></button>
+                </div>
+            ";
         }
-
-        echo "
-            </div>
-            
-            <div class='remodal' data-remodal-id='modal' data-remodal-options='closeOnConfirm: false'>
-                <button data-remodal-action='close' class='remodal-close'></button>
-                <div style='width: 80%; margin: 0 auto;'><h1>Задайте свой вопрос или закажите<br /><span style='color: #fb5c25;'>&laquo;".$good['name']."&raquo;</span></h1></div>
-                <br /><br />
-                <form method='post' id='modalForm'>
-                    <input id='nameInput' name='name' placeholder='Имя' />
-                    <br /><br />
-                    <input id='emailInput' name='email' placeholder='E-mail' />
-                    <br /><br />
-                    <input id='phoneInput' name='phone' placeholder='Номер телефона' />
-                    <br /><br />
-                    <textarea id='textInput' name='text' placeholder='Сообщение'></textarea>
-                    <br /><br />
-                    <div class='g-recaptcha' data-sitekey='6LfBT0MUAAAAAOMa_302KKxDduJbyDkaB3bYTwGB'></div>
-                </form>
-                <br /><br />
-                <button data-remodal-action='confirm' class='remodal-confirm' onclick='send(\"".$good['id']."\")'>Отправить&nbsp;&nbsp;&nbsp;<i class='fa fa-share' aria-hidden='true'></i></button>
-            </div>
-        ";
     }
 ?>
 

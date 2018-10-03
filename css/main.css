@@ -91,6 +91,7 @@ td a span {transition: .3s;}
 .column {width: 30%; margin-left: 2%; position: relative; float: left; display: table-column; text-align: center; font-family: "Istok Web", sans-serif;}
 .firstColumn {margin-left: 3%;}
 .catalogueContainer {width: 300px; padding: 10px; margin: 20px auto auto 20px; display: inline-block; background-color: #fff; box-shadow: 0 5px 15px -4px rgba(0, 0, 0, 0.4); vertical-align: top; max-height: 500px; overflow-y: hidden; z-index: 1; transition: .3s;}
+.flex {max-height: none;}
 .goodOverlay {display: inline-block; z-index: 2; width: 320px; height: 50px; position: absolute; margin-left: -160px; margin-top: 460px; background-color: #fb5c25; transition: .3s; opacity: .3; cursor: pointer; color: #000;}
 .goodOverlayContent {width: 320px; height: 50px; line-height: 50px; text-align: center; background: transparent !important; font-size: 24px; opacity: 1 !important;}
 .goodOverlayContent i {opacity: 1 !important;}
@@ -143,3 +144,6 @@ td a span {transition: .3s;}
 .basketControls {width: 80px; float: right;}
 .icon {cursor: pointer; font-size: 18px;}
 .basketControls form input {width: 40px; text-align: center;}
+.catalogueDate {font-family: "Istok Web", sans-serif; font-size: 14px; text-align: left; color: #282828; font-style: italic;}
+.catalogueDescriptionContainer {font-family: "Istok Web", sans-serif; font-size: 14px; text-align: left; color: #000;}
+.postPhoto {margin: 0 auto; width: 300px;}
