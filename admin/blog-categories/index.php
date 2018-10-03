@@ -2,15 +2,24 @@
 /**
  * Created by PhpStorm.
  * User: jeyfost
- * Date: 07.02.2018
- * Time: 15:35
+ * Date: 03.10.2018
+ * Time: 15:15
  */
 
 session_start();
-include("../scripts/connect.php");
+include("../../scripts/connect.php");
 
 if($_SESSION['userID'] != 1) {
     header("Location: ../");
+}
+
+if(!empty($_REQUEST['id'])) {
+    $categoryCheckResult = $mysqli->query("SELECT COUNT(id) FROM st_blog_categories WHERE id = '".$mysqli->real_escape_string($_REQUEST['id'])."'");
+    $categoryCheck = $categoryCheckResult->fetch_array(MYSQLI_NUM);
+
+    if($categoryCheck[0] == 0) {
+        header("Location: /admin/blog-categories");
+    }
 }
 
 ?>
@@ -28,7 +37,7 @@ if($_SESSION['userID'] != 1) {
 
     <meta charset="utf-8" />
 
-    <title>Панель администрирования | Страницы</title>
+    <title>Панель администрирования | Разделы блога</title>
 
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -48,6 +57,7 @@ if($_SESSION['userID'] != 1) {
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="/libs/notify/notify.js"></script>
     <script type="text/javascript" src="/js/admin/common.js"></script>
+    <script type="text/javascript" src="/js/admin/blog-categories/index.js"></script>
 
     <style>
         #page-preloader {position: fixed; left: 0; top: 0; right: 0; bottom: 0; background: #fff; z-index: 100500;}
@@ -110,7 +120,7 @@ if($_SESSION['userID'] != 1) {
             </div>
         </a>
         <a href="/admin/blog-categories/">
-            <div class="menuPoint">
+            <div class="menuPointActive">
                 <i class="fa fa-bars" aria-hidden="true"></i><span> Разделы блога</span>
             </div>
         </a>
@@ -142,7 +152,42 @@ if($_SESSION['userID'] != 1) {
     </div>
 
     <div id="content">
-        <span class="headerFont"><i class="fa fa-long-arrow-left" aria-hidden="true"></i> Для начала работы выберите раздел</span>
+        <span class="headerFont">Управление разделами блога</span>
+        <br /><br />
+        <input type='button' id='addCategorySubmit' value='Добавить разделы' onmouseover='buttonHover("addCategorySubmit", 1)' onmouseout='buttonHover("addCategorySubmit", 0)' onclick='window.location.href = "/admin/blog/add.php"' class='button' />
+        <br /><br />
+        <form method="post" id="categoryForm">
+            <label for="categorySelect">Раздел:</label>
+            <br />
+            <select id="categorySelect" name="category" onchange="window.location = '?id=' + this.options[this.selectedIndex].value">
+                <option value="">- Выберите раздел -</option>
+                <?php
+                    $categoryResult = $mysqli->query("SELECT * FROM st_blog_categories ORDER BY name");
+                    while($category = $categoryResult->fetch_assoc()) {
+                        echo "<option value='".$category['id']."'"; if($_REQUEST['id'] == $category['id']) {echo " selected";} echo ">".$category['name']."</option>";
+                    }
+                ?>
+            </select>
+            <br /><br />
+            <?php
+                if(!empty($_REQUEST['id'])) {
+                    $categoryResult = $mysqli->query("SELECT * FROM st_blog_categories WHERE id = '".$mysqli->real_escape_string($_REQUEST['id'])."'");
+                    $category = $categoryResult->fetch_assoc();
+
+                    echo "
+                        <label for='categoryNameInput'>Название раздела:</label>
+                        <br />
+                        <input id='categoryNameInput' name='categoryName' value='" . $category['name'] . "' />
+                        <br /><br />
+                        <label for='categoryURLInput'>URL раздела:</label>
+                        <br />
+                        <input id='categoryURLInput' name='categoryURL' value='" . $category['url'] . "' />
+                        <br /><br />
+                        <input type='button' id='editSubmit' value='Редактировать' onmouseover='buttonHover(\"editSubmit\", 1)' onmouseout='buttonHover(\"editSubmit\", 0)' onclick='editCategory()' class='button' />
+                    ";
+                }
+            ?>
+        </form>
     </div>
 
 </body>

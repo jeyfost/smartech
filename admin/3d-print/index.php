@@ -114,6 +114,16 @@ if(!empty($_REQUEST['id'])) {
             <i class="fa fa-shopping-cart" aria-hidden="true"></i><span> Заказы<?php if($ordersCount[0] > 0) {echo " (".$ordersCount[0].")";} ?></span>
         </div>
     </a>
+    <a href="/admin/blog/">
+        <div class="menuPoint">
+            <i class="fa fa-pencil" aria-hidden="true"></i><span> Блог</span>
+        </div>
+    </a>
+    <a href="/admin/blog-categories/">
+        <div class="menuPoint">
+            <i class="fa fa-bars" aria-hidden="true"></i><span> Разделы блога</span>
+        </div>
+    </a>
     <a href="/admin/3d-print/">
         <div class="menuPointActive">
             <i class="fa fa-cube" aria-hidden="true"></i><span> 3D-печать</span>
