@@ -154,7 +154,7 @@ if(!empty($_REQUEST['id'])) {
     <div id="content">
         <span class="headerFont">Управление разделами блога</span>
         <br /><br />
-        <input type='button' id='addCategorySubmit' value='Добавить разделы' onmouseover='buttonHover("addCategorySubmit", 1)' onmouseout='buttonHover("addCategorySubmit", 0)' onclick='window.location.href = "/admin/blog/add.php"' class='button' />
+        <input type='button' id='addCategorySubmit' value='Добавить разделы' onmouseover='buttonHover("addCategorySubmit", 1)' onmouseout='buttonHover("addCategorySubmit", 0)' onclick='window.location.href = "/admin/blog-categories/add.php"' class='button' />
         <br /><br />
         <form method="post" id="categoryForm">
             <label for="categorySelect">Раздел:</label>
