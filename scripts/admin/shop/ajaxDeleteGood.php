@@ -30,6 +30,16 @@ if($idCheck[0] > 0) {
         }
     }
 
+    $basketResult = $mysqli->query("SELECT * FROM st_basket WHERE good_id = '".$id."'");
+    while ($basket = $basketResult->fetch_assoc()) {
+        $mysqli->query("DELETE FROM st_basket WHERE id = '".$basket['id']."'");
+    }
+
+    $orderResult = $mysqli->query("SELECT * FROM st_orders_goods WHERE good_id = '".$id."'");
+    while($order = $orderResult->fetch_assoc()) {
+        $mysqli->query("DELETE FROM st_orders_goods WHERE id = '".$order['id']."'");
+    }
+
     if($mysqli->query("DELETE FROM st_shop WHERE id = '".$good['id']."'")) {
         unlink("../../../img/shop/big/".$good['photo']);
         unlink("../../../img/shop/small/".$good['preview']);
