@@ -19,7 +19,7 @@ if(!empty($_REQUEST['c'])) {
     $categoryCheck = $categoryCheckResult->fetch_array(MYSQLI_NUM);
 
     if($categoryCheck[0] == 0) {
-        header("Location: /admin/shop");
+        header("Location: /admin/categories");
     }
 }
 
@@ -28,7 +28,7 @@ if(!empty($_REQUEST['s'])) {
     $subcategoryCheck = $subcategoryCheckResult->fetch_array(MYSQLI_NUM);
 
     if($subcategoryCheck[0] == 0) {
-        header("Location: /admin/shop/?c=".$_REQUEST['c']);
+        header("Location: /admin/categories/?c=".$_REQUEST['c']);
     }
 }
 

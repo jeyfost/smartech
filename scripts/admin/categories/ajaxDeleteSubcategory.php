@@ -6,6 +6,8 @@
  * Time: 17:39
  */
 
+include("../../connect.php");
+
 $id = $mysqli->real_escape_string($_POST['id']);
 
 $subcategoryCheckResult = $mysqli->query("SELECT COUNT(id) FROM st_shop_subcategories WHERE id = '".$id."'");
@@ -28,7 +30,7 @@ if($subcategoryCheck[0] > 0) {
         }
     }
 
-    if($mysqli->query("DELETE FROM st_shop_categories WHERE id = '".$id."'")) {
+    if($mysqli->query("DELETE FROM st_shop_subcategories WHERE id = '".$id."'")) {
         echo "ok";
     } else {
         echo "failed";
