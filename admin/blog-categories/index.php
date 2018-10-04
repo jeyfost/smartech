@@ -183,7 +183,11 @@ if(!empty($_REQUEST['id'])) {
                         <br />
                         <input id='categoryURLInput' name='categoryURL' value='" . $category['url'] . "' />
                         <br /><br />
-                        <input type='button' id='editSubmit' value='Редактировать' onmouseover='buttonHover(\"editSubmit\", 1)' onmouseout='buttonHover(\"editSubmit\", 0)' onclick='editCategory()' class='button' />
+                        <div style='width: 100%;'>
+                            <input type='button' id='editSubmit' value='Редактировать' onmouseover='buttonHover(\"editSubmit\", 1)' onmouseout='buttonHover(\"editSubmit\", 0)' onclick='editCategory()' class='button relative' />
+                            <input type='button' id='deleteSubmit' value='Удалить' onmouseover='buttonHoverRed(\"deleteSubmit\", 1)' onmouseout='buttonHoverRed(\"deleteSubmit\", 0)' onclick='deleteCategory()' class='button relative' style='margin-left: 10px;' />
+                            <div class='clear'></div>
+                        </div>
                     ";
                 }
             ?>
