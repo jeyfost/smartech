@@ -139,3 +139,38 @@ function deleteCategory() {
         });
     }
 }
+
+function deleteSubcategory() {
+    if(confirm("Вы действительно хотите удалить этот подраздел? Все товары, относящиеся к подразделу, также будут удалены.")) {
+        var id = $("#subcategorySelect").val();
+
+        $.ajax({
+            type: "POST",
+            data: {"id": id},
+            url: "/scripts/admin/categories/ajaxDeleteSubcategory.php",
+            beforeSend: function () {
+                $.notify("Подраздел удаляется...", "info");
+            },
+            success: function (response) {
+                switch(response) {
+                    case "ok":
+                        $.notify("Подраздел успешно удалён.", "success");
+
+                        setTimeout(function() {
+                            location.reload();
+                        }, 1500);
+                        break;
+                    case "failed":
+                        $.notify("В проессе удаления подраздела произошла ошибка. Попробуйте снова.", "error");
+                        break;
+                    case "id":
+                        $.notify("Подраздела с таким идентификатором не существует.", "error");
+                        break;
+                    default:
+                        $.notify(response, "warn");
+                        break;
+                }
+            }
+        });
+    }
+}
