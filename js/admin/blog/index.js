@@ -59,9 +59,6 @@ function editPost() {
                                     $.notify(response, "warn");
                                     break;
                             }
-                        },
-                        error: function (jqXHR, exception) {
-                            console.log(jqXHR);
                         }
                     });
                 } else {
@@ -75,5 +72,40 @@ function editPost() {
         }
     } else {
         $.notify("Вы не ввели название.", "error");
+    }
+}
+
+function deletePost() {
+    if(confirm("Вы действительно хотите удалить эту запись?")) {
+        var id = $("#postSelect").val();
+
+        $.ajax({
+            type: "POST",
+            data: {"id": id},
+            url: "/scripts/admin/blog/ajaxDeletePost.php",
+            beforeSend: function () {
+                $.notify("Запись удаляется...", "info");
+            },
+            success: function (response) {
+                switch (response) {
+                    case "ok":
+                        $.notify("Запись успешно удалена.", "success");
+
+                        setTimeout(function() {
+                            location.reload();
+                        }, 1500);
+                        break;
+                    case "failed":
+                        $.notify("В проессе удаления записи произошла ошибка. Попробуйте снова.", "error");
+                        break;
+                    case "id":
+                        $.notify("Записи с таким идентификатором не существует.", "error");
+                        break;
+                    default:
+                        $.notify(response, "warn");
+                        break;
+                }
+            }
+        });
     }
 }

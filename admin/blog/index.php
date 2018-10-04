@@ -27,7 +27,7 @@ if(!empty($_REQUEST['id'])) {
     $postCheck = $postCheckResult->fetch_array(MYSQLI_NUM);
 
     if($postCheck[0] == 0) {
-        header("Location: /admin/blog/".$_REQUEST['c']);
+        header("Location: /admin/blog/?c=".$_REQUEST['c']);
     }
 }
 
