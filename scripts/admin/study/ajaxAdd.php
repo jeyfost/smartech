@@ -19,6 +19,9 @@ $description = $mysqli->real_escape_string(nl2br($_POST['description']));
 $text = $mysqli->real_escape_string($_POST['text']);
 
 if(!is_numeric($url)) {
+    $url = str_replace(" ", "-", $url);
+    $url = str_replace("_", "-", $url);
+
     $urlCheckResult = $mysqli->query("SELECT COUNT(id) FROM st_catalogue WHERE url = '".$url."'");
     $urlCheck = $urlCheckResult->fetch_array(MYSQLI_NUM);
 
