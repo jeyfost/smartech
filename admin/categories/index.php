@@ -82,154 +82,160 @@ if(!empty($_REQUEST['s'])) {
 
 <body>
 
-<div id="page-preloader"><span class="spinner"></span></div>
+    <div id="page-preloader"><span class="spinner"></span></div>
 
-<div id="topLine">
-    <div id="logo">
-        <a href="/"><span><i class="fa fa-home" aria-hidden="true"></i> <?= $_SERVER['HTTP_HOST'] ?></span></a>
+    <div id="topLine">
+        <div id="logo">
+            <a href="/"><span><i class="fa fa-home" aria-hidden="true"></i> <?= $_SERVER['HTTP_HOST'] ?></span></a>
+        </div>
+        <a href="/admin/admin.php"><span class="headerText">Панель администрирвания</span></a>
+        <div id="exit" onclick="exit()">
+            <span>Выйти <i class="fa fa-sign-out" aria-hidden="true"></i></span>
+        </div>
     </div>
-    <a href="/admin/admin.php"><span class="headerText">Панель администрирвания</span></a>
-    <div id="exit" onclick="exit()">
-        <span>Выйти <i class="fa fa-sign-out" aria-hidden="true"></i></span>
-    </div>
-</div>
-<div id="leftMenu">
-    <a href="/admin/pages/">
-        <div class="menuPoint">
-            <i class="fa fa-file-text-o" aria-hidden="true"></i><span> Страницы</span>
-        </div>
-    </a>
-    <a href="/admin/shop/">
-        <div class="menuPoint">
-            <i class="fa fa-shopping-bag" aria-hidden="true"></i><span> Магазин</span>
-        </div>
-    </a>
-    <a href="/admin/categories/">
-        <div class="menuPointActive">
-            <i class="fa fa-bars" aria-hidden="true"></i><span> Разделы магазина</span>
-        </div>
-    </a>
-    <?php
-    $ordersCountResult = $mysqli->query("SELECT COUNT(id) FROM st_orders WHERE accepted = '0'");
-    $ordersCount = $ordersCountResult->fetch_array(MYSQLI_NUM);
-    ?>
-    <a href="/admin/orders/">
-        <div class="menuPoint">
-            <i class="fa fa-shopping-cart" aria-hidden="true"></i><span> Заказы<?php if($ordersCount[0] > 0) {echo " (".$ordersCount[0].")";} ?></span>
-        </div>
-    </a>
-    <a href="/admin/blog/">
-        <div class="menuPoint">
-            <i class="fa fa-pencil" aria-hidden="true"></i><span> Блог</span>
-        </div>
-    </a>
-    <a href="/admin/blog-categories/">
-        <div class="menuPoint">
-            <i class="fa fa-bars" aria-hidden="true"></i><span> Разделы блога</span>
-        </div>
-    </a>
-    <a href="/admin/3d-print/">
-        <div class="menuPoint">
-            <i class="fa fa-cube" aria-hidden="true"></i><span> 3D-печать</span>
-        </div>
-    </a>
-    <a href="/admin/study/">
-        <div class="menuPoint">
-            <i class="fa fa-graduation-cap" aria-hidden="true"></i><span> Обучение</span>
-        </div>
-    </a>
-    <a href="/admin/engineering/">
-        <div class="menuPoint">
-            <i class="fa fa-cogs" aria-hidden="true"></i><span> Проектирование</span>
-        </div>
-    </a>
-    <a href="/admin/iot/">
-        <div class="menuPoint">
-            <i class="fa fa-hdd-o" aria-hidden="true"></i><span> IoT</span>
-        </div>
-    </a>
-    <a href="/admin/security/">
-        <div class="menuPoint">
-            <i class="fa fa-shield" aria-hidden="true"></i><span> Безопасность</span>
-        </div>
-    </a>
-</div>
-
-<div id="content">
-    <span class="headerFont">Управление разделами магазина</span>
-    <br /><br />
-    <input type='button' id='addCategorySubmit' value='Добавить разделы' onmouseover='buttonHover("addCategorySubmit", 1)' onmouseout='buttonHover("addCategorySubmit", 0)' onclick='window.location.href = "/admin/categories/add.php"' class='button' />
-    <br /><br />
-    <form method="post" id="categoryForm">
-        <label for="categorySelect">Раздел:</label>
-        <br />
-        <select id="categorySelect" name="category" onchange="window.location = '?c=' + this.options[this.selectedIndex].value">
-            <option value="">- Выберите раздел -</option>
-            <?php
-            $categoryResult = $mysqli->query("SELECT * FROM st_shop_categories ORDER BY name");
-            while($category = $categoryResult->fetch_assoc()) {
-                echo "<option value='".$category['id']."'"; if($_REQUEST['c'] == $category['id']) {echo " selected";} echo ">".$category['name']."</option>";
-            }
-            ?>
-        </select>
-        <br /><br />
-
+    <div id="leftMenu">
+        <a href="/admin/pages/">
+            <div class="menuPoint">
+                <i class="fa fa-file-text-o" aria-hidden="true"></i><span> Страницы</span>
+            </div>
+        </a>
+        <a href="/admin/shop/">
+            <div class="menuPoint">
+                <i class="fa fa-shopping-bag" aria-hidden="true"></i><span> Магазин</span>
+            </div>
+        </a>
+        <a href="/admin/categories/">
+            <div class="menuPointActive">
+                <i class="fa fa-bars" aria-hidden="true"></i><span> Разделы магазина</span>
+            </div>
+        </a>
         <?php
-        if(!empty($_REQUEST['c'])) {
-            $categoryResult = $mysqli->query("SELECT * FROM st_shop_categories WHERE id = '".$mysqli->real_escape_string($_REQUEST['c'])."'");
-            $category = $categoryResult->fetch_assoc();
+            $ordersCountResult = $mysqli->query("SELECT COUNT(id) FROM st_orders WHERE accepted = '0'");
+            $ordersCount = $ordersCountResult->fetch_array(MYSQLI_NUM);
+        ?>
+        <a href="/admin/orders/">
+            <div class="menuPoint">
+                <i class="fa fa-shopping-cart" aria-hidden="true"></i><span> Заказы<?php if($ordersCount[0] > 0) {echo " (".$ordersCount[0].")";} ?></span>
+            </div>
+        </a>
+        <a href="/admin/blog/">
+            <div class="menuPoint">
+                <i class="fa fa-pencil" aria-hidden="true"></i><span> Блог</span>
+            </div>
+        </a>
+        <a href="/admin/blog-categories/">
+            <div class="menuPoint">
+                <i class="fa fa-bars" aria-hidden="true"></i><span> Разделы блога</span>
+            </div>
+        </a>
+        <a href="/admin/3d-print/">
+            <div class="menuPoint">
+                <i class="fa fa-cube" aria-hidden="true"></i><span> 3D-печать</span>
+            </div>
+        </a>
+        <a href="/admin/study/">
+            <div class="menuPoint">
+                <i class="fa fa-graduation-cap" aria-hidden="true"></i><span> Обучение</span>
+            </div>
+        </a>
+        <a href="/admin/engineering/">
+            <div class="menuPoint">
+                <i class="fa fa-cogs" aria-hidden="true"></i><span> Проектирование</span>
+            </div>
+        </a>
+        <a href="/admin/iot/">
+            <div class="menuPoint">
+                <i class="fa fa-hdd-o" aria-hidden="true"></i><span> IoT</span>
+            </div>
+        </a>
+        <a href="/admin/security/">
+            <div class="menuPoint">
+                <i class="fa fa-shield" aria-hidden="true"></i><span> Безопасность</span>
+            </div>
+        </a>
+    </div>
 
-            echo "
+    <div id="content">
+        <span class="headerFont">Управление разделами магазина</span>
+        <br /><br />
+        <input type='button' id='addCategorySubmit' value='Добавить разделы' onmouseover='buttonHover("addCategorySubmit", 1)' onmouseout='buttonHover("addCategorySubmit", 0)' onclick='window.location.href = "/admin/categories/add.php"' class='button' />
+        <br /><br />
+        <form method="post" id="categoryForm">
+            <label for="categorySelect">Раздел:</label>
+            <br />
+            <select id="categorySelect" name="category" onchange="window.location = '?c=' + this.options[this.selectedIndex].value">
+                <option value="">- Выберите раздел -</option>
+                <?php
+                    $categoryResult = $mysqli->query("SELECT * FROM st_shop_categories ORDER BY name");
+                    while($category = $categoryResult->fetch_assoc()) {
+                        echo "<option value='".$category['id']."'"; if($_REQUEST['c'] == $category['id']) {echo " selected";} echo ">".$category['name']."</option>";
+                    }
+                ?>
+            </select>
+            <br /><br />
+
+            <?php
+            if(!empty($_REQUEST['c'])) {
+                $categoryResult = $mysqli->query("SELECT * FROM st_shop_categories WHERE id = '".$mysqli->real_escape_string($_REQUEST['c'])."'");
+                $category = $categoryResult->fetch_assoc();
+
+                echo "
                     <label for='subcategorySelect'>Подраздел:</label>
                     <br />
                     <select id='subcategorySelect' name='subcategory' onchange='window.location = \"?c=".$_REQUEST['c']."&s=\" + this.options[this.selectedIndex].value'>
                         <option value=''>- Выберите подраздел -</option>
                 ";
 
-            $subcategoryResult = $mysqli->query("SELECT * FROM st_shop_subcategories WHERE category_id = '".$mysqli->real_escape_string($_REQUEST['c'])."' ORDER BY name");
-            while($subcategory = $subcategoryResult->fetch_assoc()) {
-                echo "<option value='".$subcategory['id']."'"; if($_REQUEST['s'] == $subcategory['id']) {echo " selected";} echo ">".$subcategory['name']."</option>";
-            }
+                $subcategoryResult = $mysqli->query("SELECT * FROM st_shop_subcategories WHERE category_id = '".$mysqli->real_escape_string($_REQUEST['c'])."' ORDER BY name");
+                while($subcategory = $subcategoryResult->fetch_assoc()) {
+                    echo "<option value='".$subcategory['id']."'"; if($_REQUEST['s'] == $subcategory['id']) {echo " selected";} echo ">".$subcategory['name']."</option>";
+                }
 
-            echo "
-                    </select>
-                    <br /><br />
-                ";
-
-            if(empty($_REQUEST['s'])) {
                 echo "
-                    <label for='categoryNameInput'>Название раздела:</label>
+                        </select>
+                        <br /><br />
+                    ";
+
+                if(empty($_REQUEST['s'])) {
+                    echo "
+                        <label for='categoryNameInput'>Название раздела:</label>
+                        <br />
+                        <input id='categoryNameInput' name='categoryName' value='".$category['name']."' />
+                        <br /><br />
+                        <label for='categoryURLInput'>URL раздела:</label>
+                        <br />
+                        <input id='categoryURLInput' name='categoryURL' value='".$category['url']."' />
+                        <br /><br />
+                        <div style='width: 100%;'>
+                            <input type='button' id='editSubmit' value='Редактировать' onmouseover='buttonHover(\"editSubmit\", 1)' onmouseout='buttonHover(\"editSubmit\", 0)' onclick='editCategory()' class='button relative' />
+                            <input type='button' id='deleteSubmit' value='Удалить' onmouseover='buttonHoverRed(\"deleteSubmit\", 1)' onmouseout='buttonHoverRed(\"deleteSubmit\", 0)' onclick='deleteCategory()' class='button relative' style='margin-left: 10px;' />
+                        </div>
+                    ";
+                }
+            }
+
+            if(!empty($_REQUEST['s'])) {
+                $subcategoryResult = $mysqli->query("SELECT * FROM st_shop_subcategories WHERE id = '".$mysqli->real_escape_string($_REQUEST['s'])."'");
+                $subcategory = $subcategoryResult->fetch_assoc();
+
+                echo "
+                    <label for='subcategoryNameInput'>Название подраздела:</label>
                     <br />
-                    <input id='categoryNameInput' name='categoryName' value='".$category['name']."' />
+                    <input id='subcategoryNameInput' name='subcategoryName' value='".$subcategory['name']."' />
                     <br /><br />
-                    <label for='categoryURLInput'>URL раздела:</label>
+                    <label for='subcategoryURLInput'>URL подраздела:</label>
                     <br />
-                    <input id='categoryURLInput' name='categoryURL' value='".$category['url']."' />
+                    <input id='subcategoryURLInput' name='subcategoryURL' value='".$subcategory['url']."' />
                     <br /><br />
-                    <input type='button' id='editSubmit' value='Редактировать' onmouseover='buttonHover(\"editSubmit\", 1)' onmouseout='buttonHover(\"editSubmit\", 0)' onclick='editCategory()' class='button' />
+                    <div style='width: 100%;'>
+                        <input type='button' id='editSubmit' value='Редактировать' onmouseover='buttonHover(\"editSubmit\", 1)' onmouseout='buttonHover(\"editSubmit\", 0)' onclick='editCategory()' class='button relative' />
+                        <input type='button' id='deleteSubmit' value='Удалить' onmouseover='buttonHoverRed(\"deleteSubmit\", 1)' onmouseout='buttonHoverRed(\"deleteSubmit\", 0)' onclick='deleteSubcategory()' class='button relative' style='margin-left: 10px;' />
+                    </div>
                 ";
             }
-        }
-
-        if(!empty($_REQUEST['s'])) {
-            $subcategoryResult = $mysqli->query("SELECT * FROM st_shop_subcategories WHERE id = '".$mysqli->real_escape_string($_REQUEST['s'])."'");
-            $subcategory = $subcategoryResult->fetch_assoc();
-
-            echo "
-                <label for='subcategoryNameInput'>Название подраздела:</label>
-                <br />
-                <input id='subcategoryNameInput' name='subcategoryName' value='".$subcategory['name']."' />
-                <br /><br />
-                <label for='subcategoryURLInput'>URL подраздела:</label>
-                <br />
-                <input id='subcategoryURLInput' name='subcategoryURL' value='".$subcategory['url']."' />
-                <br /><br />
-                <input type='button' id='editSubmit' value='Редактировать' onmouseover='buttonHover(\"editSubmit\", 1)' onmouseout='buttonHover(\"editSubmit\", 0)' onclick='editCategory()' class='button' />
-            ";
-        }
-        ?>
-    </form>
-</div>
+            ?>
+        </form>
+    </div>
 
 </body>
 
