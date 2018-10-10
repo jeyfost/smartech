@@ -128,7 +128,7 @@ include('../scripts/connect.php');
 
     <div class="section text-center" style="margin-top: 50px;">
         <div class="column firstColumn">
-            <i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Республика Беларусь, г. Минск,<br />ул. Стариновская, 17
+            <i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Республика Беларусь, г. Минск,<br />пр-т. Рокоссовского, 54, корп. 1
         </div>
         <div class="column text-center">
             <i class="fa fa-mobile" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;+375 (29) 573-77-53
@@ -176,7 +176,7 @@ include('../scripts/connect.php');
 
 <div class="section"></div>
 
-<script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Afc2ae729f9c3630a7e108c5c0d286b768b38dacde8758c922b3c6db85ce676a6&amp;width=100%&amp;height=470&amp;lang=ru_RU&amp;scroll=false"></script>
+<script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Afc2ae729f9c3630a7e108c5c0d286b768b38dacde8758c922b3c6db85ce676a6&amp;width=100%25&amp;height=470&amp;lang=ru_RU&amp;scroll=false"></script>
 
 <div id="footer">
     <div class="section" style="margin: 0 auto; width: 90%;">
