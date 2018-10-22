@@ -37,6 +37,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src='https://www.google.com/recaptcha/api.js'></script>
+    <script type="text/javascript" src="/libs/notify/notify.js"></script>
     <script type="text/javascript" src="/libs/revealator-master/fm.revealator.jquery.js"></script>
     <script type="text/javascript" src="/libs/vide/jquery.vide.js"></script>
     <script type="text/javascript" src="/js/common.js"></script>
