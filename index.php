@@ -36,6 +36,7 @@
     <link href="https://fonts.googleapis.com/css?family=Exo+2|Istok+Web|Montserrat|Poiret+One" rel="stylesheet">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
     <script type="text/javascript" src="/libs/revealator-master/fm.revealator.jquery.js"></script>
     <script type="text/javascript" src="/libs/vide/jquery.vide.js"></script>
     <script type="text/javascript" src="/js/common.js"></script>
@@ -240,6 +241,37 @@
         </div>
         <div class="clear"></div>
         -->
+    </div>
+
+    <div class="section white" id="contacts" style="margin-top: 50px;">
+        <div class="header">
+            <br /><br />
+            <span class="headerFont" id="policyHeader">Напишите нам</span>
+        </div>
+
+        <div class="container60">
+            <form id="contactForm" name="contactForm">
+                <label for="nameInput">Ваше имя:</label>
+                <br />
+                <input id="nameInput" name="name" />
+                <br /><br />
+                <label for="emailInput">Ваш email:</label>
+                <br />
+                <input id="emailInput" name="email" />
+                <br /><br />
+                <label for="phoneInput">Ваш номер телефона:</label>
+                <br />
+                <input id="phoneInput" name="phone" />
+                <br /><br />
+                <label for="messageInput">Текст сообщения:</label>
+                <br />
+                <textarea id="messageInput" name="message" onkeydown="textAreaHeight(this)" style="width: 95%;"></textarea>
+                <br /><br />
+                <div class="g-recaptcha" data-sitekey="6LfBT0MUAAAAAOMa_302KKxDduJbyDkaB3bYTwGB"></div>
+                <br />
+                <center><button onclick="sendEmail()" class="messageButton" id="messageButton">отправить&nbsp;&nbsp;&nbsp;<i class="fa fa-share" aria-hidden="true"></i></button></center>
+            </form>
+        </div>
     </div>
 
     <div class="bigSection">
