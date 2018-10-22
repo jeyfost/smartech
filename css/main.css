@@ -41,6 +41,7 @@ td a span {transition: .3s;}
 #contactForm {width: 100%;}
 #pageNumbers {display: inline-block; text-align: center; font-family: "Istok Web", sans-serif;}
 #messageButton {margin:0 auto;}
+#section {margin-top: 50px;}
 
 .text-center {text-align: center !important;}
 .text-right {text-align: right !important;}
@@ -62,10 +63,10 @@ td a span {transition: .3s;}
 .header {width: 100%; text-align: center;}
 .headerFont {font-family: "Montserrat", sans-serif; font-size: 42px; color: #000;}
 .catalogueContent .headerFont {font-size: 36px;}
-.activityBlock {margin-top: 70px; padding: 20px;}
-.activityPhoto {position: relative; float: left; width: 40%;}
+.activityBlock {padding: 10px; display: inline-block; vertical-align: top; width: 300px; margin-top: 50px;}
+.activityPhoto {width: 100%;}
 .activityPhoto img {transition: .3s;}
-.activityDescription {position: relative; float: right; width: 57%;}
+.activityDescription {width: 100%;}
 .activityPhoto img {width: 100%;}
 .activityText {width: 100%; margin-top: 40px;}
 .activityHeaderFont {font-family: "Montserat", sans-serif; color: #000; font-size: 20px; transition: .3s;}
@@ -112,7 +113,7 @@ td a span {transition: .3s;}
 .descriptionFont {font-family: "Istok Web", sans-serif; font-size: 14px; color: #888;}
 .goodPhotoPreview {width: 80px; display: inline-block; vertical-align: middle; margin: 20px auto auto 20px;}
 .goodPhoto img, .goodPhotoPreview img {width: 100%; transition: .3s;}
-.breadcrumbs, .breadcrumbs a {text-align: left; font-family: "Istok Web", sans-serif; font-size: 14px; color: #888; font-style: italic; transition: .3s;}
+.breadcrumbs, .breadcrumbs a {text-align: left; font-family: "Istok Web", sans-serif; font-size: 14px; color: #888; font-style: italic; transition: .3s; margin-top: 100px;}
 .breadcrumbs a {color: #fb5c25;}
 .remodal textarea {width: 95%;}
 .remodal-confirm {background-color: #fb5c25; transition: .3s; color: #fff; font-family: "Istok Web", sans-serif; font-size: 16px; border-radius: 25px; padding-left: 20px; padding-right: 20px;}

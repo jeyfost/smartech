@@ -121,7 +121,7 @@
         </div>
     </div>
 
-    <div class="section white" id="section">
+    <div class="section white text-center" id="section">
         <div class="header">
             <br /><br />
             <span class="headerFont">Чем мы занимаемся?</span>
@@ -131,6 +131,7 @@
             <div class="activityPhoto">
                 <a href="/shop/"><img src="/img/system/img5.jpg" /></a>
             </div>
+            <br /><br />
             <div class="activityDescription">
                 <div class="header">
                     <a href="/shop/"><span class="activityHeaderFont">3D-принтеры</span></a>
@@ -142,17 +143,16 @@
                     ?>
                     <p><?= $category['text'] ?></p>
                 </div>
-                <div class="header text-right">
+                <div class="header">
                     <a href="/shop/"><button class="activityButton" onmouseover="iconColor('3d-printers-icon', 1)" onmouseout="iconColor('3d-printers-icon', 0)">подробнее&nbsp;&nbsp;<i class="fa fa-hand-o-right" aria-hidden="true" id="3d-printers-icon" style="color: #ededed;"></i></button></a>
                 </div>
             </div>
-            <div class="clear"></div>
         </div>
-        <div class="clear"></div>
         <div class="activityBlock grey">
             <div class="activityPhoto">
                 <a href="/3d-print/"><img src="/img/system/img4.jpg" /></a>
             </div>
+            <br /><br />
             <div class="activityDescription">
                 <div class="header">
                     <a href="/3d-print/"><span class="activityHeaderFont">3D-печать</span></a>
@@ -164,17 +164,16 @@
                     ?>
                     <p><?= $category['text'] ?></p>
                 </div>
-                <div class="header text-right">
+                <div class="header">
                     <a href="/3d-print/"><button class="activityButton" onmouseover="iconColor('3d-print-icon', 1)" onmouseout="iconColor('3d-print-icon', 0)">подробнее&nbsp;&nbsp;<i class="fa fa-hand-o-right" aria-hidden="true" id="3d-print-icon" style="color: #ededed;"></i></button></a>
                 </div>
             </div>
-            <div class="clear"></div>
         </div>
-        <div class="clear"></div>
         <div class="activityBlock white">
             <div class="activityPhoto">
                 <a href="/study/"><img src="/img/system/img6.jpg" /></a>
             </div>
+            <br /><br />
             <div class="activityDescription">
                 <div class="header">
                     <a href="/study/"><span class="activityHeaderFont">Обучение</span></a>
@@ -187,12 +186,10 @@
                     <p><?= $category['text'] ?></p>
                 </div>
             </div>
-            <div class="header text-right">
+            <div class="header">
                 <a href="/study/"><button class="activityButton" onmouseover="iconColor('study-icon', 1)" onmouseout="iconColor('study-icon', 0)">подробнее&nbsp;&nbsp;<i class="fa fa-hand-o-right" aria-hidden="true" id="study-icon" style="color: #ededed;"></i></button></a>
             </div>
-            <div class="clear"></div>
         </div>
-        <div class="clear"></div>
         <!--
         <div class="activityBlock grey">
             <div class="activityPhoto">
